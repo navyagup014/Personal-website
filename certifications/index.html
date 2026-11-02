@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Navya Gupta, Certifications &amp; Courses</title>
+<meta name="description" content="Navya Gupta's certifications, simulations and coursework.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+<style>
+/* Layout: same single reading column as the work page. Handwritten header with a drawn
+   certificate, then rows of when (left) / what (right). */
+:root {
+  --paper: #fffdfb;
+  --ink: #2a1216;
+  --maroon: #6b1a2b;
+  --rose: #d9a5ae;
+  --soft: #6e5a5d;
+  --line: #eadfdc;
+  --hand: "Reenie Beanie", "Bradley Hand", cursive;
+  --type: "Courier Prime", "Courier New", monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 16px / 1.65 var(--type);
+  padding-block: 28px 80px;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+.wrap { width: min(920px, 100%); margin: 0 auto; }
+a { color: var(--maroon); }
+.back { font-size: 13px; letter-spacing: 0.18em; text-decoration: none; }
+.back:hover, .back:focus-visible { text-decoration: underline; }
+header { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-top: 28px; }
+header > div { min-width: 0; }
+h1 { margin: 0; font: 400 clamp(52px, 9.5vw, 92px) / 0.9 var(--hand); color: var(--maroon); text-wrap: balance; }
+.sub { margin: 14px 0 0; font-size: 14px; letter-spacing: 0.18em; }
+.art { width: clamp(110px, 18vw, 180px); flex: none; transform: rotate(6deg); filter: drop-shadow(0 6px 8px rgba(42,18,22,.14)); }
+.rows { margin-top: 48px; }
+.row { display: grid; grid-template-columns: 200px 1fr; gap: 6px 40px; padding-block: 28px; border-top: 1px solid var(--line); }
+.row:last-child { border-bottom: 1px solid var(--line); }
+.k { font-size: 13px; letter-spacing: 0.08em; color: var(--soft); }
+h2 { margin: 0 0 6px; font: 400 clamp(28px, 3.8vw, 38px) / 1.05 var(--hand); }
+.row p { margin: 0; max-width: 62ch; }
+.courses { margin: 0; padding-left: 1.1em; max-width: 62ch; }
+.courses li { margin-bottom: 6px; }
+.courses li::marker { color: var(--maroon); }
+@media (max-width: 719px) { .row { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="/">&larr; Home</a>
+
+  <header>
+    <div>
+      <h1>Certifications &amp; courses</h1>
+      <p class="sub">Certifications, simulations and coursework</p>
+    </div>
+    <svg class="art" viewBox="0 0 200 150" aria-hidden="true">
+      <rect x="10" y="12" width="180" height="118" rx="4" fill="#fffdfb" stroke="#2a1216" stroke-width="2"/>
+      <rect x="19" y="21" width="162" height="100" rx="2" fill="none" stroke="#d9a5ae" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <text x="100" y="52" text-anchor="middle" font-family="Courier Prime, monospace" font-weight="700" font-size="13" fill="#6b1a2b" letter-spacing="2">CERTIFICATE</text>
+      <rect x="52" y="64" width="96" height="3" rx="1.5" fill="#e8dcd9"/>
+      <rect x="64" y="74" width="72" height="3" rx="1.5" fill="#e8dcd9"/>
+      <rect x="40" y="94" width="60" height="2" fill="#2a1216"/>
+      <polygon points="141,115 133,146 145,139 152,118" fill="#561522"/>
+      <polygon points="148,118 156,139 168,146 160,115" fill="#6b1a2b"/>
+      <circle cx="150" cy="104" r="15" fill="#6b1a2b"/>
+      <circle cx="150" cy="104" r="10" fill="none" stroke="#f3e3a6" stroke-width="1.5"/>
+    </svg>
+  </header>
+
+  <div class="rows">
+    <div class="row">
+      <div class="k">Sep 2026</div>
+      <div><h2>AI Fluency: Framework &amp; Foundations</h2><p>Claude Academy by Anthropic.</p></div>
+    </div>
+    <div class="row">
+      <div class="k">Aug 2026</div>
+      <div><h2>Mastercard Advisors &amp; Consulting Services Job Simulation</h2><p>Through Forage. Designed an in-store promotional test with Mastercard's Test &amp; Learn methodology to measure ROI, then presented recommendations to a simulated client team.</p></div>
+    </div>
+    <div class="row">
+      <div class="k">Certification</div>
+      <div><h2>Google Analytics</h2><p>Web analytics certification.</p></div>
+    </div>
+    <div class="row">
+      <div class="k">USC Marshall</div>
+      <div>
+        <h2>MSBA coursework</h2>
+        <ul class="courses">
+          <li>DSO 510: Business Analytics</li>
+          <li>DSO 552: SQL Databases for Business Analytics</li>
+          <li>DSO 576: Algorithmic Thinking with Python</li>
+          <li>GSBA 542: Communication for Management</li>
+          <li>GSBA 545: Data Driven Decision Making</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

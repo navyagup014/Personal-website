@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Navya Gupta, Beyond the Desk</title>
+<meta name="description" content="Navya Gupta's communities, clubs and the things she does outside of work.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+<style>
+/* Layout: same single reading column as the work page. Handwritten header with a drawn
+   ticket stub, a short intro, then rows of when (left) / what (right). */
+:root {
+  --paper: #fffdfb;
+  --ink: #2a1216;
+  --maroon: #6b1a2b;
+  --rose: #d9a5ae;
+  --butter: #f3e3a6;
+  --soft: #6e5a5d;
+  --line: #eadfdc;
+  --hand: "Reenie Beanie", "Bradley Hand", cursive;
+  --type: "Courier Prime", "Courier New", monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 16px / 1.65 var(--type);
+  padding-block: 28px 80px;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+.wrap { width: min(920px, 100%); margin: 0 auto; }
+a { color: var(--maroon); }
+.back { font-size: 13px; letter-spacing: 0.18em; text-decoration: none; }
+.back:hover, .back:focus-visible { text-decoration: underline; }
+header { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-top: 28px; }
+header > div { min-width: 0; }
+h1 { margin: 0; font: 400 clamp(52px, 9.5vw, 92px) / 0.9 var(--hand); color: var(--maroon); text-wrap: balance; }
+.art { width: clamp(110px, 18vw, 180px); flex: none; transform: rotate(-6deg); filter: drop-shadow(0 6px 8px rgba(42,18,22,.14)); }
+.lede { margin: 28px 0 0; max-width: 58ch; }
+.rows { margin-top: 40px; }
+.row { display: grid; grid-template-columns: 200px 1fr; gap: 6px 40px; padding-block: 28px; border-top: 1px solid var(--line); }
+.row:last-child { border-bottom: 1px solid var(--line); }
+.k { font-size: 13px; letter-spacing: 0.08em; color: var(--soft); }
+h2 { margin: 0 0 6px; font: 400 clamp(28px, 3.8vw, 38px) / 1.05 var(--hand); }
+.row p { margin: 0; max-width: 62ch; }
+@media (max-width: 719px) { .row { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="/">&larr; Home</a>
+
+  <header>
+    <h1>Beyond the desk</h1>
+    <svg class="art" viewBox="0 0 200 120" aria-hidden="true">
+      <path d="M10 14H190V44a14 14 0 0 0 0 28V102H10V72a14 14 0 0 0 0-28Z" fill="#f3e3a6" stroke="#2a1216" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M140 18V98" stroke="#2a1216" stroke-width="1.5" stroke-dasharray="3 4"/>
+      <text x="75" y="64" text-anchor="middle" font-family="Courier Prime, monospace" font-weight="700" font-size="17" fill="#6b1a2b" letter-spacing="1">ADMIT ONE</text>
+      <text x="168" y="64" text-anchor="middle" font-family="Courier Prime, monospace" font-weight="700" font-size="13" fill="#6b1a2b" transform="rotate(90 168 60)">30+</text>
+    </svg>
+  </header>
+
+  <p class="lede">The best ideas come from people who build communities, not just careers. Here's where I've chosen to invest that energy.</p>
+
+  <div class="rows">
+    <div class="row">
+      <div class="k">2026&ndash;27<br>USC Marshall</div>
+      <div><h2>Core A Rep</h2><p>Elected MSBA Core Rep, alongside Grant. We send the weekly Core A email with news, resources and reminders.</p></div>
+    </div>
+    <div class="row">
+      <div class="k">2026&ndash;2027<br>USC</div>
+      <div><h2>External Relations AVP, High Tech Association</h2><p>On the e-board of USC's High Tech Association, a product marketing and product management club.</p></div>
+    </div>
+    <div class="row">
+      <div class="k">UMass Amherst</div>
+      <div><h2>Women of Isenberg</h2><p>Part of Women of Isenberg at the Isenberg School of Management.</p></div>
+    </div>
+    <div class="row">
+      <div class="k">Sept 2022 &ndash; May 2023<br>UMass Amherst</div>
+      <div><h2>Executive Director of Networking Night, Isenberg Marketing Club</h2><p>Led a team of 7 to bring a 300+ attendee networking event back in person, and raised attendee satisfaction 11%. Built the Zoom logistics to move events between in-person and virtual, growing attendance 30%.</p></div>
+    </div>
+    <div class="row">
+      <div class="k">Always</div>
+      <div><h2>Outside of clubs</h2><p>Painting since I was a kid, and still how I destress. Jigsaw puzzles (I built a site for them: Puzzle Table). 30+ concerts, Formula 1 and golf.</p></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Navya Gupta</title>
+<meta name="description" content="Navya Gupta. Product and analytics, customer-obsessed, loves creative solutions to problems.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+<style>
+/* Layout: a ring of nine same-size hand-drawn objects around a handwritten hello.
+   Each object is a link; hovering swaps the small typed caption under the hello. */
+:root {
+  --paper: #fffdfb;
+  --ink: #2a1216;
+  --maroon: #6b1a2b;
+  --rose: #d9a5ae;
+  --butter: #f3e3a6;
+  --soft: #6e5a5d;
+  --line: #eadfdc;
+  --hand: "Reenie Beanie", "Bradley Hand", cursive;
+  --type: "Courier Prime", "Courier New", monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--type);
+  padding-block: 0 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.hero { min-height: 100vh; display: grid; place-items: center; padding-block: 24px; }
+
+
+.stage {
+  position: relative;
+  width: min(1300px, 100%, 126vh);
+  aspect-ratio: 11 / 8;
+  container-type: inline-size; /* lets the hello scale with the stage (cqw) */
+}
+.hello {
+  position: absolute;
+  left: 50%; top: 49%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  text-align: center;
+  z-index: 1;
+}
+.hello h1 {
+  margin: 0;
+  font: 400 5.2cqw / 1 var(--hand);
+  color: var(--maroon);
+  text-wrap: balance;
+}
+.heart { width: 0.55em; height: 0.5em; margin-left: 0.18em; vertical-align: 0.05em; }
+#cap {
+  margin: 14px 0 0;
+  font-size: clamp(12px, 1.2vw, 15px);
+  letter-spacing: 0.18em;
+  min-height: 1.4em;
+}
+#cap::after { content: "|"; margin-left: 2px; animation: blink 1.1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+.tile {
+  position: absolute;
+  left: var(--x); top: var(--y);
+  width: var(--w);
+  transform: rotate(var(--r)) scale(var(--s, 1));
+  transition: transform 0.25s cubic-bezier(.3,1.4,.5,1);
+  color: inherit;
+  text-decoration: none;
+  z-index: 2;
+}
+.tile svg {
+  display: block; width: 100%; aspect-ratio: 1; height: auto; overflow: visible;
+  filter: drop-shadow(0 6px 8px rgba(42, 18, 22, 0.14));
+  animation: bob 6s ease-in-out infinite;
+  animation-delay: var(--d, 0s);
+}
+@keyframes bob { 50% { transform: translateY(-6px); } }
+.tile:hover, .tile:focus-visible { --r: 0deg !important; --s: 1.08; z-index: 3; }
+.tile:focus-visible { outline: 2px dashed var(--maroon); outline-offset: 8px; border-radius: 8px; }
+.tag {
+  position: absolute; top: 100%; left: -8%; right: -8%; margin-top: 6px;
+  font-size: clamp(11px, 1.35cqw, 16px); line-height: 1.25; letter-spacing: 0.06em; text-align: center;
+  transform: rotate(calc(var(--r) * -1)); /* cancels the tile's tilt so the words sit level */
+  opacity: 0; transition: opacity 0.2s; pointer-events: none;
+}
+.tile:hover .tag, .tile:focus-visible .tag { opacity: 1; }
+.hand { font-family: var(--hand); }
+
+/* record sleeve: click slides the vinyl out and spins it while the song plays */
+button.tile { background: none; border: 0; padding: 0; font: inherit; cursor: pointer; }
+.disc { transition: transform 0.5s cubic-bezier(.3, 1.3, .5, 1); }
+.rec.on .disc { transform: translateX(62px); }
+.spin { transform-box: fill-box; transform-origin: center; }
+.rec.on .spin { animation: spin 3s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+#all[hidden] { display: none; }
+#all { display: inline-block; margin-top: 8px; font-size: 12px; letter-spacing: 0.18em; color: var(--maroon); }
+/* Spotify's own player, kept small. Fades in once the record is playing. */
+.mini {
+  position: fixed; right: max(16px, env(safe-area-inset-right, 0px)); bottom: max(12px, env(safe-area-inset-bottom, 0px));
+  width: min(300px, calc(100% - 32px)); height: 80px;
+  opacity: 0; pointer-events: none; transition: opacity 0.3s; z-index: 5;
+}
+.mini.show { opacity: 1; pointer-events: auto; }
+
+@media (max-width: 719px) {
+  .hero { place-items: start center; min-height: 0; }
+  .stage { width: 100%; aspect-ratio: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 28px 16px; padding-block: 24px; }
+  .hello { position: static; transform: none; width: auto; grid-column: 1 / -1; margin-bottom: 8px; }
+  .hello h1 { font-size: 42px; }
+  .tile { position: static; width: min(160px, 100%); justify-self: center; transform: none; }
+  .tag { opacity: 1; position: static; display: block; transform: none; margin-top: 10px; font-size: 13px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tile svg, #cap::after { animation: none; }
+  .tile { transition: none; }
+}
+</style>
+</head>
+<body>
+<div class="hero">
+<main class="stage">
+  <div class="hello">
+    <h1>Hi! I'm Navya!<svg class="heart" viewBox="0 0 24 22" aria-hidden="true"><path d="M12 20.5C5.5 15 1.5 11 1.5 6.8 1.5 3.9 3.6 2 6.2 2c2.2 0 4.2 1.3 5.8 3.6C13.600 3.300 15.600 2 17.800 2c2.600 0 4.700 1.900 4.700 4.800 0 4.200-4 8.200-10.500 13.700z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg><br>I build things around people</h1>
+    <p id="cap" data-default="Click around to learn about me:)">Click around to learn about me:)</p>
+    <a id="all" href="./recs" hidden>all my recs &rarr;</a>
+  </div>
+
+  <!-- work: lanyard badge -->
+  <a class="tile" href="https://claude.ai/artifact/3VRV6FwQoWZBqZs1U6kjbK" target="_blank" rel="noopener"data-cap="Where I've shipped things" aria-label="Professional full-time work" style="--x:28%;--y:1%;--w:20%;--r:-6deg;--d:0s">
+    <svg viewBox="0 0 160 130" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+      <path d="M8 24Q8 14 18 14H58L70 27H142Q152 27 152 37V112Q152 122 142 122H18Q8 122 8 112Z" fill="#e2c97a" stroke="#2a1216" stroke-width="2" stroke-linejoin="round"/>
+      <rect x="24" y="24" width="104" height="60" rx="3" fill="#fffdfb" stroke="#2a1216" stroke-width="1.5" transform="rotate(-3 76 54)"/>
+      <rect x="34" y="36" width="60" height="3" rx="1.5" fill="#d9a5ae" transform="rotate(-3 76 54)"/>
+      <rect x="34" y="46" width="44" height="3" rx="1.5" fill="#e8dcd9" transform="rotate(-3 76 54)"/>
+      <path d="M8 48Q8 40 16 40H144Q152 40 152 48V112Q152 122 142 122H18Q8 122 8 112Z" fill="#f3e3a6" stroke="#2a1216" stroke-width="2" stroke-linejoin="round"/>
+      <rect x="22" y="66" width="62" height="22" rx="3" fill="#fffdfb" stroke="#2a1216" stroke-width="1.5"/>
+      <text x="53" y="82" text-anchor="middle" font-family="Courier Prime, monospace" font-weight="700" font-size="13" fill="#6b1a2b" letter-spacing="2">WORK</text>
+      <rect x="22" y="98" width="116" height="4" rx="2" fill="#6b1a2b"/>
+    </svg>
+    <span class="tag">Professional full-time work</span>
+  </a>
+
+  <!-- projects: laptop -->
+  <a class="tile" href="./projects" data-cap="Things I've built, mostly vibecoded" aria-label="Projects" style="--x:52%;--y:1%;--w:20%;--r:3deg;--d:-1.2s">
+    <svg viewBox="0 0 220 150" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+      <rect x="30" y="8" width="160" height="98" rx="8" fill="#3a2b2e"/>
+      <rect x="37" y="15" width="146" height="84" rx="3" fill="#fffdfb"/>
+      <circle cx="46" cy="24" r="2.5" fill="#6b1a2b"/><circle cx="54" cy="24" r="2.5" fill="#d9a5ae"/><circle cx="62" cy="24" r="2.5" fill="#f3e3a6"/>
+      <rect x="46" y="36" width="60" height="5" rx="2.5" fill="#2a1216"/>
+      <rect x="46" y="46" width="40" height="4" rx="2" fill="#e8dcd9"/>
+      <rect x="120" y="36" width="52" height="52" rx="4" fill="#f6ebe9"/>
+      <rect x="127" y="68" width="8" height="14" fill="#d9a5ae"/><rect x="140" y="56" width="8" height="26" fill="#6b1a2b"/><rect x="153" y="46" width="8" height="36" fill="#6b1a2b"/>
+      <rect x="46" y="62" width="62" height="26" rx="4" fill="#f3e3a6"/>
+      <path d="M12 110H208L200 126Q199 130 194 130H26Q21 130 20 126Z" fill="#cfc5c3" stroke="#3a2b2e" stroke-width="1.5"/>
+      <rect x="90" y="110" width="40" height="5" rx="2.5" fill="#b8acaa"/>
+    </svg>
+    <span class="tag">Projects</span>
+  </a>
+
+  <!-- about: paint palette -->
+  <a class="tile" href="./about" data-cap="The long version" aria-label="About" style="--x:76%;--y:1%;--w:20%;--r:8deg;--d:-2.4s">
+    <svg viewBox="0 0 200 160" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+      <path d="M100 8C150 6 194 40 190 84C187 118 156 114 148 128C140 144 150 154 120 154C60 154 8 124 10 76C12 36 54 10 100 8Z" fill="#f1d9b8" stroke="#2a1216" stroke-width="2"/>
+      <ellipse cx="138" cy="112" rx="12" ry="9" fill="#fffdfb" stroke="#2a1216" stroke-width="2"/>
+      <circle cx="46" cy="72" r="13" fill="#6b1a2b"/><circle cx="64" cy="42" r="13" fill="#e07a5f"/><circle cx="100" cy="30" r="13" fill="#f2cc5c"/><circle cx="136" cy="42" r="13" fill="#3f8f8b"/><circle cx="156" cy="72" r="13" fill="#4a6fa5"/>
+      <g transform="rotate(-28 105 104)">
+        <rect x="72" y="100" width="76" height="7" rx="3.5" fill="#8a5a3c"/>
+        <rect x="76" y="99" width="12" height="9" fill="#cfc5c3" stroke="#2a1216" stroke-width="1"/>
+        <ellipse cx="68" cy="103.5" rx="9" ry="5" fill="#6b1a2b"/>
+      </g>
+    </svg>
+    <span class="tag">About</span>
+  </a>
+
+  <!-- product sense: sticky notes -->
+  <a class="tile" href="./product-sense" data-cap="How I think through a product" aria-label="Product sense" style="--x:19%;--y:68%;--w:20%;--r:-5deg;--d:-3.1s">
+    <svg viewBox="0 0 180 170" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+      <rect x="60" y="8" width="102" height="102" fill="#f4c6cf" transform="rotate(8 110 60)"/>
+      <rect x="16" y="28" width="102" height="102" fill="#f3e3a6" transform="rotate(-6 68 80)"/>
+      <rect x="44" y="58" width="104" height="104" fill="#cfe3ea" transform="rotate(2 96 110)"/>
+      <g transform="rotate(2 96 110)" font-family="Reenie Beanie, cursive" fill="#2a1216">
+        <text x="56" y="92" font-size="26">Who's it for?</text>
+        <text x="56" y="120" font-size="21">What's in the way?</text>
+        <path d="M56 134q30 6 70-2" stroke="#6b1a2b" stroke-width="2" fill="none" stroke-linecap="round"/>
+      </g>
+    </svg>
+    <span class="tag">Product sense</span>
+  </a>
+
+  <!-- recs: record sleeve. Click = vinyl slides out and the song plays. -->
+  <button class="tile rec" type="button" data-cap="Press play: girl on fire" aria-label="Play Girl on Fire" style="--x:40%;--y:68%;--w:20%;--r:0deg;--d:-4.2s">
+    <svg viewBox="0 0 160 170" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+      <g class="disc">
+        <g class="spin">
+          <circle cx="80" cy="85" r="64" fill="#1d1416"/>
+          <g fill="none" stroke="#3a2b2e" stroke-width="1.2"><circle cx="80" cy="85" r="55"/><circle cx="80" cy="85" r="47"/><circle cx="80" cy="85" r="39"/></g>
+          <path d="M36 58A52 52 0 0 1 80 33" fill="none" stroke="#fffdfb" stroke-opacity=".3" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="80" cy="85" r="21" fill="#6b1a2b"/>
+          <circle cx="80" cy="85" r="3" fill="#fffdfb"/>
+        </g>
+      </g>
+      <rect x="10" y="15" width="140" height="140" fill="#6b1a2b" stroke="#2a1216" stroke-width="2"/>
+      <circle cx="80" cy="72" r="34" fill="#d9a5ae"/>
+      <circle cx="80" cy="72" r="20" fill="#f3e3a6"/>
+      <text x="80" y="136" text-anchor="middle" font-family="Reenie Beanie, cursive" font-size="26" fill="#fffdfb">Press play</text>
+    </svg>
+    <span class="tag">Recs</span>
+  </button>
+
+  <!-- links: business card -->
+  <a class="tile" href="./links" data-cap="Resume, GitHub, LinkedIn and more" aria-label="Links" style="--x:61%;--y:68%;--w:20%;--r:-6deg;--d:-5.3s">
+    <svg viewBox="0 0 230 150" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+      <rect x="34" y="6" width="176" height="104" rx="4" fill="#e8dcd9" stroke="#2a1216" stroke-width="1.5" transform="rotate(7 122 58)"/>
+      <rect x="14" y="30" width="190" height="108" rx="4" fill="#fffdfb" stroke="#2a1216" stroke-width="2"/>
+      <rect x="14" y="30" width="12" height="108" rx="4" fill="#6b1a2b"/>
+      <text x="42" y="68" font-family="Courier Prime, monospace" font-weight="700" font-size="17" fill="#2a1216">NAVYA GUPTA</text>
+      <text x="42" y="86" font-family="Courier Prime, monospace" font-size="10" fill="#2a1216" letter-spacing="1">Product + data</text>
+      <rect x="42" y="104" width="70" height="3" rx="1.5" fill="#d9a5ae"/>
+      <rect x="42" y="113" width="50" height="3" rx="1.5" fill="#d9a5ae"/>
+      <g transform="translate(138 108) rotate(-35)" fill="none" stroke="#6b1a2b" stroke-width="3.5"><rect x="0" y="0" width="28" height="13" rx="6.5"/><rect x="17" y="0" width="28" height="13" rx="6.5"/></g>
+    </svg>
+    <span class="tag">Links</span>
+  </a>
+
+  <!-- certifications & courses: certificate with a ribbon seal -->
+  <a class="tile" href="https://claude.ai/artifact/XeJnbqrHJeDENT8g3zXysE" target="_blank" rel="noopener" data-cap="Certificates, simulations and coursework" aria-label="Certifications and courses" style="--x:0%;--y:36%;--w:20%;--r:-4deg;--d:-1.8s">
+    <svg viewBox="0 0 200 150" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+      <rect x="10" y="12" width="180" height="118" rx="4" fill="#fffdfb" stroke="#2a1216" stroke-width="2"/>
+      <rect x="19" y="21" width="162" height="100" rx="2" fill="none" stroke="#d9a5ae" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <text x="100" y="52" text-anchor="middle" font-family="Courier Prime, monospace" font-weight="700" font-size="13" fill="#6b1a2b" letter-spacing="2">CERTIFICATE</text>
+      <rect x="52" y="64" width="96" height="3" rx="1.5" fill="#e8dcd9"/>
+      <rect x="64" y="74" width="72" height="3" rx="1.5" fill="#e8dcd9"/>
+      <rect x="40" y="94" width="60" height="2" fill="#2a1216"/>
+      <polygon points="141,115 133,146 145,139 152,118" fill="#561522"/>
+      <polygon points="148,118 156,139 168,146 160,115" fill="#6b1a2b"/>
+      <circle cx="150" cy="104" r="15" fill="#6b1a2b"/>
+      <circle cx="150" cy="104" r="10" fill="none" stroke="#f3e3a6" stroke-width="1.5"/>
+    </svg>
+    <span class="tag">Certifications &amp; courses</span>
+  </a>
+
+  <!-- beyond the desk: ticket stub -->
+  <a class="tile" href="https://claude.ai/artifact/AYtYTsxfEkEgNob5rVcyAp" target="_blank" rel="noopener" data-cap="Communities, clubs and what I do for fun" aria-label="Beyond the desk" style="--x:80%;--y:36%;--w:20%;--r:5deg;--d:-3.6s">
+    <svg viewBox="0 0 200 120" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+      <path d="M10 14H190V44a14 14 0 0 0 0 28V102H10V72a14 14 0 0 0 0-28Z" fill="#f3e3a6" stroke="#2a1216" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M140 18V98" stroke="#2a1216" stroke-width="1.5" stroke-dasharray="3 4"/>
+      <text x="75" y="64" text-anchor="middle" font-family="Courier Prime, monospace" font-weight="700" font-size="17" fill="#6b1a2b" letter-spacing="1">ADMIT ONE</text>
+      <text x="168" y="64" text-anchor="middle" font-family="Courier Prime, monospace" font-weight="700" font-size="13" fill="#6b1a2b" transform="rotate(90 168 60)">30+</text>
+    </svg>
+    <span class="tag">Beyond the desk</span>
+  </a>
+
+  <!-- me at USC: polaroid with the headshot -->
+  <a class="tile" href="https://claude.ai/artifact/GgfmDNMSc3czeMbpLWWAo6" target="_blank" rel="noopener" data-cap="Pictures of me at USC" aria-label="Me at USC" style="--x:4%;--y:1%;--w:20%;--r:-7deg;--d:-2.7s">
+    <svg viewBox="0 0 160 200" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+      <rect x="6" y="6" width="148" height="188" rx="3" fill="#fffdfb" stroke="#2a1216" stroke-width="2"/>
+      <image href="assets/usc-headshot.jpg" x="16" y="16" width="128" height="158" preserveAspectRatio="xMidYMid slice"/>
+      <rect x="16" y="16" width="128" height="158" fill="none" stroke="#2a1216" stroke-width="1"/>
+      <text x="80" y="190" text-anchor="middle" font-family="Reenie Beanie, cursive" font-size="20" fill="#6b1a2b">Fight on!</text>
+      <rect x="52" y="-2" width="56" height="16" fill="#d9a5ae" fill-opacity="0.85" transform="rotate(-4 80 6)"/>
+    </svg>
+    <span class="tag">Me at USC</span>
+  </a>
+</main>
+</div>
+
+<div id="mini" class="mini"></div>
+
+<script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+<script>
+// Typed caption under the greeting: shows each tile's line on hover/focus, "now playing" while music runs.
+const cap = document.getElementById("cap");
+const rec = document.querySelector(".rec");
+const all = document.getElementById("all");
+const mini = document.getElementById("mini");
+const SONG = "6qOEjO2IUD7PjtpsXawq0d";
+let ctl, playing = false;
+
+const say = (t) => (cap.firstChild.nodeValue = t);
+const rest = () => say(playing ? (ctl ? "Now playing: girl on fire" : "Music plays on the live site") : cap.dataset.default);
+document.querySelectorAll(".tile").forEach((t) => {
+  const on = () => say(t === rec && playing ? "Pause the music" : t.dataset.cap);
+  t.addEventListener("mouseenter", on); t.addEventListener("focus", on);
+  t.addEventListener("mouseleave", rest); t.addEventListener("blur", rest);
+});
+
+// Spotify's iFrame API drives playback; its events decide whether the record is "on".
+window.onSpotifyIframeApiReady = (api) =>
+  api.createController(mini, { uri: "spotify:track:" + SONG, width: "100%", height: 80 }, (c) => {
+    ctl = c;
+    c.addListener("playback_update", (e) => {
+      playing = !e.data.isPaused;
+      rec.classList.toggle("on", playing);
+      mini.classList.toggle("show", playing);
+      all.hidden = !playing;
+      rest();
+    });
+  });
+
+// ponytail: if Spotify's script can't load (offline, or a sandboxed preview), the record only animates. No redirect.
+rec.addEventListener("click", () => {
+  if (ctl) return ctl.togglePlay();
+  playing = !playing;
+  rec.classList.toggle("on", playing);
+  rest();
+});
+</script>
+</body>
+</html>

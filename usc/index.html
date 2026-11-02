@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Navya Gupta, Me at USC</title>
+<meta name="description" content="Pictures of Navya Gupta at USC.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+<style>
+/* Layout: same reading column as the other pages. A handwritten header, then a loose grid
+   of polaroids. To add a photo, copy one <figure> and change the img and caption. */
+:root {
+  --paper: #fffdfb;
+  --ink: #2a1216;
+  --maroon: #6b1a2b;
+  --rose: #d9a5ae;
+  --hand: "Reenie Beanie", "Bradley Hand", cursive;
+  --type: "Courier Prime", "Courier New", monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 16px / 1.65 var(--type);
+  padding-block: 28px 80px;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+.wrap { width: min(920px, 100%); margin: 0 auto; }
+a { color: var(--maroon); }
+.back { font-size: 13px; letter-spacing: 0.18em; text-decoration: none; }
+.back:hover, .back:focus-visible { text-decoration: underline; }
+h1 { margin: 28px 0 0; font: 400 clamp(52px, 9.5vw, 92px) / 0.9 var(--hand); color: var(--maroon); }
+.sub { margin: 14px 0 0; font-size: 14px; letter-spacing: 0.18em; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 36px 28px; margin-top: 48px; }
+figure { margin: 0; padding: 12px 12px 6px; background: #fffdfb; border: 2px solid var(--ink); box-shadow: 0 8px 14px rgba(42,18,22,.14); transform: rotate(var(--r, -2deg)); }
+figure:nth-child(even) { --r: 2deg; }
+figure img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+figcaption { margin-top: 6px; text-align: center; font: 400 28px / 1.1 var(--hand); color: var(--maroon); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="/">&larr; Home</a>
+  <h1>Me at USC</h1>
+  <p class="sub">USC Marshall, MS Business Analytics</p>
+
+  <div class="grid">
+    <figure>
+      <img src="../assets/usc-headshot.jpg" alt="Navya in a maroon blazer, smiling" width="528" height="652">
+      <figcaption>Fight on!</figcaption>
+    </figure>
+  </div>
+</div>
+</body>
+</html>
