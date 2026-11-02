@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Navya Gupta, Links</title>
+<meta name="description" content="Resume, GitHub, LinkedIn and more for Navya Gupta.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+<style>
+/* Layout: same reading column as the other pages. Handwritten header with a drawn laptop, a short intro,
+   then one row per project: status (left) / what it is (right). To add a project, copy a .row. */
+:root {
+  --paper: #fffdfb;
+  --ink: #2a1216;
+  --maroon: #6b1a2b;
+  --rose: #d9a5ae;
+  --butter: #f3e3a6;
+  --soft: #6e5a5d;
+  --line: #eadfdc;
+  --hand: "Reenie Beanie", "Bradley Hand", cursive;
+  --type: "Courier Prime", "Courier New", monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 16px / 1.65 var(--type);
+  padding-block: 28px 80px;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+.wrap { width: min(920px, 100%); margin: 0 auto; }
+a { color: var(--maroon); }
+.back { font-size: 13px; letter-spacing: 0.18em; text-decoration: none; }
+.back:hover, .back:focus-visible { text-decoration: underline; }
+header { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-top: 28px; }
+header > div { min-width: 0; }
+h1 { margin: 0; font: 400 clamp(52px, 9.5vw, 92px) / 0.9 var(--hand); color: var(--maroon); text-wrap: balance; }
+.art { width: clamp(110px, 18vw, 180px); flex: none; transform: rotate(-6deg); filter: drop-shadow(0 6px 8px rgba(42,18,22,.14)); }
+.lede { margin: 28px 0 0; max-width: 58ch; }
+.rows { margin-top: 40px; }
+.row { display: grid; grid-template-columns: 200px 1fr; gap: 6px 40px; padding-block: 28px; border-top: 1px solid var(--line); }
+.row:last-child { border-bottom: 1px solid var(--line); }
+.k { font-size: 13px; letter-spacing: 0.08em; color: var(--soft); }
+h2 { margin: 0 0 6px; font: 400 clamp(28px, 3.8vw, 38px) / 1.05 var(--hand); }
+.link-row h2 a { text-decoration: none; }
+.link-row h2 a:hover, .link-row h2 a:focus-visible { text-decoration: underline; }
+.row p { margin: 0; max-width: 62ch; }
+@media (max-width: 719px) { .row { grid-template-columns: 1fr; } }
+.link-row h2 { font-size: clamp(34px, 4.6vw, 48px); color: var(--maroon); }
+.badge { display: inline-block; margin-top: 10px; padding: 2px 10px; border: 1.5px solid var(--maroon); border-radius: 99px; font-size: 12px; letter-spacing: 0.08em; color: var(--maroon); }
+.row a.go { display: inline-block; margin-top: 10px; font-size: 14px; letter-spacing: 0.08em; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="/">&larr; Home</a>
+
+  <header>
+    <h1>Links</h1>
+    <svg class="art" viewBox="0 0 200 120" aria-hidden="true">
+      <rect x="22" y="14" width="150" height="84" fill="#e9dedc" stroke="#2a1216" stroke-width="2" transform="rotate(-6 97 56)"/>
+      <rect x="14" y="26" width="160" height="88" fill="#fffdfb" stroke="#2a1216" stroke-width="2"/>
+      <rect x="14" y="26" width="12" height="88" fill="#6b1a2b"/>
+      <text x="40" y="58" font-family="Courier Prime, monospace" font-weight="700" font-size="14" fill="#2a1216">NAVYA GUPTA</text>
+      <text x="40" y="76" font-family="Courier Prime, monospace" font-size="10" fill="#2a1216">Product + data</text>
+    </svg>
+  </header>
+
+  <p class="lede">Find me here.</p>
+
+  <div class="rows">
+    <div class="row link-row">
+      <div class="k">Resume</div>
+      <div><h2><a href="/Navya-Gupta-2026-Resume.pdf">Navya Gupta 2026 Resume</a></h2><p>The one-page version, as a PDF.</p></div>
+    </div>
+    <div class="row link-row">
+      <div class="k">Code</div>
+      <div><h2><a href="https://github.com/navyagup014" target="_blank" rel="noopener">GitHub</a></h2><p>Where the projects live.</p></div>
+    </div>
+    <div class="row link-row">
+      <div class="k">Work</div>
+      <div><h2><a href="https://www.linkedin.com/in/navyagupta-/" target="_blank" rel="noopener">LinkedIn</a></h2><p>Experience, and the best place to say hi.</p></div>
+    </div>
+    <div class="row link-row">
+      <div class="k">Watching</div>
+      <div><h2><a href="https://letterboxd.com/navyascreentime/" target="_blank" rel="noopener">Letterboxd</a></h2><p>Movies and shows I'd recommend.</p></div>
+    </div>
+    <div class="row link-row">
+      <div class="k">Listening</div>
+      <div><h2><a href="https://open.spotify.com/user/q3snhwhc44ntzooiyjz0yhzlo" target="_blank" rel="noopener">Spotify</a></h2><p>Playlists I make and share.</p></div>
+    </div>
+    <div class="row link-row">
+      <div class="k">Email</div>
+      <div><h2><a href="mailto:navyagup@usc.edu">navyagup@usc.edu</a></h2><p>Always happy to chat.</p></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
