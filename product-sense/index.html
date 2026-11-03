@@ -9,8 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Reenie+Beanie&display=swap" rel="stylesheet">
 <style>
-/* Same reading column and fonts as the Projects page. Each section is a <section class="block">.
-   To add a website, add one line to the SITES list in the script at the bottom. */
+/* Same reading column and fonts as the Projects page. Each .go button opens its own page. */
 :root {
   --paper: #fffdfb;
   --ink: #2a1216;
@@ -41,12 +40,10 @@ h1 { margin: 28px 0 0; font: 400 clamp(52px, 9.5vw, 92px) / 0.9 var(--hand); col
 .block { margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--line); }
 h2 { margin: 0 0 6px; font: 400 clamp(34px, 4.6vw, 48px) / 1.05 var(--hand); color: var(--maroon); }
 .block > p { margin: 0; max-width: 62ch; }
-.list { list-style: disc; margin: 28px 0 0; padding-left: 22px; }
-.list li { margin-bottom: 22px; padding-left: 4px; }
-.list li::marker { color: var(--maroon); }
-.list a { font-size: 15px; letter-spacing: 0.04em; overflow-wrap: anywhere; }
-.list a::first-letter { text-transform: uppercase; }
-.list p { margin: 4px 0 0; max-width: 62ch; }
+.go { display: block; margin-top: 28px; padding: 22px 26px; border: 1.5px solid var(--maroon); border-radius: 10px; text-decoration: none; color: var(--ink); transition: transform .15s ease, box-shadow .15s ease; }
+.go:hover, .go:focus-visible { transform: translateY(-3px); box-shadow: 0 8px 14px rgba(42,18,22,.14); }
+.go b { display: block; font: 400 clamp(30px, 4vw, 40px) / 1.05 var(--hand); color: var(--maroon); }
+.go span { display: block; margin-top: 4px; font-size: 14px; letter-spacing: 0.04em; color: var(--soft); }
 </style>
 </head>
 <body>
@@ -55,35 +52,12 @@ h2 { margin: 0 0 6px; font: 400 clamp(34px, 4.6vw, 48px) / 1.05 var(--hand); col
 
   <h1>Product sense</h1>
 
-  <section class="block" id="cool-websites">
-    <h2>Cool websites</h2>
-    <p>A semi-regularly updated collection of some of my favorite websites on the internet.</p>
-    <ul class="list" id="sites"></ul>
+  <section class="block">
+    <a class="go" href="/product-sense/cool-websites">
+      <b>Cool websites &rarr;</b>
+      <span>How you can be inspired by them</span>
+    </a>
   </section>
 </div>
-
-<script>
-// Add a site with one line: [url, "Steal-this takeaway"].
-const SITES = [
-  ["https://aidanjs.com", "Make the navigation part of the artwork, so the only green eyes in a wall of eyes are the two links you want clicked."],
-  ["https://bfcm.stripe.com", "Turn a record number into something you can watch, like a handmade miniature city, instead of a stat in a press release."],
-  ["https://www.chloeyan.me/ferry", "Pay tribute to a piece of everyday infrastructure, and make it feel alive with a ticking clock and a sound toggle."],
-  ["https://laxspace.co", "Give a portfolio the feel of a game, with a points counter, an FPS readout and keyboard shortcuts, so browsing becomes play."],
-  ["https://plasticlist.org", "Pick one concrete question, like which Bay Area foods contain plastic chemicals, and publish the data plainly."],
-  ["https://posthog.com", "Let the product demo itself with a sample investigation, and keep a self-aware voice that sounds like people, not a brochure."],
-  ["https://randoma11y.com", "Pair a playful random generator with a real constraint, so every color combination you land on is accessible."],
-  ["https://rotating.parts", "Shuffle a gallery of simple parts on every load and link each one to where you can buy it, so a tiny page is both fun and useful."],
-  ["https://ryo.lu", "Replace the bio with one live line of status, like \u201cRyo is exploring Taipei,\u201d so the site feels like a person, not a r\u00e9sum\u00e9."],
-  ["https://press.stripe.com", "Give every product its own moment, like a living cover for each book, instead of a row in a catalog."],
-  ["https://tempo.xyz", "Lead with one big proof number, and speak to two audiences at once with separate calls to action for people and for AI agents."],
-  ["https://www.yukiasakura.com", "Turn a portfolio into a journey, with a \u201cStart ride\u201d button, so your focus on cities and mobility becomes the interface itself."],
-  ["https://virgilabloh.com", "Make a brand feel like an archive, with catalog-style dates, page numbers and version labels, and give each audience its own sign-up path."],
-];
-const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
-document.getElementById("sites").innerHTML = SITES.map(([u, t]) => {
-  const label = u.replace(/^https?:\/\/(www\.)?/, "");
-  return `<li><a href="${u}" target="_blank" rel="noopener">${label} &nearr;</a><p>Steal this: ${esc(t)}</p></li>`;
-}).join("");
-</script>
 </body>
 </html>
