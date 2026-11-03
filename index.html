@@ -12,7 +12,8 @@
 /* Layout: a ring of nine same-size hand-drawn objects around a handwritten hello.
    Each object is a link; hovering swaps the small typed caption under the hello. */
 :root {
-  --paper: #fffdfb;
+  --paper: #faf9f6; /* off-white */
+  --cardinal: #990000;
   --ink: #2a1216;
   --maroon: #6b1a2b;
   --rose: #d9a5ae;
@@ -33,6 +34,19 @@ body {
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
+
+/* Scalloped cardinal-red frame: a fixed overlay, a solid rim plus a row of half-circles bulging in from each edge. */
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: 50; pointer-events: none;
+  border: 14px solid var(--cardinal);
+  --r: 34px; /* scallop radius */
+  background:
+    radial-gradient(circle at 50% 0, var(--cardinal) calc(var(--r) - 0.5px), transparent var(--r)) top / calc(var(--r) * 2) var(--r) round no-repeat,
+    radial-gradient(circle at 50% 100%, var(--cardinal) calc(var(--r) - 0.5px), transparent var(--r)) bottom / calc(var(--r) * 2) var(--r) round no-repeat,
+    radial-gradient(circle at 0 50%, var(--cardinal) calc(var(--r) - 0.5px), transparent var(--r)) left / var(--r) calc(var(--r) * 2) no-repeat round,
+    radial-gradient(circle at 100% 50%, var(--cardinal) calc(var(--r) - 0.5px), transparent var(--r)) right / var(--r) calc(var(--r) * 2) no-repeat round;
+}
+@media (max-width: 719px) { body::after { --r: 20px; border-width: 8px; } }
 .hero { min-height: 100vh; display: grid; place-items: center; padding-block: 24px; }
 
 
