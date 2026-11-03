@@ -47,6 +47,9 @@ h1 { margin: 0; font: 400 clamp(52px, 9.5vw, 92px) / 0.9 var(--hand); color: var
 .row:last-child { border-bottom: 1px solid var(--line); }
 .k { font-size: 13px; letter-spacing: 0.08em; color: var(--soft); }
 h2 { margin: 0 0 6px; font: 400 clamp(28px, 3.8vw, 38px) / 1.05 var(--hand); }
+.shot { float: right; width: min(300px, 38%); margin: 4px 0 16px 28px; border: 2px solid var(--ink); border-radius: 8px; box-shadow: 0 8px 14px rgba(42,18,22,.14); }
+.wrapshot::after { content: ""; display: block; clear: both; }
+@media (max-width: 719px) { .shot { float: none; width: 100%; margin: 0 0 16px; } }
 .row ul { margin: 8px 0 0; padding-left: 20px; max-width: 62ch; }
 .row li { margin-top: 4px; }
 .row p { margin: 0; max-width: 62ch; }
@@ -75,7 +78,7 @@ h2 { margin: 0 0 6px; font: 400 clamp(28px, 3.8vw, 38px) / 1.05 var(--hand); }
   <div class="rows">
     <div class="row lead">
       <div class="k">Live<br>Oct 2026</div>
-      <div>
+      <div class="wrapshot"><img class="shot" src="/projects/img/tripmatch.jpg" alt="The TripMatch Discover page, with search filters and classmates' trip plans" width="800" loading="lazy">
         <h2>TripMatch</h2>
         <p>AI group-travel matching with group-size scoring. I found that trust is what stops groups from booking, shipped three changes after prototype testing, and scoped a phased rollout to cut skipped trips from 74% to under 50%.</p>
         <span class="badge">Won 1st of 44 teams, 250+ participants</span><br>
@@ -85,7 +88,7 @@ h2 { margin: 0 0 6px; font: 400 clamp(28px, 3.8vw, 38px) / 1.05 var(--hand); }
     </div>
     <div class="row">
       <div class="k">Live<br>Fall 2026</div>
-      <div><h2>MSBA Class Bidding Planner</h2><p>A bid planner for MSBA electives. It lets you filter sections by day, time and open seats, tracks your units against degree requirements, flags time conflicts and helps you split your bid points across classes.<br><a class="go" href="https://navyagup014.github.io/MSBA-Class-Bidding-Planner-/" target="_blank" rel="noopener">Open the planner &nearr;</a> &nbsp; <a class="go" href="https://github.com/navyagup014/MSBA-Class-Bidding-Planner-" target="_blank" rel="noopener">View on GitHub &nearr;</a></p></div>
+      <div class="wrapshot"><img class="shot" src="/projects/img/bid-planner.jpg" alt="The bid planner showing section filters, a unit tracker and MSBA requirements" width="800" loading="lazy"><h2>MSBA Class Bidding Planner</h2><p>A bid planner for MSBA electives. It lets you filter sections by day, time and open seats, tracks your units against degree requirements, flags time conflicts and helps you split your bid points across classes.<br><a class="go" href="https://navyagup014.github.io/MSBA-Class-Bidding-Planner-/" target="_blank" rel="noopener">Open the planner &nearr;</a> &nbsp; <a class="go" href="https://github.com/navyagup014/MSBA-Class-Bidding-Planner-" target="_blank" rel="noopener">View on GitHub &nearr;</a></p></div>
     </div>
     <div class="row">
       <div class="k">In progress<br>USC Marshall</div>
@@ -100,11 +103,11 @@ h2 { margin: 0 0 6px; font: 400 clamp(28px, 3.8vw, 38px) / 1.05 var(--hand); }
     </div>
     <div class="row">
       <div class="k">Built<br>Personal project</div>
-      <div><h2>Puzzle Table</h2><p>A privacy-first digital jigsaw site. Photos become puzzles with no server storage, and progress saves from one puzzle to the next. I reworked piece sorting and drag-and-drop from playtester feedback, then added sorting trays, difficulty guides and progress tracking.</p><br><a class="go" href="https://navyagup014.github.io/Puzzle-Table/" target="_blank" rel="noopener">Open Puzzle Table &nearr;</a> &nbsp; <a class="go" href="https://github.com/navyagup014/Puzzle-Table" target="_blank" rel="noopener">View on GitHub &nearr;</a></div>
+      <div class="wrapshot"><img class="shot" src="/projects/img/puzzle-table.jpg" alt="A jigsaw puzzle in progress on Puzzle Table, with sorting trays on both sides" width="800" loading="lazy"><h2>Puzzle Table</h2><p>A privacy-first digital jigsaw site. Photos become puzzles with no server storage, and progress saves from one puzzle to the next. I reworked piece sorting and drag-and-drop from playtester feedback, then added sorting trays, difficulty guides and progress tracking.</p><br><a class="go" href="https://navyagup014.github.io/Puzzle-Table/" target="_blank" rel="noopener">Open Puzzle Table &nearr;</a> &nbsp; <a class="go" href="https://github.com/navyagup014/Puzzle-Table" target="_blank" rel="noopener">View on GitHub &nearr;</a></div>
     </div>
     <div class="row">
       <div class="k">12-hour build<br>Team of four</div>
-      <div><h2>Respite Buddy</h2><p>An AI quiet-spot finder for overwhelmed students between classes. I defined the target user and core problem, prioritized the MVP filters, curated about 40 spots and built the monetization model.</p><br><a class="go" href="https://neuro-route-nine.vercel.app/" target="_blank" rel="noopener">Open Respite Buddy &nearr;</a> &nbsp; <a class="go" href="https://github.com/ryanyu808/Respite-Buddy" target="_blank" rel="noopener">View on GitHub &nearr;</a></div>
+      <div class="wrapshot"><img class="shot" src="/projects/img/respite-buddy.jpg" alt="The Respite Buddy home screen, "A breather. Not another decision."" width="800" loading="lazy"><h2>Respite Buddy</h2><p>An AI quiet-spot finder for overwhelmed students between classes. I defined the target user and core problem, prioritized the MVP filters, curated about 40 spots and built the monetization model.</p><br><a class="go" href="https://neuro-route-nine.vercel.app/" target="_blank" rel="noopener">Open Respite Buddy &nearr;</a> &nbsp; <a class="go" href="https://github.com/ryanyu808/Respite-Buddy" target="_blank" rel="noopener">View on GitHub &nearr;</a></div>
     </div>
   </div>
 </div>
