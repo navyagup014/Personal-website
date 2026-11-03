@@ -13,7 +13,7 @@
    Each object is a link; hovering swaps the small typed caption under the hello. */
 :root {
   --paper: #faf9f6; /* off-white */
-  --cardinal: #990000;
+  --frame: #62212c;
   --ink: #2a1216;
   --maroon: #6b1a2b;
   --rose: #d9a5ae;
@@ -35,18 +35,8 @@ body {
   padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
 
-/* Scalloped cardinal-red frame: a fixed overlay, a solid rim plus a row of half-circles bulging in from each edge. */
-body::after {
-  content: ""; position: fixed; inset: 0; z-index: 50; pointer-events: none;
-  border: 14px solid var(--cardinal);
-  --r: 34px; /* scallop radius */
-  background:
-    radial-gradient(circle at 50% 0, var(--cardinal) calc(var(--r) - 0.5px), transparent var(--r)) top / calc(var(--r) * 2) var(--r) round no-repeat,
-    radial-gradient(circle at 50% 100%, var(--cardinal) calc(var(--r) - 0.5px), transparent var(--r)) bottom / calc(var(--r) * 2) var(--r) round no-repeat,
-    radial-gradient(circle at 0 50%, var(--cardinal) calc(var(--r) - 0.5px), transparent var(--r)) left / var(--r) calc(var(--r) * 2) no-repeat round,
-    radial-gradient(circle at 100% 50%, var(--cardinal) calc(var(--r) - 0.5px), transparent var(--r)) right / var(--r) calc(var(--r) * 2) no-repeat round;
-}
-@media (max-width: 719px) { body::after { --r: 20px; border-width: 8px; } }
+/* Scalloped frame: SVG drawn by the script at the bottom (circles centred on the viewport edge, one on every corner). */
+#frame { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 50; pointer-events: none; fill: var(--frame); }
 .hero { min-height: 100vh; display: grid; place-items: center; padding-block: 24px; }
 
 
@@ -291,7 +281,20 @@ button.tile { background: none; border: 0; padding: 0; font: inherit; cursor: po
 <div id="mini" class="mini"><div id="embed"></div></div>
 
 <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+<svg id="frame" aria-hidden="true"></svg>
 <script>
+// Scalloped frame: whole number of circles per edge, evenly spaced so neighbours just touch; redrawn on resize.
+function drawFrame() {
+  const W = innerWidth, H = innerHeight, small = W < 720, R = small ? 14 : 22, t = small ? 4 : 6;
+  const nx = Math.max(1, Math.round(W / (2 * R))), ny = Math.max(1, Math.round(H / (2 * R)));
+  const sx = W / nx, sy = H / ny, r = Math.max(sx, sy) / 2 + 0.5;
+  let d = `<path fill-rule="evenodd" d="M0 0H${W}V${H}H0Z M${t} ${t}V${H - t}H${W - t}V${t}Z"/>`;
+  for (let i = 0; i <= nx; i++) d += `<circle cx="${i * sx}" cy="0" r="${r}"/><circle cx="${i * sx}" cy="${H}" r="${r}"/>`;
+  for (let j = 1; j < ny; j++) d += `<circle cx="0" cy="${j * sy}" r="${r}"/><circle cx="${W}" cy="${j * sy}" r="${r}"/>`;
+  document.getElementById("frame").innerHTML = d;
+}
+drawFrame(); addEventListener("resize", drawFrame);
+
 // Typed caption under the greeting: shows each tile's line on hover/focus, "now playing" while music runs.
 const cap = document.getElementById("cap");
 const rec = document.querySelector(".rec");
