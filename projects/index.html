@@ -47,9 +47,10 @@ h1 { margin: 0; font: 400 clamp(52px, 9.5vw, 92px) / 0.9 var(--hand); color: var
 .row:last-child { border-bottom: 1px solid var(--line); }
 .k { font-size: 13px; letter-spacing: 0.08em; color: var(--soft); }
 h2 { margin: 0 0 6px; font: 400 clamp(28px, 3.8vw, 38px) / 1.05 var(--hand); }
-.shot { float: right; width: min(300px, 38%); margin: 4px 0 16px 28px; border: 2px solid var(--ink); border-radius: 8px; box-shadow: 0 8px 14px rgba(42,18,22,.14); }
-.wrapshot::after { content: ""; display: block; clear: both; }
-@media (max-width: 719px) { .shot { float: none; width: 100%; margin: 0 0 16px; } }
+.wrapshot { display: grid; grid-template-columns: 1fr min(300px, 38%); column-gap: 28px; align-items: start; }
+.wrapshot > * { grid-column: 1; }
+.wrapshot > .shot { grid-column: 2; grid-row: 1 / span 10; width: 100%; margin-top: 4px; border: 2px solid var(--ink); border-radius: 8px; box-shadow: 0 8px 14px rgba(42,18,22,.14); }
+@media (max-width: 719px) { .wrapshot { display: block; } .shot { margin: 0 0 16px; } }
 .row ul { margin: 8px 0 0; padding-left: 20px; max-width: 62ch; }
 .row li { margin-top: 4px; }
 .row p { margin: 0; max-width: 62ch; }
