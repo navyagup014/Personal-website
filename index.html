@@ -135,6 +135,8 @@ button.tile { background: none; border: 0; padding: 0; font: inherit; cursor: po
   .tile { position: static; width: min(160px, 100%); justify-self: center; transform: none; }
   .tile svg { animation: none; } /* nine looping animations with shadows is a lot for a phone */
   .tag { opacity: 1; position: static; display: block; transform: none; margin-top: 10px; font-size: 13px; }
+  .hello { order: -2; }
+  .tile[href="/usc/"] { order: -1; }
 }
 @media (prefers-reduced-motion: reduce) {
   .tile svg { animation: none; }
