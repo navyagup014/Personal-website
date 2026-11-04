@@ -136,10 +136,6 @@ html.motion .stage4 { height: 100%; min-height: 0; }
 .pin .ring { fill: none; stroke: var(--butter); stroke-opacity: 0.45; stroke-width: 1px; }
 .caps { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; height: 6.5em; padding: 0 16px 18px; background: linear-gradient(transparent, rgba(42, 18, 22, 0.9) 60%); font-size: 14px; letter-spacing: 0.1em; text-align: center; }
 .caps p { position: absolute; inset: 0 16px 18px; margin: 0; display: grid; place-items: end center; }
-.places { background: var(--ink); color: var(--rose); padding: 36px 24px 72px; }
-.places dl { margin: 0 auto; max-width: 900px; font-size: 14px; }
-.places dt { margin-top: 18px; color: var(--butter); letter-spacing: 0.14em; }
-.places dd { margin: 4px 0 0; }
 
 /* Act 6: the sum */
 .sum { background: var(--butter); color: var(--maroon); padding: 120px 24px 80px; }
@@ -259,7 +255,6 @@ html.motion .stage4 { height: 100%; min-height: 0; }
     <p id="cap1">Around the world, across the USA, and home in India. 46 places so far.</p>
   </div>
 </section>
-<section class="places"><dl id="placelist"></dl></section>
 
 <!-- Act 6: the sum -->
 <section class="sum" id="sum">
@@ -315,11 +310,6 @@ html.motion .stage4 { height: 100%; min-height: 0; }
       pinsG.appendChild(g);
       pins.push({ ...p, el: g, pop: g.firstChild });
     });
-    const names = { world: "World", usa: "USA", india: "India" };
-    $("#placelist").innerHTML = ["world", "usa", "india"].map((k) => {
-      const list = M.pins.filter((p) => p.g === k).map((p) => p.n);
-      return `<dt>${names[k]} (${list.length})</dt><dd>${list.join(", ")}</dd>`;
-    }).join("");
   }
   function place() {
     landG.setAttribute("transform", `translate(${view.tx} ${view.ty}) scale(${view.k})`);
