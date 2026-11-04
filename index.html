@@ -136,7 +136,7 @@ button.tile { background: none; border: 0; padding: 0; font: inherit; cursor: po
   .tile svg { animation: none; } /* nine looping animations with shadows is a lot for a phone */
   .tag { opacity: 1; position: static; display: block; transform: none; margin-top: 10px; font-size: 13px; }
   .hello { order: -2; }
-  .tile[href="/usc/"] { order: -1; }
+  .tile[href="/usc/"], .tile[href="/skills/"] { order: -1; } /* photo and skills side by side, as on desktop */
 }
 @media (prefers-reduced-motion: reduce) {
   .tile svg { animation: none; }
@@ -154,7 +154,7 @@ button.tile { background: none; border: 0; padding: 0; font: inherit; cursor: po
   </div>
 
   <!-- work: lanyard badge -->
-  <a class="tile" href="/professional/" data-cap="Where I've shipped things" aria-label="Professional full-time work" style="--x:16%;--y:5.8%;--w:18%;--r:-6deg;--d:0s">
+  <a class="tile" href="/professional/" data-cap="Where I've shipped things" aria-label="Professional full-time work" style="--x:6.5%;--y:5.8%;--w:18%;--r:-6deg;--d:0s">
     <svg viewBox="0 0 160 130" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
       <path d="M8 24Q8 14 18 14H58L70 27H142Q152 27 152 37V112Q152 122 142 122H18Q8 122 8 112Z" fill="#e2c97a" stroke="#2a1216" stroke-width="2" stroke-linejoin="round"/>
       <rect x="24" y="24" width="104" height="60" rx="3" fill="#fffdfb" stroke="#2a1216" stroke-width="1.5" transform="rotate(-3 76 54)"/>
@@ -169,7 +169,7 @@ button.tile { background: none; border: 0; padding: 0; font: inherit; cursor: po
   </a>
 
   <!-- projects: laptop -->
-  <a class="tile" href="./projects" data-cap="Things I've built, mostly vibecoded" aria-label="Projects" style="--x:66%;--y:5.8%;--w:18%;--r:3deg;--d:-1.2s">
+  <a class="tile" href="./projects" data-cap="Things I've built, mostly vibecoded" aria-label="Projects" style="--x:75.5%;--y:5.8%;--w:18%;--r:3deg;--d:-1.2s">
     <svg viewBox="0 0 220 150" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
       <rect x="30" y="8" width="160" height="98" rx="8" fill="#3a2b2e"/>
       <rect x="37" y="15" width="146" height="84" rx="3" fill="#fffdfb"/>
@@ -279,7 +279,7 @@ button.tile { background: none; border: 0; padding: 0; font: inherit; cursor: po
   </a>
 
   <!-- me at USC: polaroid with the headshot -->
-  <a class="tile" href="/usc/" data-cap="Pictures of me at USC" aria-label="Me at USC" style="--x:41%;--y:5.8%;--w:18%;--r:-7deg;--d:-2.7s">
+  <a class="tile" href="/usc/" data-cap="Pictures of me at USC" aria-label="Me at USC" style="--x:29.5%;--y:5.8%;--w:18%;--r:-7deg;--d:-2.7s">
     <svg viewBox="0 0 160 200" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
       <rect x="6" y="6" width="148" height="188" rx="3" fill="#fffdfb" stroke="#2a1216" stroke-width="2"/>
       <image href="assets/usc-headshot.jpg" x="16" y="16" width="128" height="158" preserveAspectRatio="xMidYMid slice"/>
@@ -288,6 +288,21 @@ button.tile { background: none; border: 0; padding: 0; font: inherit; cursor: po
       <rect x="52" y="-2" width="56" height="16" fill="#d9a5ae" fill-opacity="0.85" transform="rotate(-4 80 6)"/>
     </svg>
     <span class="tag">Me at USC</span>
+  </a>
+
+  <!-- skills: toolbox with a pencil and ruler sticking out. Sits right of the USC polaroid in the top row. -->
+  <a class="tile" href="/skills/" data-cap="Technical and soft skills" aria-label="Skills" style="--x:52.5%;--y:5.8%;--w:18%;--r:5deg;--d:-0.6s">
+    <svg viewBox="0 -14 200 164" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+      <g transform="rotate(14 60 40)"><rect x="52" y="6" width="9" height="58" fill="#e2c97a" stroke="#2a1216" stroke-width="1.5"/><polygon points="52,6 61,6 56.5,-8" fill="#d9a5ae" stroke="#2a1216" stroke-width="1.5" stroke-linejoin="round"/></g>
+      <g transform="rotate(-10 120 40)"><rect x="108" y="4" width="14" height="62" fill="#cfe3ea" stroke="#2a1216" stroke-width="1.5"/><path d="M108 16h6M108 28h6M108 40h6M108 52h6" stroke="#2a1216" stroke-width="1.2"/></g>
+      <path d="M70 54V40Q70 32 78 32H122Q130 32 130 40V54" fill="none" stroke="#2a1216" stroke-width="5" stroke-linecap="round"/>
+      <rect x="14" y="54" width="172" height="80" rx="8" fill="#6b1a2b" stroke="#2a1216" stroke-width="2"/>
+      <rect x="14" y="84" width="172" height="8" fill="#561522"/>
+      <rect x="88" y="78" width="24" height="22" rx="3" fill="#f3e3a6" stroke="#2a1216" stroke-width="1.5"/>
+      <circle cx="100" cy="89" r="3" fill="#2a1216"/>
+      <rect x="26" y="66" width="30" height="5" rx="2.5" fill="#d9a5ae"/>
+    </svg>
+    <span class="tag">Skills</span>
   </a>
 </main>
 </div>
