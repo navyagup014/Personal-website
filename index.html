@@ -5,12 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Navya Gupta</title>
 <meta name="description" content="Navya Gupta. Product and analytics, customer-obsessed, loves creative solutions to problems.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%236b1a2b'/%3E%3Cpath d='M7 18V6l10 12V6' fill='none' stroke='%23faf9f6' stroke-width='2.4' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://navyagupta.net/">
+<meta property="og:url" content="https://navyagupta.net/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Navya Gupta">
 <meta property="og:title" content="Navya Gupta">
 <meta property="og:description" content="Navya Gupta. Product and analytics, customer-obsessed, loves creative solutions to problems.">
-<meta property="og:image" content="https://personal-website-two-ashy-28.vercel.app/assets/og.png">
+<meta property="og:image" content="https://navyagupta.net/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -130,6 +133,7 @@ button.tile { background: none; border: 0; padding: 0; font: inherit; cursor: po
   .hello { position: static; transform: none; width: auto; grid-column: 1 / -1; margin-bottom: 8px; }
   .hello h1 { font-size: 42px; }
   .tile { position: static; width: min(160px, 100%); justify-self: center; transform: none; }
+  .tile svg { animation: none; } /* nine looping animations with shadows is a lot for a phone */
   .tag { opacity: 1; position: static; display: block; transform: none; margin-top: 10px; font-size: 13px; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -288,7 +292,6 @@ button.tile { background: none; border: 0; padding: 0; font: inherit; cursor: po
 
 <div id="mini" class="mini"><div id="embed"></div></div>
 
-<script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
 <script>
 
 // Typed caption under the greeting: shows each tile's line on hover/focus, "now playing" while music runs.
@@ -307,25 +310,30 @@ document.querySelectorAll(".tile").forEach((t) => {
   t.addEventListener("mouseleave", rest); t.addEventListener("blur", rest);
 });
 
-// Spotify's iFrame API drives playback; its events decide whether the record is "on".
+// Spotify's iFrame API is heavy, so it only loads on the first click of the record.
 window.onSpotifyIframeApiReady = (api) =>
   api.createController(document.getElementById("embed"), { uri: "spotify:track:" + SONG, width: "100%", height: 80 }, (c) => {
     ctl = c;
     c.addListener("playback_update", (e) => {
       playing = !e.data.isPaused;
       rec.classList.toggle("on", playing);
-      mini.classList.toggle("show", playing);
       all.hidden = !playing;
       rest();
     });
+    c.play(); // ponytail: some browsers block this; the player stays visible so one tap on it works
   });
 
-// ponytail: if Spotify's script can't load (offline, or a sandboxed preview), the record only animates. No redirect.
+let loading = false;
 rec.addEventListener("click", () => {
   if (ctl) return ctl.togglePlay();
-  playing = !playing;
-  rec.classList.toggle("on", playing);
-  rest();
+  mini.classList.add("show");
+  if (loading) return;
+  loading = true;
+  const s = document.createElement("script");
+  s.src = "https://open.spotify.com/embed/iframe-api/v1";
+  s.async = true;
+  s.onerror = () => { playing = !playing; rec.classList.toggle("on", playing); mini.classList.remove("show"); loading = false; rest(); }; // offline or sandboxed: the record just animates
+  document.head.append(s);
 });
 </script>
 </body>

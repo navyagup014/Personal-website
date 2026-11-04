@@ -46,7 +46,36 @@ const polys = geoms
     const [lon, lat] = geoCentroid(poly);
     return path.area(poly) >= 1 || (lon > 55 && lon < 100 && lat > 0 && lat < 40);
   });
-const landD = path({ type: "MultiPolygon", coordinates: polys });
+const landFull = path({ type: "MultiPolygon", coordinates: polys });
+
+// Simplify the coastline everywhere except near India, where the scroll zoom looks closely.
+// Points inside KEEP are never dropped; elsewhere, Douglas-Peucker at TOL map units.
+const TOL = 0.45;
+const KEEP = [640, 110, 800, 270];
+const inKeep = ([x, y]) => x > KEEP[0] && x < KEEP[2] && y > KEEP[1] && y < KEEP[3];
+function rdp(pts, lo, hi, out) {
+  let dmax = 0, idx = -1;
+  const [ax, ay] = pts[lo], [bx, by] = pts[hi], dx = bx - ax, dy = by - ay, len = Math.hypot(dx, dy) || 1e-9;
+  for (let i = lo + 1; i < hi; i++) {
+    const d = Math.abs(dy * (pts[i][0] - ax) - dx * (pts[i][1] - ay)) / len;
+    if (d > dmax) { dmax = d; idx = i; }
+  }
+  if (dmax > TOL) { rdp(pts, lo, idx, out); rdp(pts, idx, hi, out); } else out.push(pts[hi]);
+}
+function simplifyRing(pts) {
+  if (pts.length < 8) return pts;
+  const keep = pts.map((p, i) => i === 0 || i === pts.length - 1 || inKeep(p));
+  const out = [pts[0]]; let last = 0;
+  for (let i = 1; i < pts.length; i++) if (keep[i]) { rdp(pts, last, i, out); last = i; }
+  return out;
+}
+const landD = landFull.split("M").filter(Boolean).map((sub) => {
+  const closed = sub.endsWith("Z");
+  const pts = sub.replace("Z", "").split("L").map((p) => p.split(",").map(Number));
+  const q = simplifyRing(pts);
+  return q.length < 3 ? "" : "M" + q.map((p) => p[0] + "," + p[1]).join("L") + (closed ? "Z" : "");
+}).join("");
+console.log("land bytes", landFull.length, "->", landD.length);
 
 const countries = feature(read("countries-50m.json"), read("countries-50m.json").objects.countries).features;
 const indiaD = path(countries.find((c) => c.properties.name === "India"));
