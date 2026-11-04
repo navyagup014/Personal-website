@@ -10,7 +10,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Reenie+Beanie&display=swap" rel="stylesheet">
 <style>
 /* Layout: same reading column as the other pages. A handwritten header, then a loose grid
-   of polaroids. To add a photo, copy one <figure> and change the img and alt. */
+   of polaroids, newest first. To add a photo, copy one <figure> to the top of the grid and change the img and alt.
+   The script below deals the photos into columns left to right so the order reads across each row. */
 :root {
   --paper: #fffdfb;
   --ink: #2a1216;
@@ -41,6 +42,8 @@ figure { margin: 0 0 32px; padding: 12px 12px 28px; break-inside: avoid; backgro
 figure:nth-child(even) { --r: 1.5deg; }
 figure:nth-child(3n) { --r: -.6deg; }
 figure img { display: block; width: 100%; height: auto; }
+.grid.cols { columns: auto; display: flex; gap: 28px; align-items: flex-start; }
+.col { flex: 1; min-width: 0; }
 </style>
 </head>
 <body>
@@ -51,111 +54,125 @@ figure img { display: block; width: 100%; height: auto; }
 
   <div class="grid">
     <figure>
-      <img src="../assets/usc/usc-01.jpg" alt="Group posing together in USC caps against a red backdrop" width="900" height="1058" loading="lazy" decoding="async">
-    </figure>
-    <figure>
-      <img src="../assets/usc/usc-02.jpg" alt="Group in a conference room holding a USC banner and a championship belt" width="675" height="1200" loading="lazy" decoding="async">
-    </figure>
-    <figure>
-      <img src="../assets/usc/usc-03.jpg" alt="Four students holding a green championship belt" width="675" height="1200" loading="lazy" decoding="async">
-    </figure>
-    <figure>
-      <img src="../assets/usc/usc-04.jpg" alt="Selfie at a table with friends and laptops" width="900" height="675" loading="lazy" decoding="async">
-    </figure>
-    <figure>
-      <img src="../assets/usc/usc-05.jpg" alt="Photo booth strips laid out on a table" width="675" height="1200" loading="lazy" decoding="async">
-    </figure>
-    <figure>
-      <img src="../assets/usc/usc-06.jpg" alt="Students wearing glowing headphones outside at night" width="900" height="1200" loading="lazy" decoding="async">
-    </figure>
-    <figure>
-      <img src="../assets/usc/usc-07.jpg" alt="Selfie in the stands of a football stadium" width="900" height="675" loading="lazy" decoding="async">
-    </figure>
-    <figure>
-      <img src="../assets/usc/usc-08.jpg" alt="Group selfie in USC caps with pom-poms" width="900" height="506" loading="lazy" decoding="async">
-    </figure>
-    <figure>
-      <img src="../assets/usc/usc-09.jpg" alt="Group in front of a USC Marshall event backdrop" width="900" height="675" loading="lazy" decoding="async">
-    </figure>
-    <figure>
-      <img src="../assets/usc/usc-10.jpg" alt="Selfie in a packed auditorium" width="900" height="675" loading="lazy" decoding="async">
-    </figure>
-    <figure>
-      <img src="../assets/usc/usc-11.jpg" alt="Group in front of a USC Marshall event backdrop" width="900" height="506" loading="lazy" decoding="async">
-    </figure>
-    <figure>
-      <img src="../assets/usc/usc-12.jpg" alt="Selfie in the stands at a football game" width="900" height="675" loading="lazy" decoding="async">
-    </figure>
-    <figure>
-      <img src="../assets/usc/usc-13.jpg" alt="Selfie at a football game in USC gear" width="900" height="675" loading="lazy" decoding="async">
-    </figure>
-    <figure>
-      <img src="../assets/usc/usc-14.jpg" alt="Selfie at a tailgate" width="900" height="675" loading="lazy" decoding="async">
-    </figure>
-    <figure>
-      <img src="../assets/usc/usc-15.jpg" alt="Group posing with a Master of Science in Business Analytics welcome banner" width="900" height="675" loading="lazy" decoding="async">
-    </figure>
-    <figure>
-      <img src="../assets/usc/usc-16.jpg" alt="Group outside a glass office building" width="900" height="675" loading="lazy" decoding="async">
-    </figure>
-    <figure>
-      <img src="../assets/usc/usc-17.jpg" alt="Group outside the Cisco sign" width="900" height="675" loading="lazy" decoding="async">
-    </figure>
-    <figure>
-      <img src="../assets/usc/usc-18.jpg" alt="Group in front of an Adobe brick wall" width="900" height="1200" loading="lazy" decoding="async">
-    </figure>
-    <figure>
-      <img src="../assets/usc/usc-19.jpg" alt="Group in front of a Salesforce sign" width="900" height="675" loading="lazy" decoding="async">
-    </figure>
-    <figure>
-      <img src="../assets/usc/usc-20.jpg" alt="Large group with a USC Marshall banner at Salesforce" width="900" height="675" loading="lazy" decoding="async">
-    </figure>
-    <figure>
-      <img src="../assets/usc/usc-21.jpg" alt="Three people sitting together at a dinner table" width="720" height="1200" loading="lazy" decoding="async">
-    </figure>
-    <figure>
-      <img src="../assets/usc/usc-22.jpg" alt="Large group with a USC Marshall banner outdoors" width="900" height="675" loading="lazy" decoding="async">
-    </figure>
-    <figure>
-      <img src="../assets/usc/usc-23.jpg" alt="Selfie with a group in front of a trophy wall" width="900" height="675" loading="lazy" decoding="async">
-    </figure>
-    <figure>
-      <img src="../assets/usc/usc-24.jpg" alt="Group in an office lobby" width="900" height="675" loading="lazy" decoding="async">
-    </figure>
-    <figure>
-      <img src="../assets/usc/usc-25.jpg" alt="Group selfie next to a car in an office" width="900" height="675" loading="lazy" decoding="async">
-    </figure>
-    <figure>
-      <img src="../assets/usc/usc-26.jpg" alt="Group posing by a Tech Week poster" width="900" height="506" loading="lazy" decoding="async">
-    </figure>
-    <figure>
-      <img src="../assets/usc/usc-27.jpg" alt="Cartoon illustration of three people with a BOOM comic burst" width="789" height="795" loading="lazy" decoding="async">
-    </figure>
-    <figure>
-      <img src="../assets/usc/usc-28.jpg" alt="Students working on laptops at a long outdoor table" width="900" height="600" loading="lazy" decoding="async">
-    </figure>
-    <figure>
-      <img src="../assets/usc/usc-29.jpg" alt="Four people standing together in a classroom" width="900" height="506" loading="lazy" decoding="async">
-    </figure>
-    <figure>
-      <img src="../assets/usc/usc-30.jpg" alt="Four people posing with peace signs in front of a presentation screen" width="900" height="675" loading="lazy" decoding="async">
-    </figure>
-    <figure>
-      <img src="../assets/usc/usc-31.jpg" alt="Selfie at a table with a group" width="900" height="675" loading="lazy" decoding="async">
-    </figure>
-    <figure>
-      <img src="../assets/usc/usc-32.jpg" alt="Group in front of a USC Marshall backdrop" width="900" height="675" loading="lazy" decoding="async">
-    </figure>
-    <figure>
-      <img src="../assets/usc/usc-33.jpg" alt="Selfie with a group sitting on the floor" width="900" height="675" loading="lazy" decoding="async">
+      <img src="../assets/usc/usc-35.jpg" alt="TripMatch presentation on screens in a lecture hall" width="900" height="675" loading="lazy" decoding="async">
     </figure>
     <figure>
       <img src="../assets/usc/usc-34.jpg" alt="Group holding foam fingers in front of a USC event backdrop" width="900" height="1200" loading="lazy" decoding="async">
     </figure>
     <figure>
-      <img src="../assets/usc/usc-35.jpg" alt="TripMatch presentation on screens in a lecture hall" width="900" height="675" loading="lazy" decoding="async">
+      <img src="../assets/usc/usc-33.jpg" alt="Selfie with a group sitting on the floor" width="900" height="675" loading="lazy" decoding="async">
+    </figure>
+    <figure>
+      <img src="../assets/usc/usc-32.jpg" alt="Group in front of a USC Marshall backdrop" width="900" height="675" loading="lazy" decoding="async">
+    </figure>
+    <figure>
+      <img src="../assets/usc/usc-31.jpg" alt="Selfie at a table with a group" width="900" height="675" loading="lazy" decoding="async">
+    </figure>
+    <figure>
+      <img src="../assets/usc/usc-30.jpg" alt="Four people posing with peace signs in front of a presentation screen" width="900" height="675" loading="lazy" decoding="async">
+    </figure>
+    <figure>
+      <img src="../assets/usc/usc-29.jpg" alt="Four people standing together in a classroom" width="900" height="506" loading="lazy" decoding="async">
+    </figure>
+    <figure>
+      <img src="../assets/usc/usc-28.jpg" alt="Students working on laptops at a long outdoor table" width="900" height="600" loading="lazy" decoding="async">
+    </figure>
+    <figure>
+      <img src="../assets/usc/usc-27.jpg" alt="Cartoon illustration of three people with a BOOM comic burst" width="789" height="795" loading="lazy" decoding="async">
+    </figure>
+    <figure>
+      <img src="../assets/usc/usc-26.jpg" alt="Group posing by a Tech Week poster" width="900" height="506" loading="lazy" decoding="async">
+    </figure>
+    <figure>
+      <img src="../assets/usc/usc-25.jpg" alt="Group selfie next to a car in an office" width="900" height="675" loading="lazy" decoding="async">
+    </figure>
+    <figure>
+      <img src="../assets/usc/usc-24.jpg" alt="Group in an office lobby" width="900" height="675" loading="lazy" decoding="async">
+    </figure>
+    <figure>
+      <img src="../assets/usc/usc-23.jpg" alt="Selfie with a group in front of a trophy wall" width="900" height="675" loading="lazy" decoding="async">
+    </figure>
+    <figure>
+      <img src="../assets/usc/usc-22.jpg" alt="Large group with a USC Marshall banner outdoors" width="900" height="675" loading="lazy" decoding="async">
+    </figure>
+    <figure>
+      <img src="../assets/usc/usc-21.jpg" alt="Three people sitting together at a dinner table" width="720" height="1200" loading="lazy" decoding="async">
+    </figure>
+    <figure>
+      <img src="../assets/usc/usc-20.jpg" alt="Large group with a USC Marshall banner at Salesforce" width="900" height="675" loading="lazy" decoding="async">
+    </figure>
+    <figure>
+      <img src="../assets/usc/usc-19.jpg" alt="Group in front of a Salesforce sign" width="900" height="675" loading="lazy" decoding="async">
+    </figure>
+    <figure>
+      <img src="../assets/usc/usc-18.jpg" alt="Group in front of an Adobe brick wall" width="900" height="1200" loading="lazy" decoding="async">
+    </figure>
+    <figure>
+      <img src="../assets/usc/usc-17.jpg" alt="Group outside the Cisco sign" width="900" height="675" loading="lazy" decoding="async">
+    </figure>
+    <figure>
+      <img src="../assets/usc/usc-16.jpg" alt="Group outside a glass office building" width="900" height="675" loading="lazy" decoding="async">
+    </figure>
+    <figure>
+      <img src="../assets/usc/usc-15.jpg" alt="Group posing with a Master of Science in Business Analytics welcome banner" width="900" height="675" loading="lazy" decoding="async">
+    </figure>
+    <figure>
+      <img src="../assets/usc/usc-14.jpg" alt="Selfie at a tailgate" width="900" height="675" loading="lazy" decoding="async">
+    </figure>
+    <figure>
+      <img src="../assets/usc/usc-13.jpg" alt="Selfie at a football game in USC gear" width="900" height="675" loading="lazy" decoding="async">
+    </figure>
+    <figure>
+      <img src="../assets/usc/usc-12.jpg" alt="Selfie in the stands at a football game" width="900" height="675" loading="lazy" decoding="async">
+    </figure>
+    <figure>
+      <img src="../assets/usc/usc-11.jpg" alt="Group in front of a USC Marshall event backdrop" width="900" height="506" loading="lazy" decoding="async">
+    </figure>
+    <figure>
+      <img src="../assets/usc/usc-10.jpg" alt="Selfie in a packed auditorium" width="900" height="675" loading="lazy" decoding="async">
+    </figure>
+    <figure>
+      <img src="../assets/usc/usc-09.jpg" alt="Group in front of a USC Marshall event backdrop" width="900" height="675" loading="lazy" decoding="async">
+    </figure>
+    <figure>
+      <img src="../assets/usc/usc-08.jpg" alt="Group selfie in USC caps with pom-poms" width="900" height="506" loading="lazy" decoding="async">
+    </figure>
+    <figure>
+      <img src="../assets/usc/usc-07.jpg" alt="Selfie in the stands of a football stadium" width="900" height="675" loading="lazy" decoding="async">
+    </figure>
+    <figure>
+      <img src="../assets/usc/usc-06.jpg" alt="Students wearing glowing headphones outside at night" width="900" height="1200" loading="lazy" decoding="async">
+    </figure>
+    <figure>
+      <img src="../assets/usc/usc-05.jpg" alt="Photo booth strips laid out on a table" width="675" height="1200" loading="lazy" decoding="async">
+    </figure>
+    <figure>
+      <img src="../assets/usc/usc-04.jpg" alt="Selfie at a table with friends and laptops" width="900" height="675" loading="lazy" decoding="async">
+    </figure>
+    <figure>
+      <img src="../assets/usc/usc-03.jpg" alt="Four students holding a green championship belt" width="675" height="1200" loading="lazy" decoding="async">
+    </figure>
+    <figure>
+      <img src="../assets/usc/usc-02.jpg" alt="Group in a conference room holding a USC banner and a championship belt" width="675" height="1200" loading="lazy" decoding="async">
+    </figure>
+    <figure>
+      <img src="../assets/usc/usc-01.jpg" alt="Group posing together in USC caps against a red backdrop" width="900" height="1058" loading="lazy" decoding="async">
     </figure>
   </div>
 </div>
+<script>
+// Deals the figures into 1, 2 or 3 columns round-robin, so newest-first reads across each row.
+// Without JS the CSS columns above still show every photo.
+const grid = document.querySelector(".grid");
+const figs = [...grid.children];
+function layout() {
+  const n = innerWidth < 560 ? 1 : innerWidth < 860 ? 2 : 3;
+  if (grid.dataset.n == n) return;
+  grid.dataset.n = n; grid.classList.add("cols"); grid.replaceChildren();
+  const cols = Array.from({ length: n }, () => grid.appendChild(Object.assign(document.createElement("div"), { className: "col" })));
+  figs.forEach((f, i) => cols[i % n].appendChild(f));
+}
+layout(); addEventListener("resize", layout);
+</script>
 </body>
 </html>
