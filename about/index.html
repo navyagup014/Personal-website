@@ -127,7 +127,7 @@ html.motion .stage4 { height: 100%; min-height: 0; }
 
 /* Act 5: the places */
 #map { position: relative; height: 100vh; height: 100svh; background: var(--ink); color: var(--butter); overflow: hidden; }
-#map h2 { position: absolute; z-index: 2; left: 50%; transform: translateX(-50%); top: 64px; width: min(1000px, 92vw); margin: 0; text-align: center; font: 400 clamp(34px, 5.4vw, 72px) / 1 var(--hand); }
+#map h2 { position: absolute; z-index: 2; left: 50%; transform: translateX(-50%); top: 72px; margin: 0; white-space: nowrap; text-align: center; font: 400 min(4.3vw, 7.5vh) / 1.1 var(--display); letter-spacing: 0.02em; color: #fff7dd; text-shadow: 0 2px 14px var(--ink), 0 0 3px var(--ink); }
 #map h2 em { font-style: normal; color: var(--rose); }
 #map svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .land { fill: #5a1a29; }
@@ -164,6 +164,7 @@ html.motion .stage4 { height: 100%; min-height: 0; }
   .quote p { font-size: 22px; }
   .quote footer { margin-top: 4px; font-size: 11px; }
   .cardwrap { inset: 60% 0 0 0; padding: 0 16px; }
+  #map h2 { white-space: normal; width: 92vw; font-size: 7.5vw; }
   .tile, .tile.wide { width: min(290px, 100%); padding: 10px 10px 14px; }
   .ph { aspect-ratio: 16 / 10; }
   .tile.wide .ph { aspect-ratio: 3 / 2; }
