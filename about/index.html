@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Navya Gupta, About</title>
+<meta name="description" content="The long version: the moments, places and lessons that add up to Navya Gupta.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%236b1a2b'/%3E%3Cpath d='M7 18V6l10 12V6' fill='none' stroke='%23faf9f6' stroke-width='2.4' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Navya Gupta">
+<meta property="og:title" content="Navya Gupta, About">
+<meta property="og:description" content="The long version: the moments, places and lessons that add up to Navya Gupta.">
+<meta property="og:image" content="https://personal-website-two-ashy-28.vercel.app/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:wght@400;700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+<style>
+/* Six scroll acts. Act 2 (the home movie) is not built yet. Every rule below shows the finished state
+   by default; the script only hides things when motion is allowed, so reduced-motion and no-JS still read fine. */
+:root {
+  --paper: #faf9f6;
+  --ink: #2a1216;
+  --maroon: #6b1a2b;
+  --rose: #d9a5ae;
+  --butter: #f3e3a6;
+  --soft: #6e5a5d;
+  --line: #eadfdc;
+  --hand: "Reenie Beanie", "Bradley Hand", cursive;
+  --type: "Courier Prime", "Courier New", monospace;
+  --display: "Anton", "Impact", "Arial Narrow", sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--paper); color: var(--ink); font: 400 16px / 1.6 var(--type); overflow-x: hidden; }
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+.home {
+  position: fixed; top: 16px; left: 16px; z-index: 40;
+  background: var(--paper); color: var(--maroon); border: 1px solid var(--line); border-radius: 999px;
+  padding: 6px 14px; font-size: 13px; letter-spacing: 0.18em; text-decoration: none;
+}
+.home:hover, .home:focus-visible { text-decoration: underline; }
+
+/* Act 1: giant type */
+.giant {
+  background: var(--maroon); color: var(--butter); overflow: hidden; position: relative;
+  min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding-block: 84px 56px;
+}
+.giant .kicker, .giant .hint { margin: 0 24px; font-size: 13px; letter-spacing: 0.18em; color: var(--rose); }
+.giant .kicker { margin-bottom: 14px; }
+.giant .hint { margin-top: 22px; }
+.giant .row { display: flex; width: max-content; gap: 0.4em; white-space: nowrap; font: 400 min(15.5vw, 19vh) / 0.98 var(--display); }
+.giant .row.out { color: transparent; -webkit-text-stroke: 2px var(--butter); }
+.giant .row.rose { color: var(--rose); }
+.giant .row.small { font-size: min(7.5vw, 9.5vh); margin-top: 0.3em; }
+
+/* Act 3: script into dots */
+#script { background: var(--paper); }
+#script .stage { height: 100vh; height: 100svh; display: grid; place-items: center; padding: 24px; }
+#script .wrap { position: relative; width: min(1000px, 92vw); text-align: center; }
+.stext { margin: 0; font: 400 clamp(46px, 9vw, 132px) / 1 var(--hand); color: var(--maroon); }
+.stext .w, .stext .ch { display: inline-block; }
+.stext .w { white-space: nowrap; }
+.sdot { position: absolute; border-radius: 50%; pointer-events: none; }
+#script .after { margin: 28px 0 0; font-size: 15px; letter-spacing: 0.1em; color: var(--soft); }
+
+/* Act 4: constellation */
+.cons { background: var(--paper); padding: 110px 20px 150px; }
+.cons h2, .sum h2 { margin: 0; font: 400 clamp(52px, 8vw, 100px) / 0.9 var(--hand); color: var(--maroon); text-align: center; }
+.cons .sub { margin: 12px auto 0; text-align: center; color: var(--soft); max-width: 46ch; }
+.railwrap { position: relative; margin: 70px auto 0; max-width: 1100px; }
+.rail { list-style: none; margin: 0; padding: 0; }
+.railwrap::before, .railwrap .fill { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 0; border-left: 2px dashed var(--rose); }
+.railwrap .fill { border-left: 3px solid var(--maroon); transform-origin: top; }
+.m { position: relative; display: grid; grid-template-columns: 1fr 64px 1fr; align-items: center; min-height: 52vh; padding-block: 28px; }
+.m:nth-child(3n+1) { --c: var(--maroon); --ci: var(--butter); }
+.m:nth-child(3n+2) { --c: var(--rose); --ci: var(--maroon); }
+.m:nth-child(3n) { --c: var(--butter); --ci: var(--maroon); }
+.m .dot {
+  grid-column: 2; grid-row: 1; z-index: 1; width: 56px; height: 56px; border-radius: 50%; justify-self: center;
+  background: var(--c); color: var(--ci); display: grid; place-items: center; font: 700 15px var(--type);
+  box-shadow: 0 0 0 9px var(--paper);
+}
+.m .tile {
+  grid-row: 1; margin: 0; width: min(420px, 100%); background: #fff; border: 1px solid var(--line); border-radius: 4px;
+  padding: 12px 12px 18px; box-shadow: 0 10px 24px rgba(42, 18, 22, 0.12); transform: rotate(var(--r, 0deg));
+}
+.m:nth-child(odd) { --r: -2deg; }
+.m:nth-child(even) { --r: 2deg; }
+.m:nth-child(odd) .tile { grid-column: 1; justify-self: end; }
+.m:nth-child(even) .tile { grid-column: 3; justify-self: start; }
+.m .tile.wide { width: min(580px, 100%); }
+.ph { position: relative; aspect-ratio: 4 / 3; background: var(--c); display: grid; place-items: center; overflow: hidden; container-type: inline-size; }
+.tile.wide .ph { aspect-ratio: 3 / 2; }
+.ph img.photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.ph .big { font: 400 30cqw / 1 var(--hand); color: var(--ci); opacity: 0.8; }
+.tile h3 { margin: 14px 0 4px; font: 400 clamp(28px, 3.2vw, 36px) / 1 var(--hand); color: var(--maroon); }
+.tile p { margin: 0; font-size: 14px; line-height: 1.5; }
+/* The circle, arrow and label on the cohort photo (moment 18) */
+.mark { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.mark path { fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; }
+.mark .halo { stroke: var(--ink); stroke-width: 32; }
+.mark .line { stroke: var(--butter); stroke-width: 17; }
+.me {
+  position: absolute; left: 77%; top: 6.9%; translate: -50% -50%; rotate: -4deg;
+  background: var(--butter); color: var(--maroon); border-radius: 999px; padding: 0 0.45em; white-space: nowrap;
+  font: 400 7cqw / 1.15 var(--hand); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+.inset { position: absolute; left: 3%; bottom: 4%; width: 24%; height: auto; border: 5px solid #fff; box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35); rotate: -5deg; }
+
+/* Act 5: the places */
+#map { position: relative; height: 100vh; height: 100svh; background: var(--ink); color: var(--butter); overflow: hidden; }
+#map h2 { position: absolute; z-index: 2; left: 24px; top: 58px; margin: 0; font: 400 clamp(46px, 6vw, 76px) / 0.9 var(--hand); }
+#map svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.land { fill: #5a1a29; }
+.india { fill: #8d3a4c; stroke: var(--rose); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.pin circle { vector-effect: non-scaling-stroke; }
+.pin .core { fill: var(--butter); stroke: var(--ink); stroke-width: 1.5px; }
+.pin .ring { fill: none; stroke: var(--butter); stroke-opacity: 0.45; stroke-width: 1px; }
+.caps { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; height: 6.5em; padding: 0 16px 18px; background: linear-gradient(transparent, rgba(42, 18, 22, 0.9) 60%); font-size: 14px; letter-spacing: 0.1em; text-align: center; }
+.caps p { position: absolute; inset: 0 16px 18px; margin: 0; display: grid; place-items: end center; }
+html.motion #cap2 { opacity: 0; }
+html:not(.motion) #cap2 { display: none; }
+.places { background: var(--ink); color: var(--rose); padding: 36px 24px 72px; }
+.places dl { margin: 0 auto; max-width: 900px; font-size: 14px; }
+.places dt { margin-top: 18px; color: var(--butter); letter-spacing: 0.14em; }
+.places dd { margin: 4px 0 0; }
+
+/* Act 6: the sum */
+.sum { background: var(--butter); color: var(--maroon); padding: 120px 24px 80px; }
+.sum .lead { margin: 12px auto 56px; text-align: center; color: var(--ink); }
+.sumlist { list-style: none; margin: 0 auto; padding: 0; max-width: 1100px; }
+.sumlist li { display: grid; grid-template-columns: auto 1fr; gap: 0 clamp(14px, 3vw, 36px); align-items: baseline; padding-block: clamp(10px, 2vw, 22px); border-top: 2px solid rgba(107, 26, 43, 0.25); }
+.sumlist .n { font: 700 clamp(14px, 1.6vw, 20px) var(--type); letter-spacing: 0.1em; }
+.sumlist .t { font: 400 clamp(32px, 6.2vw, 88px) / 1.02 var(--display); }
+.end { margin: 90px auto 0; max-width: 700px; text-align: center; color: var(--ink); }
+.end p { margin: 0 0 10px; }
+.end .hand { font: 400 clamp(40px, 6vw, 64px) / 1 var(--hand); color: var(--maroon); }
+.end a { color: var(--maroon); }
+
+@media (max-width: 719px) {
+  .home { top: 10px; left: 10px; }
+  .giant .row { font-size: min(12.5vw, 19vh); }
+  .giant .row.small { font-size: min(6vw, 9.5vh); }
+  .giant .row.out { -webkit-text-stroke-width: 1.5px; }
+  .railwrap::before, .railwrap .fill { left: 28px; }
+  .m { grid-template-columns: 56px 1fr; column-gap: 14px; min-height: 0; padding-block: 22px; }
+  .m .dot { grid-column: 1; width: 48px; height: 48px; box-shadow: 0 0 0 7px var(--paper); }
+  .m:nth-child(n) .tile { grid-column: 2; justify-self: stretch; width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<a class="home" href="/">&larr; Home</a>
+
+<main>
+<!-- Act 1: the opening claim -->
+<section class="giant" id="giant">
+  <h1 class="sr-only">Customer-obsessed. Loves creative solutions to problems.</h1>
+  <p class="kicker" aria-hidden="true">Navya Gupta &middot; The long version</p>
+  <div class="row" aria-hidden="true"><span>Customer-obsessed.</span><span>Customer-obsessed.</span><span>Customer-obsessed.</span><span>Customer-obsessed.</span></div>
+  <div class="row out" aria-hidden="true"><span>Customer-obsessed.</span><span>Customer-obsessed.</span><span>Customer-obsessed.</span><span>Customer-obsessed.</span></div>
+  <div class="row rose" aria-hidden="true"><span>Customer-obsessed.</span><span>Customer-obsessed.</span><span>Customer-obsessed.</span><span>Customer-obsessed.</span></div>
+  <div class="row small" aria-hidden="true"><span>Loves creative solutions to problems.</span><span>Loves creative solutions to problems.</span><span>Loves creative solutions to problems.</span></div>
+  <p class="hint" aria-hidden="true">Scroll for the rest &darr;</p>
+</section>
+
+<!-- Act 2 (the home movie) goes here once the clip is chosen.
+     Line for it: "This is who I've always been." -->
+
+<!-- Act 3: script into dots -->
+<section id="script">
+  <div class="stage">
+    <div class="wrap">
+      <p class="sr-only">I'm a constellation of everything that's happened to me.</p>
+      <p class="stext" aria-hidden="true">I'm a constellation of everything that's happened to me&hellip;</p>
+      <p class="after">Moments first, then places, then what they add up to.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Act 4: the moments -->
+<section class="cons" id="moments">
+  <h2>The moments</h2>
+  <p class="sub">Nineteen dots, so far. Each one changed what I did next.</p>
+  <div class="railwrap"><span class="fill" aria-hidden="true"></span>
+  <ol class="rail">
+    <li class="m"><span class="dot" aria-hidden="true">01</span><figure class="tile"><div class="ph"><span class="big" aria-hidden="true">01</span></div><figcaption><h3>A room full of pictures and color</h3><p>Mumbai, where I grew up.</p></figcaption></figure></li>
+    <li class="m"><span class="dot" aria-hidden="true">02</span><figure class="tile"><div class="ph"><span class="big" aria-hidden="true">02</span></div><figcaption><h3>All in, then the next thing</h3><p>Lego, painting, soccer, badminton. I commit fully, then find the next thing.</p></figcaption></figure></li>
+    <li class="m"><span class="dot" aria-hidden="true">03</span><figure class="tile"><div class="ph"><span class="big" aria-hidden="true">03</span></div><figcaption><h3>Painting</h3><p>Drawing and painting since I was a kid. Still how I destress.</p></figcaption></figure></li>
+    <li class="m"><span class="dot" aria-hidden="true">04</span><figure class="tile"><div class="ph"><span class="big" aria-hidden="true">04</span></div><figcaption><h3>Finding my people</h3><p>My first week at UMass, looking for where I belonged.</p></figcaption></figure></li>
+    <li class="m"><span class="dot" aria-hidden="true">05</span><figure class="tile"><div class="ph"><span class="big" aria-hidden="true">05</span></div><figcaption><h3>A talk about my home language</h3><p>My freshman communications class, where I spoke about the language I grew up with.</p></figcaption></figure></li>
+    <li class="m"><span class="dot" aria-hidden="true">06</span><figure class="tile"><div class="ph"><span class="big" aria-hidden="true">06</span></div><figcaption><h3>Why people buy, and how you know</h3><p>Marketing and economics, together.</p></figcaption></figure></li>
+    <li class="m"><span class="dot" aria-hidden="true">07</span><figure class="tile"><div class="ph"><span class="big" aria-hidden="true">07</span></div><figcaption><h3>Women of Isenberg</h3><p>Member and panel host at the Women of Isenberg conference.</p></figcaption></figure></li>
+    <li class="m"><span class="dot" aria-hidden="true">08</span><figure class="tile"><div class="ph"><span class="big" aria-hidden="true">08</span></div><figcaption><h3>UMass graduation</h3><p>May 2023.</p></figcaption></figure></li>
+    <li class="m"><span class="dot" aria-hidden="true">09</span><figure class="tile"><div class="ph"><span class="big" aria-hidden="true">09</span></div><figcaption><h3>Wayfair</h3><p>July 2023, digital product merchandising.</p></figcaption></figure></li>
+    <!-- DRAFT: moment 10's second sentence is invented placeholder copy. Confirm or replace with the real sources and the real miss. -->
+    <li class="m"><span class="dot" aria-hidden="true">10</span><figure class="tile"><div class="ph"><span class="big" aria-hidden="true">10</span></div><figcaption><h3>A NotebookLM for the team</h3><p>I built one to onboard new associates faster, and 15+ ramped up 30% faster. When it got something wrong, I fixed the source instead of patching the answer.</p></figcaption></figure></li>
+    <li class="m"><span class="dot" aria-hidden="true">11</span><figure class="tile"><div class="ph"><span class="big" aria-hidden="true">11</span></div><figcaption><h3>The bird-owner interview</h3><p>A customer interview that taught me the customer is the expert.</p></figcaption></figure></li>
+    <li class="m"><span class="dot" aria-hidden="true">12</span><figure class="tile"><div class="ph"><span class="big" aria-hidden="true">12</span></div><figcaption><h3>Get everything you need</h3><p>I helped shape the features and the algorithm behind this Wayfair section.</p></figcaption></figure></li>
+    <li class="m"><span class="dot" aria-hidden="true">13</span><figure class="tile"><div class="ph"><span class="big" aria-hidden="true">13</span></div><figcaption><h3>Wanting to be in the conversation</h3><p>Losing the thread in algorithm meetings made me want to understand them.</p></figcaption></figure></li>
+    <li class="m"><span class="dot" aria-hidden="true">14</span><figure class="tile"><div class="ph"><img class="photo" src="/assets/usc/usc-15.jpg" width="900" height="675" loading="lazy" decoding="async" alt="Group posing with a Master of Science in Business Analytics welcome banner"></div><figcaption><h3>East Coast to West Coast</h3><p>USC Marshall and the MS in Business Analytics.</p></figcaption></figure></li>
+    <!-- DRAFT: moment 15's second sentence is invented placeholder copy. Replace with what the digging really felt like. -->
+    <li class="m"><span class="dot" aria-hidden="true">15</span><figure class="tile"><div class="ph"><span class="big" aria-hidden="true">15</span></div><figcaption><h3>Respite Buddy</h3><p>A 12-hour build and about 40 quiet spots. The digging felt like detective work: for every spot, would I actually sit here?</p></figcaption></figure></li>
+    <li class="m"><span class="dot" aria-hidden="true">16</span><figure class="tile"><div class="ph"><span class="big" aria-hidden="true">16</span></div><figcaption><h3>Core Rep</h3><p>I ran to get out of my comfort zone and represent my classmates. Now there's a Friday-morning Core A email.</p></figcaption></figure></li>
+    <li class="m"><span class="dot" aria-hidden="true">17</span><figure class="tile"><div class="ph"><span class="big" aria-hidden="true">17</span></div><figcaption><h3>Nobody asked</h3><p>Puzzle Table and a daily 10am recruiting brief, built because nobody asked for them.</p></figcaption></figure></li>
+    <li class="m" id="m18"><span class="dot" aria-hidden="true">18</span><figure class="tile wide"><div class="ph">
+      <img class="photo" src="/assets/about/cohort.jpg" width="1800" height="1200" loading="lazy" decoding="async" alt="A large cohort gathered in a courtyard, almost everyone in black, with one person in a maroon blazer circled">
+      <svg class="mark" viewBox="0 0 2576 1718" aria-hidden="true">
+        <path class="halo" pathLength="1" d="M1256 129C1365 115 1393 244 1371 314C1346 395 1214 404 1183 314C1158 236 1186 140 1287 132C1318 129 1337 140 1348 157"/>
+        <path class="halo" pathLength="1" d="M1640 118C1560 100 1470 130 1388 180"/>
+        <path class="halo" pathLength="1" d="M1448 176L1388 180L1419 128"/>
+        <path class="line" pathLength="1" d="M1256 129C1365 115 1393 244 1371 314C1346 395 1214 404 1183 314C1158 236 1186 140 1287 132C1318 129 1337 140 1348 157"/>
+        <path class="line" pathLength="1" d="M1640 118C1560 100 1470 130 1388 180"/>
+        <path class="line" pathLength="1" d="M1448 176L1388 180L1419 128"/>
+      </svg>
+      <span class="me" aria-hidden="true">That's me!</span>
+      <img class="inset" src="/assets/usc-headshot.jpg" width="528" height="652" loading="lazy" decoding="async" alt="Navya in a maroon blazer">
+    </div><figcaption><h3>In a sea of black, the maroon</h3><p>Same blazer, same me, standing out on purpose.</p></figcaption></figure></li>
+    <li class="m"><span class="dot" aria-hidden="true">19</span><figure class="tile"><div class="ph"><img class="photo" src="/assets/usc/usc-35.jpg" width="900" height="675" loading="lazy" decoding="async" alt="TripMatch presentation on screens in a lecture hall"></div><figcaption><h3>TripMatch</h3><p>First place out of 44 teams at the USC Marshall MSBA AI Case Competition, October 2026.</p></figcaption></figure></li>
+  </ol>
+  </div>
+</section>
+
+<!-- Act 5: the places -->
+<section id="map">
+  <h2>The places</h2>
+  <svg id="worldsvg" role="img" aria-label="A world map with a pin for each of the 46 places I've been, zooming in on India" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1000 520">
+    <g id="land"><path class="land"/><path class="india"/></g>
+    <g id="pins"></g>
+  </svg>
+  <div class="caps">
+    <p id="cap1">Around the world and across the USA, so far.</p>
+    <p id="cap2">And home: 22 places in India, mostly Maharashtra and Rajasthan.</p>
+  </div>
+</section>
+<section class="places"><dl id="placelist"></dl></section>
+
+<!-- Act 6: the sum -->
+<section class="sum" id="sum">
+  <h2>The sum</h2>
+  <p class="lead">What the moments and the places add up to.</p>
+  <ol class="sumlist">
+    <li><span class="n">001</span><span class="t">The customer is the expert. You're just the one taking notes.</span></li>
+    <li><span class="n">002</span><span class="t">Marketing is why people buy. Analytics is how you know. Bring both.</span></li>
+    <li><span class="n">003</span><span class="t">If it annoys you, build a small system for it.</span></li>
+    <li><span class="n">004</span><span class="t">Don't wait for someone else's dashboard.</span></li>
+    <li><span class="n">005</span><span class="t">The data isn't in the data. It's in how people ask for things.</span></li>
+    <li><span class="n">006</span><span class="t">Being in the room is not being in the conversation.</span></li>
+    <li><span class="n">007</span><span class="t">Show up. That's most of it.</span></li>
+    <li><span class="n">008</span><span class="t">Build the thing before you pitch the thing.</span></li>
+    <li><span class="n">009</span><span class="t">Go all in. Then go all in on the next thing.</span></li>
+    <li><span class="n">010</span><span class="t">Color is not decoration. It's how you get someone to look.</span></li>
+    <li><span class="n">011</span><span class="t">Blending in was never the safe choice, just the quiet one.</span></li>
+    <li><span class="n">012</span><span class="t">Fall in love with the problem. The solution is disposable.</span></li>
+  </ol>
+  <div class="end">
+    <p class="hand">That's the long version.</p>
+    <p><a href="/">Back home</a> &middot; <a href="/professional/">Professional</a> &middot; <a href="/projects">Projects</a> &middot; <a href="/links">Links</a></p>
+    <p>Say hi: <a href="mailto:navyagup@usc.edu">navyagup@usc.edu</a></p>
+  </div>
+</section>
+</main>
+
+<script src="/about/gsap.min.js"></script>
+<script src="/about/ScrollTrigger.min.js"></script>
+<script src="/about/map-data.js"></script>
+<script>
+(() => {
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const NS = "http://www.w3.org/2000/svg";
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const motion = !!(window.gsap && window.ScrollTrigger) && !reduce;
+  if (motion) { gsap.registerPlugin(ScrollTrigger); ScrollTrigger.config({ ignoreMobileResize: true }); document.documentElement.classList.add("motion"); }
+
+  /* Map pieces are built once; the zoom timeline is rebuilt on resize. */
+  const M = window.MAP;
+  const pins = [];
+  const view = { k: 1, tx: 0, ty: 0 };
+  let vh = M ? M.h : 520;      // viewBox height, matched to the stage so the zoom fills phones too
+  const svg = $("#worldsvg"), landG = $("#land"), pinsG = $("#pins");
+  if (M) {
+    $(".land", svg).setAttribute("d", M.land);
+    $(".india", svg).setAttribute("d", M.india);
+    M.pins.forEach((p) => {
+      const g = document.createElementNS(NS, "g");
+      g.setAttribute("class", "pin");
+      g.innerHTML = `<g class="pop"><circle class="ring" r="8"/><circle class="core" r="3.4"/><title>${p.n}</title></g>`;
+      pinsG.appendChild(g);
+      pins.push({ ...p, el: g, pop: g.firstChild });
+    });
+    const names = { world: "World", usa: "USA", india: "India" };
+    $("#placelist").innerHTML = ["world", "usa", "india"].map((k) => {
+      const list = M.pins.filter((p) => p.g === k).map((p) => p.n);
+      return `<dt>${names[k]} (${list.length})</dt><dd>${list.join(", ")}</dd>`;
+    }).join("");
+  }
+  function place() {
+    landG.setAttribute("transform", `translate(${view.tx} ${view.ty}) scale(${view.k})`);
+    pins.forEach((p) => p.el.setAttribute("transform", `translate(${p.x * view.k + view.tx} ${p.y * view.k + view.ty})`));
+  }
+
+  /* Act 1: the rows slide in, then drift sideways as you scroll past. */
+  function act1() {
+    gsap.from("#giant .row", { yPercent: 40, opacity: 0, duration: 0.9, stagger: 0.12, ease: "power3.out" });
+    $$("#giant .row").forEach((row, i) => {
+      const dir = i % 2 ? 1 : -1;
+      gsap.fromTo(row, { xPercent: dir > 0 ? -16 : 0 }, { xPercent: dir > 0 ? 0 : -16, ease: "none",
+        scrollTrigger: { trigger: "#giant", start: "top top", end: "bottom top", scrub: true } });
+    });
+  }
+
+  /* Act 3: the sentence's letters turn into colored dots, then the dots scatter. */
+  function act3() {
+    const wrap = $("#script .wrap"), txt = $(".stext", wrap);
+    if (!txt.dataset.split) {
+      txt.innerHTML = txt.textContent.trim().split(/\s+/)
+        .map((w) => `<span class="w">${[...w].map((c) => `<span class="ch">${c}</span>`).join("")}</span>`).join(" ");
+      txt.dataset.split = "1";
+    }
+    $$(".sdot", wrap).forEach((d) => d.remove());
+    const chars = $$(".ch", txt), box = wrap.getBoundingClientRect();
+    const colors = ["#6b1a2b", "#d9a5ae", "#f3e3a6", "#2a1216"];
+    const dots = chars.map((c, i) => {
+      const r = c.getBoundingClientRect(), s = 9 + Math.random() * 15, d = document.createElement("i");
+      d.className = "sdot";
+      d.style.cssText = `left:${r.left - box.left + r.width / 2}px;top:${r.top - box.top + r.height / 2}px;width:${s}px;height:${s}px;margin:${-s / 2}px 0 0 ${-s / 2}px;background:${colors[i % 4]}`;
+      wrap.appendChild(d);
+      return d;
+    });
+    gsap.set(dots, { scale: 0 });
+    gsap.set("#script .after", { opacity: 0, y: 12 });
+    gsap.timeline({ scrollTrigger: { trigger: "#script", start: "top top", end: "+=150%", pin: true, scrub: 0.6 } })
+      .to(chars, { opacity: 0, duration: 0.5, stagger: { amount: 0.5, from: "random" } }, 0)
+      .to(dots, { scale: 1, duration: 0.4, stagger: { amount: 0.5, from: "random" }, ease: "back.out(2)" }, 0.1)
+      .to(dots, { x: () => gsap.utils.random(-140, 140), y: () => gsap.utils.random(-110, 110), duration: 0.8, ease: "power2.inOut" }, 1.1)
+      .to("#script .after", { opacity: 1, y: 0, duration: 0.5 }, 1.5)
+      .to({}, { duration: 0.4 });
+  }
+
+  /* Act 4: each dot opens into its photo tile; the rail fills in as you go. */
+  function act4() {
+    $$("#moments .m").forEach((li, i) => {
+      const tile = $(".tile", li), r = i % 2 ? 2 : -2;
+      const phone = matchMedia("(max-width: 719px)").matches;
+      // The tile grows out of its dot: dot is on the tile's right for left tiles, on its left otherwise.
+      gsap.fromTo(tile, { scale: 0.12, opacity: 0, rotation: r, transformOrigin: phone || i % 2 ? "0% 50%" : "100% 50%" },
+        { scale: 1, opacity: 1, rotation: r, ease: "power3.out", scrollTrigger: { trigger: li, start: "top 80%", end: "top 50%", scrub: 0.5 } });
+      gsap.from($(".dot", li), { scale: 0.5, ease: "back.out(3)", scrollTrigger: { trigger: li, start: "top 85%", end: "top 70%", scrub: 0.4 } });
+    });
+    gsap.fromTo("#moments .fill", { scaleY: 0 }, { scaleY: 1, ease: "none",
+      scrollTrigger: { trigger: "#moments .railwrap", start: "top 60%", end: "bottom 60%", scrub: true } });
+    // The circle, then the arrow, then the label draw themselves on the cohort photo.
+    const rings = $$("#m18 .mark path"), me = $("#m18 .me");
+    gsap.set(rings, { strokeDashoffset: 1 });
+    gsap.set(me, { opacity: 0, scale: 0.6 });
+    gsap.timeline({ scrollTrigger: { trigger: "#m18", start: "top 55%", once: true } })
+      .to([rings[0], rings[3]], { strokeDashoffset: 0, duration: 0.9, ease: "power2.inOut" })
+      .to([rings[1], rings[4]], { strokeDashoffset: 0, duration: 0.6, ease: "power1.inOut" }, "-=0.1")
+      .to([rings[2], rings[5]], { strokeDashoffset: 0, duration: 0.25 }, "-=0.05")
+      .to(me, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.4)" }, "-=0.35");
+  }
+
+  /* Act 5: world pins bloom, the map zooms to India, then India's pins bloom. */
+  function act5() {
+    if (!M) return;
+    const box = svg.getBoundingClientRect();
+    vh = M.w * (box.height / box.width);
+    svg.setAttribute("viewBox", `0 0 ${M.w} ${vh}`);
+    const u = M.w / box.width; // map units per screen pixel, so pins stay the same size on a phone
+    pins.forEach((p) => { p.pop.children[0].setAttribute("r", 11 * u); p.pop.children[1].setAttribute("r", 4.6 * u); });
+    Object.assign(view, { k: 1, tx: 0, ty: (vh - M.h) / 2 });
+    place();
+    const [x0, y0, x1, y1] = M.focus, fw = x1 - x0, fh = y1 - y0;
+    const k = Math.min(M.w / (fw * 1.3), vh / (fh * 1.4));
+    const to = { k, tx: M.w / 2 - (x0 + fw / 2) * k, ty: vh * 0.46 - (y0 + fh / 2) * k };
+    const far = pins.filter((p) => p.g !== "india"), home = pins.filter((p) => p.g === "india");
+    gsap.set(pins.map((p) => p.pop), { scale: 0, svgOrigin: "0 0" });
+    gsap.set("#cap1", { opacity: 0 });
+    gsap.timeline({ scrollTrigger: { trigger: "#map", start: "top top", end: "+=450%", pin: true, scrub: 0.6 } })
+      .to(far.map((p) => p.pop), { scale: 1, duration: 0.4, stagger: { amount: 0.8, from: "random" }, ease: "back.out(2)" }, 0)
+      .to("#cap1", { opacity: 1, duration: 0.3 }, 0.3)
+      .to({}, { duration: 0.4 })
+      .to(view, { ...to, duration: 1.3, ease: "power2.inOut", onUpdate: place })
+      .to("#cap1", { opacity: 0, duration: 0.25 }, "<")
+      .to(far.map((p) => p.el), { opacity: 0.3, duration: 0.6 }, "<0.3")
+      .to(home.map((p) => p.pop), { scale: 1, duration: 0.4, stagger: { amount: 1, from: "random" }, ease: "back.out(2)" }, ">-0.2")
+      .to("#cap2", { opacity: 1, duration: 0.4 }, "<0.3")
+      .to({}, { duration: 0.5 });
+  }
+
+  /* Act 6: each line of the sum fades up as it reaches the middle of the screen. */
+  function act6() {
+    $$("#sum .sumlist li").forEach((li) => {
+      gsap.fromTo(li, { opacity: 0.12, y: 24 }, { opacity: 1, y: 0, ease: "none",
+        scrollTrigger: { trigger: li, start: "top 88%", end: "top 55%", scrub: true } });
+    });
+  }
+
+  let ctx;
+  function init() {
+    if (!motion) { place(); return; }
+    ctx && ctx.revert();
+    ctx = gsap.context(() => { act1(); act3(); act4(); act5(); act6(); });
+    ScrollTrigger.refresh();
+  }
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(init);
+  let width = innerWidth, t;
+  addEventListener("resize", () => { clearTimeout(t); t = setTimeout(() => { if (innerWidth !== width) { width = innerWidth; init(); } }, 250); });
+})();
+</script>
+</body>
+</html>
