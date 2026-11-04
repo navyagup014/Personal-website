@@ -45,9 +45,9 @@ h2 { margin: 0 0 6px; font: 400 clamp(34px, 4.6vw, 48px) / 1.05 var(--hand); col
 .go b { display: block; font: 400 clamp(30px, 4vw, 40px) / 1.05 var(--hand); color: var(--maroon); }
 .go span { display: block; margin-top: 4px; font-size: 14px; letter-spacing: 0.04em; color: var(--soft); }
 .tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
-.tile { display: flex; flex-direction: column; justify-content: space-between; aspect-ratio: 1; padding: 18px; background: var(--butter); border: 1.5px solid var(--maroon); border-radius: 10px; text-decoration: none; color: var(--ink); transition: transform .15s ease, box-shadow .15s ease; }
+.tile { display: flex; flex-direction: column; justify-content: space-between; aspect-ratio: 1; padding: 18px; background: var(--paper); border: 1.5px solid var(--maroon); border-radius: 10px; text-decoration: none; color: var(--ink); transition: transform .15s ease, box-shadow .15s ease; }
 .tile:hover, .tile:focus-visible { transform: translateY(-3px); box-shadow: 0 8px 14px rgba(42,18,22,.14); }
-.tile svg { width: 38%; height: auto; }
+.tile img { width: 62%; height: auto; margin: -6px 0 0 -6px; }
 .tile b { font: 400 clamp(26px, 4vw, 38px) / 1 var(--hand); color: var(--maroon); }
 </style>
 </head>
@@ -60,7 +60,7 @@ h2 { margin: 0 0 6px; font: 400 clamp(34px, 4.6vw, 48px) / 1.05 var(--hand); col
   <section class="block">
     <div class="tiles">
       <a class="tile" href="/product-sense/partiful-teardown" aria-label="Partiful teardown">
-        <svg viewBox="0 0 80 80" aria-hidden="true"><path d="M14 66 30 26l24 24Z" fill="#d9a5ae" stroke="#2a1216" stroke-width="2.5" stroke-linejoin="round"/><path d="M58 14v8M66 22h-8M62 38l6-4M48 12l2 6" stroke="#6b1a2b" stroke-width="3" stroke-linecap="round"/><circle cx="66" cy="50" r="3" fill="#6b1a2b"/><circle cx="44" cy="30" r="3" fill="#2a1216"/></svg>
+        <img src="/assets/partiful-logo.png" alt="" width="400" height="400">
         <b>Partiful teardown</b>
       </a>
     </div>
