@@ -51,7 +51,16 @@ h1 { margin: 28px 0 0; font: 400 clamp(52px, 9.5vw, 92px) / 0.9 var(--hand); col
 h2 { margin: 0 0 6px; font: 400 clamp(34px, 4.6vw, 48px) / 1.05 var(--hand); color: var(--maroon); }
 .block > p { margin: 0; max-width: 62ch; }
 .list { list-style: disc; margin: 28px 0 0; padding-left: 22px; }
-.list li { margin-bottom: 22px; padding-left: 4px; }
+.list li { margin-bottom: 34px; padding-left: 4px; }
+/* Text on the left, a rough sketch of the idea in the white space on the right. Stacks on phones. */
+.row { display: grid; grid-template-columns: minmax(0, 62ch) 240px; justify-content: space-between; gap: 14px 32px; align-items: start; }
+.sk { width: 100%; height: auto; filter: url(#rough); fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.sk text { fill: var(--ink); stroke: none; font: 10px var(--type); }
+.sk .h { font: 17px var(--hand); fill: var(--maroon); }
+.sk .r { fill: var(--rose); } .sk .b { fill: var(--butter); } .sk .m { fill: var(--maroon); }
+.sk .p { fill: var(--paper); } .sk .g { fill: #8fd19e; } .sk .k { fill: var(--ink); }
+.sk .dim { opacity: .4; }
+@media (max-width: 719px) { .row { grid-template-columns: 1fr; } .sk { max-width: 260px; } }
 .list li::marker { color: var(--maroon); }
 .list a { font-size: 15px; letter-spacing: 0.04em; overflow-wrap: anywhere; }
 .list a::first-letter { text-transform: uppercase; }
@@ -59,6 +68,7 @@ h2 { margin: 0 0 6px; font: 400 clamp(34px, 4.6vw, 48px) / 1.05 var(--hand); col
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.5"/></filter></svg>
 <div class="wrap">
   <a class="back" href="/product-sense">&larr; Product sense</a>
 
@@ -71,26 +81,44 @@ h2 { margin: 0 0 6px; font: 400 clamp(34px, 4.6vw, 48px) / 1.05 var(--hand); col
 </div>
 
 <script>
-// Add a site with one line: [url, "Steal-this takeaway"].
+// Add a site with one line: [url, "Steal-this takeaway", sketchSvgInnerMarkup]. Sketches live on a 240x130 canvas.
+const arrow = (x1, y, x2) => `<path d="M${x1} ${y}H${x2}m-6-4l6 4l-6 4"/>`;
+const eye = (x, y, hot) => `<g class="${hot ? "" : "dim"}"><ellipse cx="${x}" cy="${y}" rx="11" ry="6"${hot ? ' class="g"' : ""}/><circle cx="${x}" cy="${y}" r="2.6" class="k"/></g>`;
+const eyes = [0, 1, 2, 3].flatMap(j => [0, 1, 2, 3, 4].map(i => eye(28 + 46 * i, 20 + 26 * j, (i == 1 && j == 1) || (i == 3 && j == 2)))).join("");
+const bars = [["A", 150, "m"], ["B", 110, "r"], ["C", 76, "r"], ["D", 40, "b"]].map(([n, w, c], i) => `<text x="10" y="${42 + 22 * i}">${n}</text><rect x="26" y="${32 + 22 * i}" width="${w}" height="14" class="${c}"/>`).join("");
+const hand = (x, t, a = "middle") => `<text class="h" x="${x}" y="124" text-anchor="${a}">${t}</text>`;
 const SITES = [
-  ["https://aidanjs.com", "Make the navigation part of the artwork, so the only green eyes in a wall of eyes are the two links you want clicked."],
-  ["https://bfcm.stripe.com", "Turn a record number into something you can watch, like a handmade miniature city, instead of a stat in a press release."],
-  ["https://www.chloeyan.me/ferry", "Pay tribute to a piece of everyday infrastructure, and make it feel alive with a ticking clock and a sound toggle."],
-  ["https://laxspace.co", "Give a portfolio the feel of a game, with a points counter, an FPS readout and keyboard shortcuts, so browsing becomes play."],
-  ["https://plasticlist.org", "Pick one concrete question, like which Bay Area foods contain plastic chemicals, and publish the data plainly."],
-  ["https://posthog.com", "Let the product demo itself with a sample investigation, and keep a self-aware voice that sounds like people, not a brochure."],
-  ["https://randoma11y.com", "Pair a playful random generator with a real constraint, so every color combination you land on is accessible."],
-  ["https://rotating.parts", "Shuffle a gallery of simple parts on every load and link each one to where you can buy it, so a tiny page is both fun and useful."],
-  ["https://ryo.lu", "Replace the bio with one live line of status, like \u201cRyo is exploring Taipei,\u201d so the site feels like a person, not a r\u00e9sum\u00e9."],
-  ["https://press.stripe.com", "Give every product its own moment, like a living cover for each book, instead of a row in a catalog."],
-  ["https://tempo.xyz", "Lead with one big proof number, and speak to two audiences at once with separate calls to action for people and for AI agents."],
-  ["https://www.yukiasakura.com", "Turn a portfolio into a journey, with a \u201cStart ride\u201d button, so your focus on cities and mobility becomes the interface itself."],
-  ["https://virgilabloh.com", "Make a brand feel like an archive, with catalog-style dates, page numbers and version labels, and give each audience its own sign-up path."],
+  ["https://aidanjs.com", "Make the navigation part of the artwork, so the only green eyes in a wall of eyes are the two links you want clicked.",
+    eyes + hand(120, "only 2 are links")],
+  ["https://bfcm.stripe.com", "Turn a record number into something you can watch, like a handmade miniature city, instead of a stat in a press release.",
+    `<rect x="10" y="26" width="76" height="46" class="p"/><text x="48" y="56" text-anchor="middle" style="font-size:16px;font-weight:700">$$$$</text><text x="48" y="88" text-anchor="middle">press release</text>${arrow(92, 50, 118)}<path d="M124 108H232"/><rect x="128" y="68" width="22" height="40" class="b"/><rect x="154" y="46" width="20" height="62" class="r"/><rect x="178" y="78" width="18" height="30" class="p"/><rect x="200" y="58" width="26" height="50" class="b"/><path d="M134 78h4M134 88h4M160 56h4M160 68h4M206 68h4M216 68h4M206 80h4M216 80h4"/>${hand(176, "watch it live")}`],
+  ["https://www.chloeyan.me/ferry", "Pay tribute to a piece of everyday infrastructure, and make it feel alive with a ticking clock and a sound toggle.",
+    `<path d="M10 96q15-10 30 0t30 0t30 0t30 0t30 0t30 0t30 0"/><path d="M64 78h76l-12 16H76z" class="p"/><rect x="84" y="60" width="40" height="18" class="b"/><rect x="100" y="46" width="8" height="14" class="m"/><circle cx="94" cy="69" r="3"/><circle cx="104" cy="69" r="3"/><circle cx="114" cy="69" r="3"/><circle cx="196" cy="34" r="20" class="p"/><path d="M196 34v-12M196 34l9 5"/><rect x="14" y="24" width="8" height="12" class="p"/><path d="M22 24l11-7v26l-11-7zM40 24q7 7 0 14M46 20q11 11 0 22"/>${hand(120, "a ticking clock + sound")}`],
+  ["https://laxspace.co", "Give a portfolio the feel of a game, with a points counter, an FPS readout and keyboard shortcuts, so browsing becomes play.",
+    `<rect x="10" y="8" width="220" height="92" rx="4" class="p"/><text x="20" y="24">PTS 240</text><text x="220" y="24" text-anchor="end">FPS 60</text><rect x="36" y="44" width="34" height="26" class="r"/><circle cx="118" cy="62" r="15" class="b"/><rect x="160" y="42" width="40" height="30" class="p"/><path d="M96 88l7-12l7 12z" class="m"/><rect x="18" y="106" width="20" height="18" rx="3" class="p"/><rect x="42" y="106" width="20" height="18" rx="3" class="p"/><rect x="66" y="106" width="20" height="18" rx="3" class="p"/><text x="28" y="119" text-anchor="middle">1</text><text x="52" y="119" text-anchor="middle">2</text><text x="76" y="119" text-anchor="middle">3</text>${hand(100, "jump with keys", "start")}`],
+  ["https://plasticlist.org", "Pick one concrete question, like which Bay Area foods contain plastic chemicals, and publish the data plainly.",
+    `<text x="10" y="18" style="font-size:9px">which foods have plastic chemicals?</text>${bars}${hand(120, "one question, plain data")}`],
+  ["https://posthog.com", "Let the product demo itself with a sample investigation, and keep a self-aware voice that sounds like people, not a brochure.",
+    `<rect x="10" y="8" width="150" height="92" class="p"/><path d="M22 84L52 64L82 72L112 40L148 26" style="stroke:var(--maroon)"/><circle cx="112" cy="40" r="5" class="b"/><path d="M117 40L168 38"/><path d="M172 56l-10 14l16-8" class="b"/><rect x="168" y="14" width="64" height="46" rx="8" class="b"/><text x="176" y="34" style="font-size:9px">hi, we're</text><text x="176" y="48" style="font-size:9px">people :)</text>${hand(120, "a sample investigation")}`],
+  ["https://randoma11y.com", "Pair a playful random generator with a real constraint, so every color combination you land on is accessible.",
+    `<rect x="20" y="16" width="90" height="70" class="m"/><rect x="70" y="40" width="90" height="70" class="b"/><text x="30" y="62" style="font-size:24px;font-weight:700;fill:#fffdfb">Aa</text><text x="90" y="98" style="font-size:24px;font-weight:700;fill:var(--maroon)">Aa</text><rect x="170" y="16" width="56" height="22" rx="11" class="p"/><text x="198" y="31" text-anchor="middle">AA ok</text><rect x="176" y="56" width="34" height="34" rx="6" class="p"/><circle cx="184" cy="64" r="2.5" class="k"/><circle cx="202" cy="64" r="2.5" class="k"/><circle cx="193" cy="73" r="2.5" class="k"/><circle cx="184" cy="82" r="2.5" class="k"/><circle cx="202" cy="82" r="2.5" class="k"/>${hand(120, "random, but always readable")}`],
+  ["https://rotating.parts", "Shuffle a gallery of simple parts on every load and link each one to where you can buy it, so a tiny page is both fun and useful.",
+    `<circle cx="50" cy="44" r="19" class="b" style="stroke-width:5;stroke-dasharray:5 4"/><circle cx="50" cy="44" r="13" class="b"/><circle cx="50" cy="44" r="5" class="p"/><path d="M108 44l6-10h12l6 10l-6 10h-12z" class="p"/><rect x="115" y="54" width="10" height="24" class="r"/><circle cx="190" cy="44" r="20" class="p"/><circle cx="190" cy="44" r="4" class="m"/><path d="M190 24v40M170 44h40M176 30l28 28M204 30l-28 28"/><text x="50" y="98" text-anchor="middle" style="text-decoration:underline">buy &nearr;</text><text x="120" y="98" text-anchor="middle" style="text-decoration:underline">buy &nearr;</text><text x="190" y="98" text-anchor="middle" style="text-decoration:underline">buy &nearr;</text>${hand(120, "new shuffle every load")}`],
+  ["https://ryo.lu", "Replace the bio with one live line of status, like “Ryo is exploring Taipei,” so the site feels like a person, not a résumé.",
+    `<g class="dim"><path d="M20 22H130M20 36H100M20 50H116"/></g><path d="M14 14L134 58M134 14L14 58" style="stroke:var(--maroon)"/><text x="150" y="40" class="h">the bio</text><rect x="14" y="76" width="212" height="34" rx="17" class="p"/><circle cx="34" cy="93" r="5" class="g"/><text x="46" y="97">Your name is exploring ___</text>${hand(120, "one live line instead")}`],
+  ["https://press.stripe.com", "Give every product its own moment, like a living cover for each book, instead of a row in a catalog.",
+    `<rect x="20" y="30" width="56" height="70" class="r"/><path d="M28 30v70"/><rect x="92" y="14" width="56" height="70" class="b"/><path d="M100 14v70M110 34h30M110 44h22"/><ellipse cx="120" cy="100" rx="26" ry="4" style="fill:var(--ink);opacity:.15;stroke:none"/><rect x="164" y="30" width="56" height="70" class="p"/><path d="M172 30v70"/><path d="M120 6v-4M100 8l-3-3M140 8l3-3"/>${hand(120, "each one gets its moment")}`],
+  ["https://tempo.xyz", "Lead with one big proof number, and speak to two audiences at once with separate calls to action for people and for AI agents.",
+    `<text x="120" y="46" text-anchor="middle" style="font-size:24px;font-weight:700">1,234,567</text><rect x="20" y="68" width="96" height="28" rx="14" class="m"/><text x="68" y="86" text-anchor="middle" style="fill:#fffdfb">for people</text><rect x="124" y="68" width="96" height="28" rx="14" class="p"/><text x="172" y="86" text-anchor="middle">&lt;/&gt; agents</text>${hand(120, "one number, two doors")}`],
+  ["https://www.yukiasakura.com", "Turn a portfolio into a journey, with a “Start ride” button, so your focus on cities and mobility becomes the interface itself.",
+    `<rect x="10" y="8" width="220" height="82" class="p"/><path d="M24 80C60 20 100 90 140 44S200 30 214 24" style="stroke:var(--maroon);stroke-dasharray:5 4"/><circle cx="24" cy="80" r="5" class="b"/><circle cx="140" cy="44" r="5" class="b"/><circle cx="214" cy="24" r="5" class="m"/><rect x="70" y="100" width="100" height="24" rx="12" class="m"/><path d="M82 106l9 6l-9 6z" style="fill:#fffdfb;stroke:none"/><text x="98" y="116" style="fill:#fffdfb">Start ride</text>`],
+  ["https://virgilabloh.com", "Make a brand feel like an archive, with catalog-style dates, page numbers and version labels, and give each audience its own sign-up path.",
+    `<rect x="10" y="8" width="130" height="100" class="p"/><text x="20" y="26" style="font-weight:700">ARCHIVE</text><text x="20" y="44">No. 014</text><text x="20" y="60">2026 / v1.2</text><text x="20" y="76">p. 07</text><path d="M20 88H120M20 98H96" class="dim"/><rect x="156" y="16" width="74" height="24" rx="12" class="p"/><text x="193" y="32" text-anchor="middle">fans +</text><rect x="156" y="48" width="74" height="24" rx="12" class="p"/><text x="193" y="64" text-anchor="middle">press +</text><rect x="156" y="80" width="74" height="24" rx="12" class="p"/><text x="193" y="96" text-anchor="middle">buyers +</text>${hand(120, "a path per audience")}`],
 ];
 const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
-document.getElementById("sites").innerHTML = SITES.map(([u, t]) => {
+document.getElementById("sites").innerHTML = SITES.map(([u, t, art]) => {
   const label = u.replace(/^https?:\/\/(www\.)?/, "");
-  return `<li><a href="${u}" target="_blank" rel="noopener">${label} &nearr;</a><p>Steal this: ${esc(t)}</p></li>`;
+  return `<li><div class="row"><div><a href="${u}" target="_blank" rel="noopener">${label} &nearr;</a><p>Steal this: ${esc(t)}</p></div><svg class="sk" viewBox="0 0 240 130" aria-hidden="true">${art}</svg></div></li>`;
 }).join("");
 </script>
 </body>
