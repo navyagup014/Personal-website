@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Navya Gupta, Tubi teardown</title>
+<meta name="description" content="How Tubi's recommendations, search and content mix decide whether you find something good to watch.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Reenie+Beanie&display=swap" rel="stylesheet">
+<style>
+/* Layout: one narrow reading column like the other pages, sticky-note summary, bordered cards. */
+:root {
+  --bg: #fffdfb;
+  --ink: #2a1216;
+  --muted: #6e5a5d;
+  --burgundy: #6b1a2b;
+  --gold: #f3e5a6;
+  --pink: #f4cdd7;
+  --blue: #cfe5ee;
+  --rule: #eadfdc;
+  --hand: "Reenie Beanie", "Bradley Hand", cursive;
+  --type: "Courier Prime", "Courier New", monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--type);
+  font-size: 15px;
+  line-height: 1.7;
+  padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 72px;
+}
+main { max-width: 1080px; margin: 0 auto; }
+a { color: var(--burgundy); text-underline-offset: 3px; }
+a:focus-visible { outline: 2px solid var(--burgundy); outline-offset: 3px; }
+.back { font-size: 13px; letter-spacing: .12em; text-decoration: none; }
+.back:hover { text-decoration: underline; }
+h1, h2, h3 { font-family: var(--hand); font-weight: 400; color: var(--burgundy); margin: 0; text-wrap: balance; line-height: 1; }
+h1 { font-size: clamp(56px, 11vw, 92px); margin-top: 28px; }
+h2 { font-size: clamp(40px, 7vw, 54px); }
+h3 { font-size: 32px; line-height: 1.05; }
+.sub { margin: 14px 0 6px; font-size: 18px; }
+.by { color: var(--muted); font-size: 13px; letter-spacing: .08em; margin: 0; }
+hr { border: 0; border-top: 1px solid var(--rule); margin: 28px 0 0; }
+section { margin-top: 64px; }
+section > h2 { margin-bottom: 14px; }
+p { margin: 0 0 14px; }
+ul, ol { margin: 0 0 14px; padding-left: 22px; }
+li { margin-bottom: 8px; }
+.note { color: var(--muted); font-size: 13px; }
+.glance { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-top: 36px; }
+.sticky { padding: 20px 20px 8px; border-radius: 4px; box-shadow: 0 6px 14px rgba(42, 18, 22, .12); }
+.sticky:nth-child(1) { background: var(--gold); transform: rotate(-1deg); }
+.sticky:nth-child(2) { background: var(--pink); transform: rotate(.8deg); }
+.sticky:nth-child(3) { background: var(--blue); transform: rotate(-.6deg); }
+.sticky h3 { margin-bottom: 8px; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-top: 8px; }
+.card { border: 2px solid var(--burgundy); border-radius: 12px; padding: 20px 22px 8px; min-width: 0; background: #fffdfb; }
+.card h3 { margin-bottom: 8px; }
+.take { background: var(--gold); padding: 2px 6px; }
+.steps { list-style: none; padding: 0; counter-reset: s; }
+.steps li { counter-increment: s; border-left: 3px solid var(--burgundy); padding: 2px 0 2px 18px; margin-bottom: 18px; }
+.steps li::before { content: "Step " counter(s); display: block; font-family: var(--hand); font-size: 28px; color: var(--burgundy); line-height: 1; margin-bottom: 4px; }
+.fig { margin: 20px 0 8px; border: 2px solid var(--burgundy); border-radius: 12px; background: #fffdfb; overflow-x: auto; }
+.fig svg { display: block; min-width: 620px; width: 100%; height: auto; }
+.fig text { font-family: var(--type); fill: var(--ink); }
+figcaption { font-size: 13px; color: var(--muted); margin: 8px 2px 24px; }
+figure { margin: 0; }
+.tw { overflow-x: auto; margin: 8px 0 18px; border: 2px solid var(--burgundy); border-radius: 12px; background: #fffdfb; }
+table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 14px; line-height: 1.5; }
+th, td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--rule); }
+th { font-family: var(--hand); font-weight: 400; font-size: 26px; color: var(--burgundy); line-height: 1; }
+tr:last-child td { border-bottom: 0; }
+footer { margin-top: 72px; padding-top: 20px; border-top: 1px solid var(--rule); font-size: 13px; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+<a class="back" href="/product-sense">&larr; Product sense</a>
+<h1>Tubi teardown</h1>
+<p class="sub">How Tubi's recommendations, search and content mix decide whether you find something good to watch, and how to make that easier.</p>
+<p class="by">Navya Gupta · November 3, 2026</p>
+<hr>
+
+<div class="glance">
+  <div class="sticky"><h3>What works</h3><p>A recommender built from 70+ models, a huge free library, and a homepage that gets you watching fast.</p></div>
+  <div class="sticky"><h3>Biggest gaps</h3><p>Search ignores details like decade, results have no filters or sort, and nothing tells you whether a title is any good.</p></div>
+  <div class="sticky"><h3>Build first</h3><p>Filters and sort on search results, and feedback that visibly changes your rows. Then quality badges and conversational search.</p></div>
+</div>
+
+<section>
+<h2>The problem</h2>
+<p>Tubi has one of the largest free libraries in streaming, over 200,000 titles. A big library only helps if people can find something worth watching in it. The challenge is to turn volume into confident choices, so that viewers who arrive for free content stay because the next pick is easy and good.</p>
+<ul>
+  <li><b>Algorithms:</b> Make recommendations feel earned and responsive, including for new viewers with no history and for people who want something different.</li>
+  <li><b>Findability:</b> Let people search and browse by what they actually want, such as a decade, a mood or a country, without scrolling endless rows.</li>
+  <li><b>Content quality:</b> Help people tell the gems from the filler in a catalog of mixed quality, so a bad first pick doesn't end the session.</li>
+</ul>
+</section>
+
+<section>
+<h2>Research: how Tubi is doing</h2>
+<p>Tubi is growing and profitable, and viewers rate the app highly. The friction is about ads, picking from a mixed catalog, and search that doesn't read intent.</p>
+<h3>The numbers</h3>
+<ul>
+  <li><b>Scale:</b> 100 million or more monthly active users and about 2.2% of US TV viewing, per company and press figures. Library size is reported as 200,000 titles and up, with some sources saying 275,000 to 300,000.</li>
+  <li><b>Business:</b> More than $1.1 billion in revenue in fiscal 2025, and profitable since the first fiscal quarter of 2026.</li>
+  <li><b>Audience:</b> Over a third of viewers are 18 to 34, and about 63% are cord cutters or cord nevers.</li>
+  <li><b>Algorithm:</b> Tubi engineers say the homepage is assembled by 70 or more machine learning models, trained on roughly a billion hours of monthly viewing. That 70+ figure comes from 2023 posts, so treat it as a past number.</li>
+  <li><b>Other teardowns:</b> The only full teardown I found is Appfigures' 2021 app-store teardown, which graded Tubi A-. It covers store optimization, not recommendations or search.</li>
+</ul>
+<h3>Ratings and reviews</h3>
+<div class="tw"><table>
+  <tr><th>Source</th><th>Rating</th><th>Read</th></tr>
+  <tr><td>Apple App Store</td><td>About 4.8, over a million ratings</td><td>Loved for free, big library</td></tr>
+  <tr><td>Google Play</td><td>About 4.9</td><td>Same pattern</td></tr>
+  <tr><td>Trustpilot</td><td>About 2.0</td><td>Ads, buffering and account issues</td></tr>
+</table></div>
+<p class="note">Store figures are from trackers and the listings, and may differ slightly from the live pages. Trustpilot reviews skew toward people with a problem.</p>
+<h3>How the recommender works</h3>
+<div class="tw"><table>
+  <tr><th>Layer</th><th>What Tubi says it does</th></tr>
+  <tr><td>Two stages</td><td>Recall pulls a few hundred candidates, then ranking orders them for each row.</td></tr>
+  <tr><td>Content signals</td><td>Embeddings built from IMDb, Gracenote, Rotten Tomatoes and Wikipedia metadata help new titles get recommended before they have viewing data.</td></tr>
+  <tr><td>Viewer signals</td><td>Viewing history, My List, and likes and dislikes.</td></tr>
+  <tr><td>Evolution</td><td>Averaged embeddings, then per-video nearest neighbors, then multi-interest clusters, then real-time recall and context-aware exploration.</td></tr>
+  <tr><td>Exploration</td><td>A "Something Completely Different" row and bandit algorithms push against over-narrow recommendations.</td></tr>
+  <tr><td>New viewers</td><td>Cold start leans on popularity by country, language, genre and external ratings.</td></tr>
+  <tr><td>Newer work</td><td>A 2026 paper, TubiFM, describes one generative model that ranks items, carousels and search. Tubi launched a ChatGPT app in April 2026. An earlier GPT-4 assistant, Rabbit AI, entered iOS beta in 2023 and was reportedly shut down in 2024. That shutdown rests on thin sourcing and I found no Tubi announcement.</td></tr>
+</table></div>
+<h3>What users complain about</h3>
+<ol>
+  <li><b>Ads:</b> The top complaint, including ad load and repeats within a break.</li>
+  <li><b>Search that misses intent:</b> In my test, "scary movie from the 80s" returned horror titles but ignored the decade.</li>
+  <li><b>No way to narrow results:</b> The results page is a poster grid with no filters or sort.</li>
+  <li><b>Hard to judge quality:</b> Tiles show year, runtime, rating and genre, but no review score.</li>
+  <li><b>Menu sprawl:</b> Browse has many sub-menus and lists genres twice.</li>
+</ol>
+<p class="note">Complaints 2 to 5 come from my own logged-out session on November 3, 2026, with two searches. It is one session, so it shows what is possible, not how often it happens.</p>
+</section>
+
+<section>
+<h2>Who uses Tubi</h2>
+<p>Three illustrative personas, built from the audience data and reviews above. They are hypotheses to test with real interviews, not research findings.</p>
+<div class="cards">
+  <div class="card">
+    <h3>Marcus, the gem hunter</h3>
+    <p>A film fan who likes older and obscure titles and treats Tubi as a treasure hunt.</p>
+    <ul>
+      <li>Can't filter by decade or country.</li>
+      <li>Has no signal for which obscure picks are worth it.</li>
+      <li>Rows repeat the same popular titles.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Denise, the budget cord cutter</h3>
+    <p>Dropped cable to save money and wants something on tonight with minimal effort.</p>
+    <ul>
+      <li>Skims rows and wastes time on duds.</li>
+      <li>Tires of ad breaks mid-movie.</li>
+      <li>Gives up when the first pick is poor.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Jordan, the feed-native viewer</h3>
+    <p>Around 22, used to being served a clean, personalized feed on short-video apps.</p>
+    <ul>
+      <li>Unsure why a title was recommended.</li>
+      <li>Likes and dislikes don't visibly change anything.</li>
+      <li>Expects to type a vibe and get answers.</li>
+    </ul>
+  </div>
+</div>
+</section>
+
+<section>
+<h2>The user journey</h2>
+<p>Getting started and watching are smooth. The weak points are the middle stages where a viewer has to decide, and the last one where feedback should pay off.</p>
+<h3>Step by step</h3>
+<ol class="steps">
+  <li><b>Land and start.</b> The homepage loads rows of posters with no sign-in needed to browse. <i>Strength:</i> Almost no friction to get to a title.</li>
+  <li><b>Browse rows.</b> Rows are ranked per viewer, with tiles showing year, runtime, maturity rating and genre. <i>Gap:</i> No review score or quality cue on the tile.</li>
+  <li><b>Use the Browse menu.</b> Many sub-menus by genre and collection. <i>Friction:</i> Genres appear twice and the structure is deep.</li>
+  <li><b>Search.</b> "korean thriller" returned relevant results. "scary movie from the 80s" returned horror but ignored the decade. <i>Gap:</i> No filters or sort on the results page.</li>
+  <li><b>Watch.</b> Playback with ad breaks. <i>Friction:</i> Ads are the top complaint in reviews.</li>
+  <li><b>Give feedback and come back.</b> Likes, dislikes and My List feed the models. <i>Gap:</i> The effect on your rows isn't visible, so it doesn't feel like it works.</li>
+</ol>
+<h3>How it holds up</h3>
+<ul>
+  <li><b>Function:</b> Free, fast and no sign-in covers the core job. The recommender is serious engineering.</li>
+  <li><b>Design:</b> A poster-grid layout that is familiar and scannable. It has little metadata for deciding between titles.</li>
+  <li><b>Performance:</b> Reviewers mention buffering and crashes sometimes. I have not measured load times myself.</li>
+</ul>
+<h3>Where it can improve</h3>
+<ol>
+  <li><b>Let people narrow results:</b> Filters and sort on search and browse pages.</li>
+  <li><b>Show quality at a glance:</b> A compact score or badge on every tile.</li>
+  <li><b>Make feedback visible:</b> After a like or dislike, show the row change and say why.</li>
+</ol>
+</section>
+
+<section>
+<h2>How competitors compare</h2>
+<p>Each rival wins on one axis Tubi can borrow from: Pluto TV on lean-back viewing, Roku on distribution, Netflix and Prime on recommendation polish.</p>
+<div class="cards">
+  <div class="card"><h3>Pluto TV</h3><p>Free and ad-supported with live linear channels you can turn on without choosing anything.</p><p><span class="take">Takeaway:</span> Live channels remove the decision, which is the one problem Tubi leaves to the viewer.</p></div>
+  <div class="card"><h3>The Roku Channel</h3><p>Free, ad-supported and pre-installed on Roku devices, which gives it distribution Tubi has to earn.</p><p><span class="take">Takeaway:</span> Strong default placement, but the catalog is less distinctive.</p></div>
+  <div class="card"><h3>Freevee</h3><p>Amazon's free tier, retired on September 3, 2025 and folded into Prime Video.</p><p><span class="take">Takeaway:</span> A well-funded rival chose to merge, which leaves more of the free audience for Tubi.</p></div>
+  <div class="card"><h3>Netflix and Prime Video</h3><p>Paid services with polished recommendations, AI-driven rows and richer metadata. Neither has a ChatGPT app.</p><p><span class="take">Takeaway:</span> They set the bar for explaining why a title was picked.</p></div>
+</div>
+<p style="margin-top:18px">Three lessons carry into the ideas below. Pluto shows people sometimes want no choice at all. Netflix and Prime show that explaining a recommendation builds trust. Tubi's ChatGPT app shows it can lead on conversational discovery, which rivals have not done.</p>
+</section>
+
+<section>
+<h2>Five ideas to fix it</h2>
+<p>Each idea targets the same loop of finding, judging and trusting what to watch, and each touches the algorithm, findability and content quality in a different way.</p>
+<ol>
+  <li><b>Faceted search and sort.</b> Add filters for decade, genre, country, runtime and rating, plus sort by popularity, newest or score, on search and browse results.
+    <ul><li><i>Solves:</i> Search that ignores intent, and results nobody can narrow.</li><li><i>Why it matters:</i> Turns "scary movie from the 80s" from a miss into a two-tap answer. It is mostly UI over metadata Tubi already holds.</li></ul></li>
+  <li><b>Quality badges.</b> Show a compact score (for example critic and audience ratings from sources Tubi already uses) and a short label like "Cult favorite" on every tile.
+    <ul><li><i>Solves:</i> No way to tell a gem from filler.</li><li><i>Why it matters:</i> Protects the first pick, which is the choice that decides whether someone stays. It also gives the ranker a visible quality signal.</li></ul></li>
+  <li><b>Feedback that sticks.</b> After a like or dislike, update the row right away and say why ("More like Heat, since you liked it").
+    <ul><li><i>Solves:</i> Signals that seem to go nowhere.</li><li><i>Why it matters:</i> Builds trust in the algorithm and produces more labeled data from engaged viewers.</li></ul></li>
+  <li><b>In-app conversational search.</b> Bring the ChatGPT-style experience into the app, so a viewer can type "a tense Korean thriller under two hours" and get a short, ranked answer with reasons.
+    <ul><li><i>Solves:</i> Intent that keyword search can't read, and the feed-native expectation.</li><li><i>Why it matters:</i> Extends Tubi's lead on AI discovery. Earlier attempts reportedly stalled, so this needs careful scoping.</li></ul></li>
+  <li><b>Cold-start taste picker.</b> For new or logged-out viewers, offer a 20-second pick of a few titles or genres to seed the first homepage.
+    <ul><li><i>Solves:</i> Generic first rows for people with no history.</li><li><i>Why it matters:</i> Improves the first session, but popularity fallbacks already do an acceptable job, so the gain is modest.</li></ul></li>
+</ol>
+
+<h3>Sketch: filters on search results</h3>
+<figure>
+<div class="fig">
+<svg viewBox="0 0 720 380" role="img" aria-label="Search results page with filter chips for decade, genre and sort, and a poster grid with quality badges">
+  <g font-size="14">
+    <rect x="20" y="16" width="680" height="40" rx="20" fill="none" stroke="#2a1216" stroke-width="1.5"/>
+    <text x="42" y="42">scary movie from the 80s</text>
+    <g text-anchor="middle" font-size="13">
+      <rect x="20" y="74" width="120" height="32" rx="16" fill="#f3e5a6" stroke="#6b1a2b" stroke-width="2.5"/><text x="80" y="95" font-weight="700">Decade: 1980s</text>
+      <rect x="152" y="74" width="110" height="32" rx="16" fill="none" stroke="#2a1216" stroke-width="1.5"/><text x="207" y="95">Genre: Horror</text>
+      <rect x="274" y="74" width="110" height="32" rx="16" fill="none" stroke="#2a1216" stroke-width="1.5"/><text x="329" y="95">Under 2 hrs</text>
+      <rect x="540" y="74" width="160" height="32" rx="16" fill="none" stroke="#2a1216" stroke-width="1.5"/><text x="620" y="95">Sort: Best rated</text>
+    </g>
+    <g text-anchor="middle" font-size="12">
+      <rect x="20" y="128" width="150" height="190" rx="8" fill="#ece6dc" stroke="#2a1216"/><text x="95" y="228">Poster</text>
+      <rect x="32" y="138" width="56" height="22" rx="11" fill="#cfe5ee" stroke="#6b1a2b" stroke-width="1.5"/><text x="60" y="154" font-weight="700">86</text>
+      <rect x="190" y="128" width="150" height="190" rx="8" fill="#ece6dc" stroke="#2a1216"/><text x="265" y="228">Poster</text>
+      <rect x="202" y="138" width="56" height="22" rx="11" fill="#cfe5ee" stroke="#6b1a2b" stroke-width="1.5"/><text x="230" y="154" font-weight="700">79</text>
+      <rect x="360" y="128" width="150" height="190" rx="8" fill="#ece6dc" stroke="#2a1216"/><text x="435" y="228">Poster</text>
+      <rect x="372" y="138" width="56" height="22" rx="11" fill="#cfe5ee" stroke="#6b1a2b" stroke-width="1.5"/><text x="400" y="154" font-weight="700">74</text>
+      <rect x="530" y="128" width="150" height="190" rx="8" fill="#ece6dc" stroke="#2a1216"/><text x="605" y="228">Poster</text>
+      <rect x="542" y="138" width="86" height="22" rx="11" fill="#f3e5a6" stroke="#6b1a2b" stroke-width="1.5"/><text x="585" y="154" font-weight="700">Cult fave</text>
+    </g>
+    <text x="20" y="352" font-size="13">4 of 31 results shown. Scores are sample values.</text>
+  </g>
+</svg>
+</div>
+<figcaption>Same poster grid Tubi has today, with the filters people expect and a score on each tile. Scores and counts are placeholders for the sketch.</figcaption>
+</figure>
+
+<h3>Sketch: feedback that changes the row</h3>
+<figure>
+<div class="fig">
+<svg viewBox="0 0 720 300" role="img" aria-label="A like on a title updates the row below with an explanation">
+  <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#6b1a2b"/></marker></defs>
+  <g font-size="14">
+    <rect x="20" y="20" width="310" height="260" rx="12" fill="none" stroke="#2a1216" stroke-width="1.5"/>
+    <text x="38" y="52" font-weight="700">After a movie ends</text>
+    <rect x="38" y="68" width="274" height="90" rx="8" fill="#ece6dc" stroke="#2a1216"/>
+    <text x="175" y="118" text-anchor="middle" font-size="13">Title card</text>
+    <rect x="38" y="180" width="130" height="40" rx="20" fill="#f3e5a6" stroke="#6b1a2b" stroke-width="2.5"/><text x="103" y="205" text-anchor="middle" font-weight="700">Liked it</text>
+    <rect x="182" y="180" width="130" height="40" rx="20" fill="none" stroke="#2a1216" stroke-width="1.5"/><text x="247" y="205" text-anchor="middle">Not for me</text>
+    <path d="M334 150H396" fill="none" stroke="#6b1a2b" stroke-width="2" marker-end="url(#ar)"/>
+    <text x="365" y="138" text-anchor="middle" font-size="13">Instant</text>
+    <rect x="400" y="20" width="300" height="260" rx="12" fill="none" stroke="#2a1216" stroke-width="1.5"/>
+    <text x="418" y="52" font-weight="700">Your homepage now</text>
+    <text x="418" y="82" font-size="13">New row: More like this</text>
+    <g fill="#ece6dc" stroke="#2a1216"><rect x="418" y="94" width="76" height="100" rx="6"/><rect x="504" y="94" width="76" height="100" rx="6"/><rect x="590" y="94" width="76" height="100" rx="6"/></g>
+    <rect x="418" y="212" width="264" height="52" rx="8" fill="#f3e5a6" stroke="#6b1a2b" stroke-width="2"/>
+    <text x="430" y="234" font-size="13">Because you liked this title.</text>
+    <text x="430" y="252" font-size="13">Tap to tune or undo.</text>
+  </g>
+</svg>
+</div>
+<figcaption>A like or dislike changes the homepage right away and says why, with a way to undo it.</figcaption>
+</figure>
+</section>
+
+<section>
+<h2>What to build first</h2>
+<p>Ship filters and visible feedback first, because both are low effort and fix problems I hit myself. Quality badges and conversational search are bigger bets with higher payoff. The cold-start picker can wait. These placements are my initial estimates to confirm with engineering and usage data.</p>
+<figure>
+<div class="fig">
+<svg viewBox="0 0 720 400" role="img" aria-label="Effort and impact matrix: faceted search and feedback that sticks are low effort and high impact">
+  <g font-size="13">
+    <rect x="80" y="20" width="310" height="160" fill="#f3e5a6" stroke="#2a1216" stroke-width="1.5"/>
+    <rect x="390" y="20" width="310" height="160" fill="none" stroke="#2a1216" stroke-width="1.5"/>
+    <rect x="80" y="180" width="310" height="160" fill="none" stroke="#2a1216" stroke-width="1.5"/>
+    <rect x="390" y="180" width="310" height="160" fill="none" stroke="#2a1216" stroke-width="1.5"/>
+    <text x="94" y="44" font-weight="700">Low effort, high impact: Do first</text>
+    <text x="404" y="44" font-weight="700">High effort, high impact: Plan next</text>
+    <text x="94" y="204" font-weight="700">Low effort, low impact: Fill in</text>
+    <text x="404" y="204" font-weight="700">High effort, low impact: Reconsider</text>
+    <circle cx="110" cy="92" r="7" fill="#6b1a2b"/><text x="126" y="97" font-weight="700">1  Faceted search, sort</text>
+    <circle cx="110" cy="136" r="7" fill="#6b1a2b"/><text x="126" y="141" font-weight="700">3  Feedback that sticks</text>
+    <circle cx="420" cy="92" r="7" fill="none" stroke="#6b1a2b" stroke-width="2.5"/><text x="436" y="97">2  Quality badges</text>
+    <circle cx="420" cy="136" r="7" fill="none" stroke="#6b1a2b" stroke-width="2.5"/><text x="436" y="141">4  Conversational search</text>
+    <circle cx="110" cy="252" r="7" fill="none" stroke="#6b1a2b" stroke-width="2.5"/><text x="126" y="257">5  Cold-start picker</text>
+    <text x="8" y="40">High</text><text x="8" y="56">impact</text>
+    <text x="8" y="318">Low</text><text x="8" y="334">impact</text>
+    <text x="80" y="366">Low effort</text>
+    <text x="700" y="366" text-anchor="end">High effort</text>
+  </g>
+</svg>
+</div>
+<figcaption>Items sit in a zone, not at an exact score. Ideas 1 and 3 reuse metadata and signals Tubi already has. Idea 2 needs licensed or aggregated scores and a trust policy. Idea 4 needs a reliable model and a clear answer to why earlier assistants stalled.</figcaption>
+</figure>
+</section>
+
+<section>
+<h2>Sources</h2>
+<p>Opened and read, as of November 3, 2026:</p>
+<ul>
+  <li><a href="https://tubitv.com/">Tubi</a>, hands-on logged-out session (homepage, Browse menu and two searches)</li>
+  <li>Tubi engineering blog posts on the recommender, including embeddings, recall and exploration</li>
+  <li>Appfigures, 2021 Tubi app-store teardown</li>
+  <li>Product Teardown Worksheet template (Notion)</li>
+</ul>
+<p class="note">Also referenced from search results or snippets only, so details may differ: the TubiFM paper on arXiv, press coverage of Tubi's revenue, profit and audience figures, store and Trustpilot ratings, reports on Rabbit AI and the April 2026 ChatGPT app, and coverage of Freevee's retirement. One UI review I tried to open would not load, so I did not rely on it.</p>
+</section>
+
+<footer>Built from public sources and a hands-on session. Fight on!</footer>
+</main>
+</body>
+</html>
