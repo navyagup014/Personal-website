@@ -60,20 +60,10 @@ h1 { margin: 0; font: 400 clamp(52px, 9.5vw, 92px) / 0.9 var(--hand); color: var
 .k { font-size: 13px; letter-spacing: 0.08em; color: var(--soft); }
 h2 { margin: 0 0 14px; font: 400 clamp(28px, 3.8vw, 38px) / 1.05 var(--hand); }
 .skills { display: flex; flex-wrap: wrap; gap: 18px 26px; margin: 0; padding: 0; list-style: none; }
-.skills li { position: relative; padding: 2px 4px; }
-/* Circled and bold = most relevant to digital strategy and product roles. The circle is a slightly
-   lopsided, tilted outline so it looks hand-drawn. */
+.skills li { padding: 2px 4px; }
+/* Bold = most relevant to digital strategy and product roles. */
 .skills .hot { font-weight: 700; }
-.skills .hot::after {
-  content: ""; position: absolute; inset: -5px -11px;
-  border: 2px solid var(--maroon); border-radius: 52% 47% 55% 45% / 58% 50% 52% 46%;
-  transform: rotate(-2deg); pointer-events: none;
-}
-.skills .hot:nth-child(even)::after { transform: rotate(1.5deg); border-radius: 46% 54% 48% 52% / 50% 56% 44% 55%; }
-.key { margin: 28px 0 0; font-size: 14px; color: var(--soft); }
-.key b { display: inline-block; position: relative; padding: 0 8px; margin-inline: 6px; color: var(--ink); }
-.key b::after { content: ""; position: absolute; inset: -3px 0; border: 2px solid var(--maroon); border-radius: 52% 47% 55% 45% / 58% 50% 52% 46%; transform: rotate(-2deg); }
-.more { margin: 20px 0 0; font-size: 14px; }
+.more { margin: 28px 0 0; font-size: 14px; }
 @media (max-width: 719px) { .row { grid-template-columns: 1fr; } }
 </style>
 </head>
@@ -138,7 +128,6 @@ h2 { margin: 0 0 14px; font: 400 clamp(28px, 3.8vw, 38px) / 1.05 var(--hand); }
     </div>
   </div>
 
-  <p class="key">Circled and <b>bold</b> are the skills most relevant to digital strategy and product roles.</p>
   <p class="more"><a href="https://www.linkedin.com/in/navyagupta-/details/skills/" target="_blank" rel="noopener">See my skills and endorsements on LinkedIn &rarr;</a></p>
 </div>
 </body>
