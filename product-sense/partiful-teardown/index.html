@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Navya Gupta, Partiful teardown</title>
+<meta name="description" content="How Partiful can grow beyond its Gen Z core without losing what makes it fun.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Reenie+Beanie&display=swap" rel="stylesheet">
+<style>
+/* Layout: one narrow reading column like the other pages, sticky-note summary, bordered cards. */
+:root {
+  --bg: #fffdfb;
+  --ink: #2a1216;
+  --muted: #6e5a5d;
+  --burgundy: #6b1a2b;
+  --gold: #f3e5a6;
+  --pink: #f4cdd7;
+  --blue: #cfe5ee;
+  --rule: #eadfdc;
+  --hand: "Reenie Beanie", "Bradley Hand", cursive;
+  --type: "Courier Prime", "Courier New", monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--type);
+  font-size: 15px;
+  line-height: 1.7;
+  padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 72px;
+}
+main { max-width: 920px; margin: 0 auto; }
+a { color: var(--burgundy); text-underline-offset: 3px; }
+a:focus-visible { outline: 2px solid var(--burgundy); outline-offset: 3px; }
+.back { font-size: 13px; letter-spacing: .12em; text-decoration: none; }
+.back:hover { text-decoration: underline; }
+h1, h2, h3 { font-family: var(--hand); font-weight: 400; color: var(--burgundy); margin: 0; text-wrap: balance; line-height: 1; }
+h1 { font-size: clamp(56px, 11vw, 92px); margin-top: 28px; }
+h2 { font-size: clamp(40px, 7vw, 54px); }
+h3 { font-size: 32px; line-height: 1.05; }
+.sub { margin: 14px 0 6px; font-size: 18px; max-width: 60ch; }
+.by { color: var(--muted); font-size: 13px; letter-spacing: .08em; margin: 0; }
+hr { border: 0; border-top: 1px solid var(--rule); margin: 28px 0 0; }
+section { margin-top: 64px; }
+section > h2 { margin-bottom: 14px; }
+p { margin: 0 0 14px; max-width: 68ch; }
+ul, ol { margin: 0 0 14px; padding-left: 22px; max-width: 68ch; }
+li { margin-bottom: 8px; }
+.note { color: var(--muted); font-size: 13px; }
+.glance { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-top: 36px; }
+.sticky { padding: 20px 20px 8px; border-radius: 4px; box-shadow: 0 6px 14px rgba(42, 18, 22, .12); }
+.sticky:nth-child(1) { background: var(--gold); transform: rotate(-1deg); }
+.sticky:nth-child(2) { background: var(--pink); transform: rotate(.8deg); }
+.sticky:nth-child(3) { background: var(--blue); transform: rotate(-.6deg); }
+.sticky h3 { margin-bottom: 8px; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-top: 8px; }
+.card { border: 2px solid var(--burgundy); border-radius: 12px; padding: 20px 22px 8px; min-width: 0; background: #fffdfb; }
+.card h3 { margin-bottom: 8px; }
+.card p, .card ul { max-width: none; }
+.take { background: var(--gold); padding: 2px 6px; }
+.steps { list-style: none; padding: 0; counter-reset: s; }
+.steps li { counter-increment: s; border-left: 3px solid var(--burgundy); padding: 2px 0 2px 18px; margin-bottom: 18px; }
+.steps li::before { content: "Step " counter(s); display: block; font-family: var(--hand); font-size: 28px; color: var(--burgundy); line-height: 1; margin-bottom: 4px; }
+.fig { margin: 20px 0 8px; border: 2px solid var(--burgundy); border-radius: 12px; background: #fffdfb; overflow-x: auto; }
+.fig svg { display: block; min-width: 620px; width: 100%; height: auto; }
+.fig text { font-family: var(--type); fill: var(--ink); }
+figcaption { font-size: 13px; color: var(--muted); margin: 8px 2px 24px; max-width: 68ch; }
+figure { margin: 0; }
+footer { margin-top: 72px; padding-top: 20px; border-top: 1px solid var(--rule); font-size: 13px; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+<a class="back" href="/product-sense">&larr; Product sense</a>
+<h1>Partiful teardown</h1>
+<p class="sub">How Partiful can grow beyond its Gen Z core without losing what makes it fun.</p>
+<p class="by">Navya Gupta · November 3, 2026</p>
+<hr>
+
+<div class="glance">
+  <div class="sticky"><h3>What works</h3><p>A one-page event form, guests who never download anything, and text reminders that feel personal.</p></div>
+  <div class="sticky"><h3>Biggest gaps</h3><p>A busy design that overwhelms non-Gen Z users, repeat prompts for returning guests, and no help after the event.</p></div>
+  <div class="sticky"><h3>Build first</h3><p>Host style modes and one-tap returning guests, then show-up tracking with reusable guest circles.</p></div>
+</div>
+
+<section>
+<h2>The problem</h2>
+<p>Partiful turned event invites into a social experience. The challenge now is to grow beyond its Gen Z core and become the default way everyone plans and attends gatherings, while keeping people engaged and staying ahead of Eventbrite, Luma, Apple Invites and Paperless Post.</p>
+<ul>
+  <li><b>Broaden appeal:</b> Reach people who don't see themselves in the current brand, such as the 30-year-old dinner-party host.</li>
+  <li><b>Deepen engagement:</b> Give people a reason to open Partiful between invites, not only when someone sends one.</li>
+  <li><b>Defend against competitors:</b> Stay ahead as Apple, Luma and others copy what works.</li>
+</ul>
+</section>
+
+<section>
+<h2>Research: how Partiful is doing</h2>
+<p>Partiful is growing fast and users love it. The pain points are about density, friction and host follow-up, not core functionality.</p>
+<h3>The numbers</h3>
+<ul>
+  <li><b>Scale:</b> About 500,000 monthly users in early 2025, up 400% in a year, with 2 million new users added that year (<a href="https://www.nbcnewyork.com/news/business/money-report/meet-partiful-the-gen-z-party-planning-staple-thats-taking-on-apple/6231135/">CNBC</a>).</li>
+  <li><b>Habit:</b> More than 60% of app users open it every week, and core users are 20 to 30 years old (CNBC).</li>
+  <li><b>Competition:</b> Eventbrite has about 4.4 million monthly users and Evite reports 20 million or more (CNBC).</li>
+  <li><b>Money:</b> On June 2, 2026 Partiful launched paid ticketing with tiers, promo codes and QR check-in, its first real revenue product (<a href="https://www.pulse.bot/marketing/news/partiful-introduces-integrated-ticketing-turning-social-events-into-paid-experiences-b67aaf51-08e9-4dbc-b0d4-e0afc0bf41c9/">Pulse</a>).</li>
+  <li><b>Funding:</b> About $27 million raised in total (<a href="https://techcrunch.com/2024/11/18/partiful-is-googles-best-app-of-2024/">TechCrunch</a>).</li>
+  <li><b>Outside views:</b> <a href="https://thisisconsiderthis.substack.com/p/partiful-should-feel-like-a-party">Consider This</a> critiques the brand as too busy and youth-skewed. <a href="https://kristenberman.substack.com/p/3-ways-partiful-is-beating-eventbrite">Kristen Berman</a> explains why it beats Eventbrite on ease, status and text reminders.</li>
+</ul>
+<h3>Ratings and reviews</h3>
+<p>Users rate Partiful in the high 4s on both stores: about 4.96 on the App Store and 4.9 on Google Play. These figures come from third-party trackers (<a href="https://splitmetrics.com/apps/partiful-free-invite-maker/id1662982304">SplitMetrics</a>, <a href="https://grand-screen.com/apps/partiful-fun-party-invites/reviews/">Grand Screen</a>) and may differ slightly from the live store pages.</p>
+<h3>What users complain about</h3>
+<ol>
+  <li><b>Android performance:</b> Reviewers report lag and frequent crashes (<a href="https://marlvel.ai/intel-report/lifestyle/partiful-party-invite-maker">Marlvel review analysis</a>).</li>
+  <li><b>Visual overload:</b> Colors, badges and emojis compete for attention, which can overwhelm non-Gen Z users.</li>
+  <li><b>Friction for returning guests:</b> Berman was asked for her phone number again even though she had used Partiful before.</li>
+  <li><b>Host follow-up gap:</b> From my own hosting, it is hard to track who actually showed up versus who said yes, and to stay in touch with those people afterwards.</li>
+</ol>
+</section>
+
+<section>
+<h2>Who uses Partiful</h2>
+<p>Two composite personas cover both sides of every event: the person who hosts and the person who is invited. They are built from reviews, the articles above and my own experience hosting.</p>
+<div class="cards">
+  <div class="card">
+    <h3>Maya, the campus host (about 21)</h3>
+    <p>Maya throws frequent small gatherings for friends and clubs. She loves the playful brand, memes and custom covers, and Partiful is her default for any event.</p>
+    <ul>
+      <li>Can't easily see who actually showed up versus who said yes.</li>
+      <li>Loses touch with new people she meets at events.</li>
+      <li>Feels overwhelmed by busy screens when managing several events at once.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Priya, the reluctant guest (about 27)</h3>
+    <p>Priya uses Partiful only because friends keep inviting her. She opens it when a text arrives, RSVPs and closes it, and doesn't think of herself as the target user.</p>
+    <ul>
+      <li>Gets asked for her phone number again on repeat use.</li>
+      <li>Sees texts and notifications pile up from many hosts.</li>
+      <li>Has no reason to open the app between invites, and finds the loud design aimed at someone else.</li>
+    </ul>
+  </div>
+</div>
+</section>
+
+<section>
+<h2>The user journey</h2>
+<p>The creation and invite stages are excellent. The weak points sit at the edges of the journey, before a guest's first RSVP and after the event ends.</p>
+<h3>Step by step</h3>
+<ol class="steps">
+  <li><b>Host creates the event.</b> One page covers title, date, location, spots, waitlist, cost and description, then a theme and cover image. <i>Strength:</i> Far lighter than Eventbrite's multi-step flow, per <a href="https://kristenberman.substack.com/p/3-ways-partiful-is-beating-eventbrite">Kristen Berman's 2023 walkthrough</a>.</li>
+  <li><b>Host invites guests.</b> A link or text goes out and guests don't need the app. <i>Strength:</i> The invite itself advertises Partiful.</li>
+  <li><b>Guest RSVPs.</b> Yes, no or maybe, a comment, and a phone number for updates. <i>Friction:</i> Berman was asked for her number again despite having used Partiful before.</li>
+  <li><b>Before the event.</b> The host sends text blasts and reminders. <i>Strength:</i> Texts feel personal. <i>Risk:</i> Notifications pile up for guests with many hosts.</li>
+  <li><b>After the event.</b> A photo album and follow-up texts, per <a href="https://www.nbcnewyork.com/news/business/money-report/meet-partiful-the-gen-z-party-planning-staple-thats-taking-on-apple/6231135/">CNBC</a>. <i>Gap:</i> No clear view of who actually showed up, and little help turning attendees into ongoing connections.</li>
+</ol>
+<h3>How it holds up</h3>
+<ul>
+  <li><b>Function:</b> RSVP tracking, waitlists, text reminders and photo albums solve the core job. Ticketing extends it to paid events.</li>
+  <li><b>Design:</b> Playful and distinctive, which drives the brand. Consider This argues the competing colors, badges and emojis overwhelm users outside its youngest audience.</li>
+  <li><b>Performance:</b> Reviewers describe Android lag and crashes. I have not measured load times myself.</li>
+</ul>
+<h3>Where it can improve</h3>
+<ol>
+  <li><b>Close the loop after the event:</b> Show who attended versus who said yes, and make it easy to stay in touch with the people met there.</li>
+  <li><b>Remember returning guests:</b> No repeat phone prompts, one-tap RSVP and calendar add built in.</li>
+  <li><b>Offer a calmer, more tasteful look:</b> Let hosts choose how loud an invite feels, so the 30-year-old dinner host feels at home.</li>
+  <li><b>Stabilize Android:</b> Performance parity with iOS, since lag undermines trust in a free app.</li>
+</ol>
+</section>
+
+<section>
+<h2>How competitors compare</h2>
+<p>Each competitor wins on a single axis that Partiful can borrow from: Luma on recurring communities, Apple on the event itself, Paperless Post on polish, Dice on a confident brand.</p>
+<div class="cards">
+  <div class="card"><h3>Eventbrite</h3><p>Built for public events and ticket sales, with a multi-step creation flow and email reminders. About 4.4 million monthly users in early 2025 (<a href="https://www.nbcnewyork.com/news/business/money-report/meet-partiful-the-gen-z-party-planning-staple-thats-taking-on-apple/6231135/">CNBC</a>).</p><p><span class="take">Takeaway:</span> Mature ticketing, but heavy for a casual get-together.</p></div>
+  <div class="card"><h3>Luma</h3><p>A fuller events platform with recurring events, calendars guests can subscribe to, and public discovery pages in over 50 cities. Its free plan takes 5% on paid events (<a href="https://help.luma.com/p/luma-vs-partiful">Luma vs Partiful</a>, <a href="https://www.ticketfairy.com/compare/ticketing/luma-vs-partiful">fee comparison</a>).</p><p><span class="take">Takeaway:</span> Strong for communities and professional events, and the closest rival for recurring gatherings.</p></div>
+  <div class="card"><h3>Apple Invites</h3><p>Native to iPhone, with Maps and Weather details, AI-generated images, a shared photo album and a collaborative Apple Music playlist. Hosts need iCloud+ from $0.99 a month, but anyone can RSVP (<a href="https://alternativeto.net/news/2025/2/apple-launches-invites-a-new-event-planning-app-with-management-tools-and-shared-albums/">coverage</a>).</p><p><span class="take">Takeaway:</span> Shows how much value sits in what happens at the event itself.</p></div>
+  <div class="card"><h3>Paperless Post and Evite</h3><p>Paperless Post sells polished, stationery-style designs through a coin system, with a free Flyer product for up to 50 guests. Evite is casual and free with ads (<a href="https://www.usecarly.com/blog/evite-vs-paperless-post/">pricing comparison</a>).</p><p><span class="take">Takeaway:</span> Paperless Post owns the polished look Partiful lacks.</p></div>
+  <div class="card"><h3>Dice</h3><p>A mobile-first ticketing app with a confident brand, tickets locked to the app, a face-value waitlist for sold-out shows and a Groups feature for going out with friends. Fever acquired it in June 2025 (<a href="https://en.wikipedia.org/wiki/Dice_(ticketing_company)">overview</a>, <a href="https://www.recordoftheday.com/news-and-press/dice-launches-new-product-featuregroupsto-help-fans-attend-more-live-events-with-friends">Groups</a>).</p><p><span class="take">Takeaway:</span> A brand can feel distinctive without feeling chaotic.</p></div>
+</div>
+<p style="margin-top:18px">Three lessons carry into the ideas below. Luma shows demand for recurring, community-style events. Apple shows the value of tying an invite to what happens at the event. Dice shows that a brand can stay distinctive without being chaotic.</p>
+</section>
+
+<section>
+<h2>Four ideas to fix it</h2>
+<p>Each idea broadens appeal, deepens engagement and defends against competitors in a different way.</p>
+<ol>
+  <li><b>Host style modes.</b> Hosts pick Casual, Dinner or Big Night when creating an event, and each mode sets the templates, tone and how busy the screen looks.
+    <ul><li><i>Solves:</i> Visual overload, and a brand that feels aimed only at Gen Z hosts.</li><li><i>Why it matters:</i> The dinner-party host feels at home, and Partiful keeps its fun while matching Paperless Post's polish.</li></ul></li>
+  <li><b>Show-up tracker and keep-in-touch circles.</b> After an event, the host sees who attended versus who said yes, and attendees become a circle that is one tap to invite to the next event.
+    <ul><li><i>Solves:</i> Hosts can't track who showed up or stay in touch with people they meet.</li><li><i>Why it matters:</i> It supports recurring dinners and clubs, gives people a reason to return between invites, and builds a social graph of real attendance that Apple Invites can't easily copy.</li></ul></li>
+  <li><b>One-tap returning guest.</b> Remember a guest's number, skip repeat prompts, and offer calendar add and reminder opt-in at RSVP.
+    <ul><li><i>Solves:</i> Repeat phone prompts, notification pile-up and passive guests.</li><li><i>Why it matters:</i> It lowers friction for casual users, turns guests into hosts faster, and closes the gap with Apple Invites' iPhone integration.</li></ul></li>
+  <li><b>"Get everything you need" host toolkit.</b> Checklists and supply bundles by event type, built with retail and food partners.
+    <ul><li><i>Solves:</i> Hosts juggling logistics outside the app.</li><li><i>Why it matters:</i> It brings hosts back before each event and adds a revenue line beyond ticketing.</li></ul></li>
+</ol>
+
+<h3>Sketch: host style modes</h3>
+<figure>
+<div class="fig">
+<svg viewBox="0 0 720 360" role="img" aria-label="Three invite modes, Casual, Dinner and Big Night, with Dinner selected">
+  <g font-size="14" text-anchor="middle">
+    <rect x="20" y="16" width="200" height="34" rx="17" fill="none" stroke="#2a1216" stroke-width="1.5"/><text x="120" y="38">Casual</text>
+    <rect x="260" y="16" width="200" height="34" rx="17" fill="#f3e5a6" stroke="#6b1a2b" stroke-width="3"/><text x="360" y="38" font-weight="700">Dinner</text>
+    <rect x="500" y="16" width="200" height="34" rx="17" fill="none" stroke="#2a1216" stroke-width="1.5"/><text x="600" y="38">Big Night</text>
+
+    <rect x="20" y="66" width="200" height="270" rx="12" fill="none" stroke="#2a1216" stroke-width="1.5"/>
+    <rect x="36" y="82" width="168" height="100" rx="8" fill="#f4cdd7" stroke="#2a1216"/><text x="120" y="136" font-size="13">Bold cover, effects</text>
+    <text x="36" y="214" text-anchor="start" font-weight="700">Event title</text>
+    <text x="36" y="238" text-anchor="start" font-size="13">Loud colors, emoji</text>
+    <text x="36" y="258" text-anchor="start" font-size="13">Playful badges</text>
+    <rect x="36" y="288" width="168" height="32" rx="16" fill="none" stroke="#2a1216" stroke-width="1.5"/><text x="120" y="309">RSVP</text>
+
+    <rect x="260" y="66" width="200" height="270" rx="12" fill="none" stroke="#6b1a2b" stroke-width="3"/>
+    <rect x="276" y="82" width="168" height="100" rx="8" fill="#ece6dc" stroke="#2a1216"/><text x="360" y="136" font-size="13">Soft cover, no effects</text>
+    <text x="276" y="214" text-anchor="start" font-weight="700">Event title</text>
+    <text x="276" y="238" text-anchor="start" font-size="13">Muted palette</text>
+    <text x="276" y="258" text-anchor="start" font-size="13">Fewer badges</text>
+    <rect x="276" y="288" width="168" height="32" rx="16" fill="#f3e5a6" stroke="#6b1a2b" stroke-width="2"/><text x="360" y="309" font-weight="700">RSVP</text>
+
+    <rect x="500" y="66" width="200" height="270" rx="12" fill="none" stroke="#2a1216" stroke-width="1.5"/>
+    <rect x="516" y="82" width="168" height="100" rx="8" fill="#2a1216"/><text x="600" y="136" font-size="13" style="fill:#faf9f6">High-contrast cover</text>
+    <text x="516" y="214" text-anchor="start" font-weight="700">Event title</text>
+    <text x="516" y="238" text-anchor="start" font-size="13">Bold, high contrast</text>
+    <text x="516" y="258" text-anchor="start" font-size="13">Ticketing on</text>
+    <rect x="516" y="288" width="168" height="32" rx="16" fill="none" stroke="#2a1216" stroke-width="1.5"/><text x="600" y="309">RSVP</text>
+  </g>
+</svg>
+</div>
+<figcaption>Same one-page event form, three looks. The host chooses how loud the invite feels.</figcaption>
+</figure>
+
+<h3>Sketch: show-up tracker and circles</h3>
+<figure>
+<div class="fig">
+<svg viewBox="0 0 720 340" role="img" aria-label="Attendance list on the left turns into a guest circle with an invite button on the right">
+  <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#6b1a2b"/></marker></defs>
+  <g font-size="14">
+    <rect x="20" y="20" width="310" height="290" rx="12" fill="none" stroke="#2a1216" stroke-width="1.5"/>
+    <text x="38" y="52" font-weight="700">Who showed up</text>
+    <g text-anchor="middle" font-size="13">
+      <circle cx="56" cy="96" r="14" fill="#ece6dc" stroke="#2a1216"/><rect x="80" y="92" width="100" height="8" rx="4" fill="#ece6dc" stroke="#2a1216"/><rect x="204" y="80" width="96" height="32" rx="16" fill="#cfe5ee" stroke="#6b1a2b" stroke-width="1.5"/><text x="252" y="101">Came</text>
+      <circle cx="56" cy="150" r="14" fill="#ece6dc" stroke="#2a1216"/><rect x="80" y="146" width="100" height="8" rx="4" fill="#ece6dc" stroke="#2a1216"/><rect x="204" y="134" width="96" height="32" rx="16" fill="#cfe5ee" stroke="#6b1a2b" stroke-width="1.5"/><text x="252" y="155">Came</text>
+      <circle cx="56" cy="204" r="14" fill="#ece6dc" stroke="#2a1216"/><rect x="80" y="200" width="100" height="8" rx="4" fill="#ece6dc" stroke="#2a1216"/><rect x="204" y="188" width="96" height="32" rx="16" fill="none" stroke="#2a1216" stroke-width="1.5"/><text x="252" y="209">No-show</text>
+      <circle cx="56" cy="258" r="14" fill="#ece6dc" stroke="#2a1216"/><rect x="80" y="254" width="100" height="8" rx="4" fill="#ece6dc" stroke="#2a1216"/><rect x="204" y="242" width="96" height="32" rx="16" fill="#cfe5ee" stroke="#6b1a2b" stroke-width="1.5"/><text x="252" y="263">Came</text>
+    </g>
+    <path d="M334 165H396" fill="none" stroke="#6b1a2b" stroke-width="2" marker-end="url(#ar)"/>
+    <text x="365" y="152" text-anchor="middle" font-size="13">One tap</text>
+    <rect x="400" y="20" width="300" height="290" rx="12" fill="none" stroke="#2a1216" stroke-width="1.5"/>
+    <text x="418" y="52" font-weight="700">Circle from this event</text>
+    <g fill="#ece6dc" stroke="#2a1216"><circle cx="500" cy="106" r="22"/><circle cx="550" cy="106" r="22"/><circle cx="600" cy="106" r="22"/></g>
+    <text x="550" y="162" text-anchor="middle" font-weight="700">3 people came</text>
+    <text x="550" y="182" text-anchor="middle" font-size="13">Saved to invite again</text>
+    <rect x="420" y="208" width="260" height="40" rx="20" fill="#f3e5a6" stroke="#6b1a2b" stroke-width="2.5"/><text x="550" y="233" text-anchor="middle" font-weight="700">Invite circle to next event</text>
+    <rect x="420" y="258" width="260" height="34" rx="17" fill="none" stroke="#2a1216" stroke-width="1.5"/><text x="550" y="280" text-anchor="middle">Send a thank-you text</text>
+  </g>
+</svg>
+</div>
+<figcaption>The host sees who actually came, and one tap turns those attendees into a circle for the next invite.</figcaption>
+</figure>
+</section>
+
+<section>
+<h2>What to build first</h2>
+<p>Ship the two quick wins first, style modes and one-tap returning guests. Then build show-up tracking and circles, which has the highest long-term payoff. These placements are my initial estimates to confirm with engineering and usage data.</p>
+<figure>
+<div class="fig">
+<svg viewBox="0 0 720 400" role="img" aria-label="Effort and impact matrix: style modes and one-tap guests are low effort and high impact">
+  <g font-size="13">
+    <rect x="80" y="20" width="310" height="160" fill="#f3e5a6" stroke="#2a1216" stroke-width="1.5"/>
+    <rect x="390" y="20" width="310" height="160" fill="none" stroke="#2a1216" stroke-width="1.5"/>
+    <rect x="80" y="180" width="310" height="160" fill="none" stroke="#2a1216" stroke-width="1.5"/>
+    <rect x="390" y="180" width="310" height="160" fill="none" stroke="#2a1216" stroke-width="1.5"/>
+    <text x="94" y="44" font-weight="700">Low effort, high impact: Do first</text>
+    <text x="404" y="44" font-weight="700">High effort, high impact: Plan next</text>
+    <text x="94" y="204" font-weight="700">Low effort, low impact: Fill in</text>
+    <text x="404" y="204" font-weight="700">High effort, low impact: Reconsider</text>
+    <circle cx="110" cy="92" r="7" fill="#6b1a2b"/><text x="126" y="97" font-weight="700">1  Host style modes</text>
+    <circle cx="110" cy="136" r="7" fill="#6b1a2b"/><text x="126" y="141" font-weight="700">3  One-tap returning guest</text>
+    <circle cx="420" cy="92" r="7" fill="none" stroke="#6b1a2b" stroke-width="2.5"/><text x="436" y="97">2  Show-up tracker, circles</text>
+    <circle cx="420" cy="252" r="7" fill="none" stroke="#6b1a2b" stroke-width="2.5"/><text x="436" y="257">4  Host toolkit</text>
+    <text x="8" y="40">High</text><text x="8" y="56">impact</text>
+    <text x="8" y="318">Low</text><text x="8" y="334">impact</text>
+    <text x="80" y="366">Low effort</text>
+    <text x="700" y="366" text-anchor="end">High effort</text>
+  </g>
+</svg>
+</div>
+<figcaption>Items sit in a zone, not at an exact score. Impact means progress on broadening appeal, engagement and defense. Ideas 1 and 3 reuse existing themes and the RSVP flow. Idea 2 needs attendance data and a circle model. Idea 4 depends on partner deals and is the least proven.</figcaption>
+</figure>
+</section>
+
+<section>
+<h2>Sources</h2>
+<p>Read in full, as of November 3, 2026:</p>
+<ul>
+  <li><a href="https://www.nbcnewyork.com/news/business/money-report/meet-partiful-the-gen-z-party-planning-staple-thats-taking-on-apple/6231135/">CNBC via NBC New York, Meet Partiful, the Gen Z party-planning staple</a></li>
+  <li><a href="https://www.pulse.bot/marketing/news/partiful-introduces-integrated-ticketing-turning-social-events-into-paid-experiences-b67aaf51-08e9-4dbc-b0d4-e0afc0bf41c9/">Pulse, Partiful introduces integrated ticketing</a></li>
+  <li><a href="https://thisisconsiderthis.substack.com/p/partiful-should-feel-like-a-party">Consider This, Partiful should feel like a party</a></li>
+  <li><a href="https://kristenberman.substack.com/p/3-ways-partiful-is-beating-eventbrite">Kristen Berman, 3 ways Partiful is beating Eventbrite</a></li>
+</ul>
+<p class="note">Also referenced, from search summaries, so details may differ: SplitMetrics and Grand Screen for ratings, Marlvel for review themes, TechCrunch for funding, and the competitor pages linked above. Partiful's events page requires a login, so product observations come from the articles above and my own hosting experience.</p>
+</section>
+
+<footer>Built from public sources and hands-on hosting. Fight on!</footer>
+</main>
+</body>
+</html>
