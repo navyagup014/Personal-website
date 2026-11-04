@@ -59,7 +59,7 @@ body { background: var(--paper); color: var(--ink); font: 400 16px / 1.6 var(--t
 .giant .row.small { font-size: min(7.5vw, 9.5vh); margin-top: 0.3em; }
 
 /* Act 3: script into dots */
-#script { background: var(--paper); overflow: hidden; }
+#script { background: var(--paper); overflow: hidden; position: relative; }
 #script .stage { height: 100vh; height: 100svh; display: grid; place-items: center; padding: 24px; }
 #script .wrap { position: relative; width: min(1000px, 92vw); text-align: center; }
 .stext { margin: 0; font: 400 clamp(46px, 9vw, 132px) / 1 var(--hand); color: var(--maroon); }
@@ -70,7 +70,9 @@ body { background: var(--paper); color: var(--ink); font: 400 16px / 1.6 var(--t
 
 /* Act 4: connect the dots. Dots sit around the edges; each click draws a pen line and reveals the next moment in order. */
 [hidden] { display: none !important; }
-.connect { background: var(--paper); }
+.connect { background: transparent; }
+html.motion .connect { position: absolute; inset: 0; visibility: hidden; }
+html.motion .stage4 { height: 100%; min-height: 0; }
 .stage4 { position: relative; height: 100vh; height: 100svh; min-height: 620px; overflow: hidden; }
 .lines { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
 .seg { fill: none; stroke: var(--maroon); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; }
@@ -202,10 +204,8 @@ body { background: var(--paper); color: var(--ink); font: 400 16px / 1.6 var(--t
       <p class="after">Moments first, then places, then what they add up to.</p>
     </div>
   </div>
-</section>
-
-<!-- Act 4: the moments -->
-<section class="connect" id="moments" aria-labelledby="mh">
+<!-- Act 4: connect the dots, in the same pinned screen as Act 3 so the dots never leave -->
+<div class="connect" id="moments" role="region" aria-labelledby="mh">
   <h2 id="mh" class="sr-only">The moments</h2>
   <div class="stage4" id="connect">
     <svg class="lines" id="lines" aria-hidden="true"></svg>
@@ -257,6 +257,7 @@ body { background: var(--paper); color: var(--ink); font: 400 16px / 1.6 var(--t
     <li><figure class="tile"><div class="ph"><img class="photo" src="/assets/usc/usc-35.jpg" width="900" height="675" loading="lazy" decoding="async" alt="TripMatch presentation on screens in a lecture hall"></div><figcaption><h3>TripMatch</h3><p>First place out of 44 teams at the USC Marshall MSBA AI Case Competition, October 2026.</p></figcaption></figure></li>
   </ol>
   <noscript><style>#momentdata[hidden]{display:block!important;max-width:640px;margin:40px auto;padding:0 20px;list-style:none}#momentdata .tile{margin-bottom:24px}</style></noscript>
+</div>
 </section>
 
 <!-- Act 5: the places -->
@@ -367,12 +368,16 @@ body { background: var(--paper); color: var(--ink); font: 400 16px / 1.6 var(--t
     });
     gsap.set(dots, { scale: 0 });
     gsap.set("#script .after", { opacity: 0, y: 12 });
-    gsap.timeline({ scrollTrigger: { trigger: "#script", start: "top top", end: "+=150%", pin: true, scrub: 0.6 } })
+    gsap.set("#moments", { autoAlpha: 0 });
+    gsap.timeline({ scrollTrigger: { trigger: "#script", start: "top top", end: "+=300%", pin: true, scrub: 0.6 } })
       .to(chars, { opacity: 0, duration: 0.5, stagger: { amount: 0.5, from: "random" } }, 0)
       .to(dots, { scale: 1, duration: 0.4, stagger: { amount: 0.5, from: "random" }, ease: "back.out(2)" }, 0.1)
       .to(dots, { x: () => gsap.utils.random(-140, 140), y: () => gsap.utils.random(-110, 110), duration: 0.8, ease: "power2.inOut" }, 1.1)
       .to("#script .after", { opacity: 1, y: 0, duration: 0.5 }, 1.5)
-      .to({}, { duration: 0.4 });
+      // The scattered dots hand over to the real, clickable ones in place.
+      .to([dots, "#script .after"], { opacity: 0, duration: 0.5 }, 2.3)
+      .to("#moments", { autoAlpha: 1, duration: 0.5 }, 2.3)
+      .to({}, { duration: 1 });
   }
 
   /* Act 4: connect the dots. Click any dot, in any order: a pen line is drawn to it and the next moment
