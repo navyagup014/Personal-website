@@ -134,8 +134,6 @@ body { background: var(--paper); color: var(--ink); font: 400 16px / 1.6 var(--t
 .pin .ring { fill: none; stroke: var(--butter); stroke-opacity: 0.45; stroke-width: 1px; }
 .caps { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; height: 6.5em; padding: 0 16px 18px; background: linear-gradient(transparent, rgba(42, 18, 22, 0.9) 60%); font-size: 14px; letter-spacing: 0.1em; text-align: center; }
 .caps p { position: absolute; inset: 0 16px 18px; margin: 0; display: grid; place-items: end center; }
-html.motion #cap2 { opacity: 0; }
-html:not(.motion) #cap2 { display: none; }
 .places { background: var(--ink); color: var(--rose); padding: 36px 24px 72px; }
 .places dl { margin: 0 auto; max-width: 900px; font-size: 14px; }
 .places dt { margin-top: 18px; color: var(--butter); letter-spacing: 0.14em; }
@@ -144,10 +142,11 @@ html:not(.motion) #cap2 { display: none; }
 /* Act 6: the sum */
 .sum { background: var(--butter); color: var(--maroon); padding: 120px 24px 80px; }
 .sum .lead { margin: 12px auto 56px; text-align: center; color: var(--ink); }
-.sumlist { list-style: none; margin: 0 auto; padding: 0; max-width: 1100px; }
-.sumlist li { display: grid; grid-template-columns: auto 1fr; gap: 0 clamp(14px, 3vw, 36px); align-items: baseline; padding-block: clamp(10px, 2vw, 22px); border-top: 2px solid rgba(107, 26, 43, 0.25); }
-.sumlist .n { font: 700 clamp(14px, 1.6vw, 20px) var(--type); letter-spacing: 0.1em; }
-.sumlist .t { font: 400 clamp(32px, 6.2vw, 88px) / 1.02 var(--display); }
+.sumlist { list-style: none; margin: 0 auto; padding: 0; max-width: 1100px; font: 400 clamp(30px, 5.6vw, 80px) / 1.08 var(--display); text-transform: uppercase; color: var(--ink); }
+.sumlist li { display: inline; }
+.sumlist li + li::before { content: " "; }
+.sumlist .n { color: var(--maroon); margin-right: 0.3em; }
+.sumlist .t::after { content: "."; color: var(--maroon); }
 .end { margin: 90px auto 0; max-width: 700px; text-align: center; color: var(--ink); }
 .end p { margin: 0 0 10px; }
 .end .hand { font: 400 clamp(40px, 6vw, 64px) / 1 var(--hand); color: var(--maroon); }
@@ -263,13 +262,12 @@ html:not(.motion) #cap2 { display: none; }
 <!-- Act 5: the places -->
 <section id="map">
   <h2>The places</h2>
-  <svg id="worldsvg" role="img" aria-label="A world map with a pin for each of the 46 places I've been, zooming in on India" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1000 520">
+  <svg id="worldsvg" role="img" aria-label="A world map with a pin for each of the 46 places I've been" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1000 520">
     <g id="land"><path class="land"/><path class="india"/></g>
     <g id="pins"></g>
   </svg>
   <div class="caps">
-    <p id="cap1">Around the world and across the USA, so far.</p>
-    <p id="cap2">And home: 22 places in India, mostly Maharashtra and Rajasthan.</p>
+    <p id="cap1">Around the world, across the USA, and home in India. 46 places so far.</p>
   </div>
 </section>
 <section class="places"><dl id="placelist"></dl></section>
@@ -279,18 +277,18 @@ html:not(.motion) #cap2 { display: none; }
   <h2>The sum</h2>
   <p class="lead">What the moments and the places add up to.</p>
   <ol class="sumlist">
-    <li><span class="n">001</span><span class="t">The customer is the expert. You're just the one taking notes.</span></li>
-    <li><span class="n">002</span><span class="t">Marketing is why people buy. Analytics is how you know. Bring both.</span></li>
-    <li><span class="n">003</span><span class="t">If it annoys you, build a small system for it.</span></li>
-    <li><span class="n">004</span><span class="t">Don't wait for someone else's dashboard.</span></li>
-    <li><span class="n">005</span><span class="t">The data isn't in the data. It's in how people ask for things.</span></li>
-    <li><span class="n">006</span><span class="t">Being in the room is not being in the conversation.</span></li>
-    <li><span class="n">007</span><span class="t">Show up. That's most of it.</span></li>
-    <li><span class="n">008</span><span class="t">Build the thing before you pitch the thing.</span></li>
-    <li><span class="n">009</span><span class="t">Go all in. Then go all in on the next thing.</span></li>
-    <li><span class="n">010</span><span class="t">Color is not decoration. It's how you get someone to look.</span></li>
-    <li><span class="n">011</span><span class="t">Blending in was never the safe choice, just the quiet one.</span></li>
-    <li><span class="n">012</span><span class="t">Fall in love with the problem. The solution is disposable.</span></li>
+    <li><span class="n">001</span><span class="t">The customer is the expert. You're just the one taking notes</span></li>
+    <li><span class="n">002</span><span class="t">Marketing is why people buy. Analytics is how you know. Bring both</span></li>
+    <li><span class="n">003</span><span class="t">If it annoys you, build a small system for it</span></li>
+    <li><span class="n">004</span><span class="t">Don't wait for someone else's dashboard</span></li>
+    <li><span class="n">005</span><span class="t">The data isn't in the data. It's in how people ask for things</span></li>
+    <li><span class="n">006</span><span class="t">Being in the room is not being in the conversation</span></li>
+    <li><span class="n">007</span><span class="t">Show up. That's most of it</span></li>
+    <li><span class="n">008</span><span class="t">Build the thing before you pitch the thing</span></li>
+    <li><span class="n">009</span><span class="t">Go all in. Then go all in on the next thing</span></li>
+    <li><span class="n">010</span><span class="t">Color is not decoration. It's how you get someone to look</span></li>
+    <li><span class="n">011</span><span class="t">Blending in was never the safe choice, just the quiet one</span></li>
+    <li><span class="n">012</span><span class="t">Fall in love with the problem. The solution is disposable</span></li>
   </ol>
   <div class="end">
     <p class="hand">That's the long version.</p>
@@ -492,38 +490,29 @@ html:not(.motion) #cap2 { display: none; }
     data.forEach((li) => $$("img", li).forEach((im) => { const x = new Image(); x.src = im.src; }));
   }
 
-  /* Act 5: world pins bloom, the map zooms to India, then India's pins bloom. */
+  /* Act 5: after a beat of empty map, every pin blooms. India stays on the world view, clustered. */
   function act5() {
     if (!M) return;
     const box = svg.getBoundingClientRect();
     vh = M.w * (box.height / box.width);
     svg.setAttribute("viewBox", `0 0 ${M.w} ${vh}`);
     const u = M.w / box.width; // map units per screen pixel, so pins stay the same size on a phone
-    pins.forEach((p) => { p.pop.children[0].setAttribute("r", 11 * u); p.pop.children[1].setAttribute("r", 4.6 * u); });
+    pins.forEach((p) => { const s = p.g === "india" ? 0.7 : 1; p.pop.children[0].setAttribute("r", 11 * u * s); p.pop.children[1].setAttribute("r", 4.6 * u * s); });
     Object.assign(view, { k: 1, tx: 0, ty: (vh - M.h) / 2 });
     place();
-    const [x0, y0, x1, y1] = M.focus, fw = x1 - x0, fh = y1 - y0;
-    const k = Math.min(M.w / (fw * 1.3), vh / (fh * 1.4));
-    const to = { k, tx: M.w / 2 - (x0 + fw / 2) * k, ty: vh * 0.46 - (y0 + fh / 2) * k };
-    const far = pins.filter((p) => p.g !== "india"), home = pins.filter((p) => p.g === "india");
     gsap.set(pins.map((p) => p.pop), { scale: 0, svgOrigin: "0 0" });
     gsap.set("#cap1", { opacity: 0 });
-    gsap.timeline({ scrollTrigger: { trigger: "#map", start: "top top", end: "+=450%", pin: true, scrub: 0.6 } })
-      .to(far.map((p) => p.pop), { scale: 1, duration: 0.4, stagger: { amount: 0.8, from: "random" }, ease: "back.out(2)" }, 0)
-      .to("#cap1", { opacity: 1, duration: 0.3 }, 0.3)
-      .to({}, { duration: 0.4 })
-      .to(view, { ...to, duration: 1.3, ease: "power2.inOut", onUpdate: place })
-      .to("#cap1", { opacity: 0, duration: 0.25 }, "<")
-      .to(far.map((p) => p.el), { opacity: 0.3, duration: 0.6 }, "<0.3")
-      .to(home.map((p) => p.pop), { scale: 1, duration: 0.4, stagger: { amount: 1, from: "random" }, ease: "back.out(2)" }, ">-0.2")
-      .to("#cap2", { opacity: 1, duration: 0.4 }, "<0.3")
-      .to({}, { duration: 0.5 });
+    gsap.timeline({ scrollTrigger: { trigger: "#map", start: "top top", end: "+=300%", pin: true, scrub: 0.6 } })
+      .to({}, { duration: 0.8 }) // scroll a little more before any dots show
+      .to(pins.map((p) => p.pop), { scale: 1, duration: 0.4, stagger: { amount: 1.2, from: "random" }, ease: "back.out(2)" })
+      .to("#cap1", { opacity: 1, duration: 0.4 }, "<0.6")
+      .to({}, { duration: 0.8 });
   }
 
   /* Act 6: each line of the sum fades up as it reaches the middle of the screen. */
   function act6() {
     $$("#sum .sumlist li").forEach((li) => {
-      gsap.fromTo(li, { opacity: 0.12, y: 24 }, { opacity: 1, y: 0, ease: "none",
+      gsap.fromTo(li, { opacity: 0.12 }, { opacity: 1, ease: "none",
         scrollTrigger: { trigger: li, start: "top 88%", end: "top 55%", scrub: true } });
     });
   }
