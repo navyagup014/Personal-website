@@ -42,7 +42,7 @@ body {
   padding-left: max(20px, env(safe-area-inset-left, 0px));
   padding-right: max(20px, env(safe-area-inset-right, 0px));
 }
-.wrap { width: min(920px, 100%); margin: 0 auto; }
+.wrap { width: min(1180px, 100%); margin: 0 auto; }
 a { color: var(--maroon); }
 .back { font-size: 13px; letter-spacing: 0.18em; text-decoration: none; }
 .back:hover, .back:focus-visible { text-decoration: underline; }
@@ -60,12 +60,12 @@ header > div { min-width: 0; }
 .stat b { display: block; font: 400 clamp(44px, 6.4vw, 64px) / 1.28 var(--hand); color: var(--maroon); }
 .stat span { display: block; margin-top: 6px; font-size: 13px; line-height: 1.5; color: var(--soft); }
 
-.role { display: grid; grid-template-columns: 200px 1fr; gap: 12px 40px; padding-block: 44px; border-bottom: 1px solid var(--line); }
-.when { font-size: 13px; letter-spacing: 0.08em; color: var(--soft); }
-.when b { display: block; color: var(--ink); letter-spacing: 0.18em; margin-bottom: 4px; }
+.role { display: grid; grid-template-columns: 1fr; gap: 10px; padding-block: 44px; border-bottom: 1px solid var(--line); }
+.when { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 18px; font-size: 13px; letter-spacing: 0.08em; color: var(--soft); } /* date sits above the title */
+.when b { color: var(--ink); letter-spacing: 0.18em; }
 h2 { margin: 0 0 14px; font: 400 clamp(30px, 4vw, 42px) / 1.28 var(--hand); color: var(--ink); }
 ul { margin: 0; padding-left: 1.1em; }
-li { margin-bottom: 10px; max-width: 62ch; }
+li { margin-bottom: 12px; max-width: 100ch; font-size: 17px; }
 li::marker { color: var(--maroon); }
 
 .top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
