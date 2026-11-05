@@ -48,7 +48,7 @@ a { color: var(--maroon); }
 .back:hover, .back:focus-visible { text-decoration: underline; }
 
 header { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-top: 28px; }
-h1 { margin: 0; font: 400 clamp(52px, 9.5vw, 92px) / 1.02 var(--hand); color: var(--maroon); text-wrap: balance; }
+h1 { margin: 0; font: 400 clamp(42px, 7.2vw, 68px) / 1.28 var(--hand); color: var(--maroon); text-wrap: balance; }
 header > div { min-width: 0; }
 .sub { margin: 26px 0 0; font-size: 14px; letter-spacing: 0.18em; } /* extra room under the title */
 .badge { width: clamp(100px, 17vw, 160px); flex: none; transform: rotate(8deg); filter: drop-shadow(0 6px 8px rgba(42,18,22,.14)); }
@@ -57,13 +57,13 @@ header > div { min-width: 0; }
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px 24px;
   margin: 56px 0 8px; padding-block: 28px; border-block: 1px dashed var(--rose);
 }
-.stat b { display: block; font: 400 clamp(44px, 6.4vw, 64px) / 1.1 var(--hand); color: var(--maroon); }
+.stat b { display: block; font: 400 clamp(44px, 6.4vw, 64px) / 1.28 var(--hand); color: var(--maroon); }
 .stat span { display: block; margin-top: 6px; font-size: 13px; line-height: 1.5; color: var(--soft); }
 
 .role { display: grid; grid-template-columns: 200px 1fr; gap: 12px 40px; padding-block: 44px; border-bottom: 1px solid var(--line); }
 .when { font-size: 13px; letter-spacing: 0.08em; color: var(--soft); }
 .when b { display: block; color: var(--ink); letter-spacing: 0.18em; margin-bottom: 4px; }
-h2 { margin: 0 0 14px; font: 400 clamp(30px, 4vw, 42px) / 1.1 var(--hand); color: var(--ink); }
+h2 { margin: 0 0 14px; font: 400 clamp(30px, 4vw, 42px) / 1.28 var(--hand); color: var(--ink); }
 ul { margin: 0; padding-left: 1.1em; }
 li { margin-bottom: 10px; max-width: 62ch; }
 li::marker { color: var(--maroon); }
@@ -98,7 +98,7 @@ footer b { color: var(--ink); letter-spacing: 0.18em; display: block; margin-bot
 
   <header>
     <div>
-      <h1>Professional full-time experience</h1>
+      <h1>Professional <span style="white-space:nowrap">full-time</span> experience</h1>
       <p class="sub">Wayfair, Boston &middot; 2022&ndash;2026</p>
     </div>
     <svg class="badge" viewBox="0 0 160 130" aria-hidden="true">

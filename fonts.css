@@ -17,3 +17,6 @@
   src: local("Avenir-Light"), local("Avenir Light"),
        url("/assets/fonts/nunito-sans-latin-300-normal.woff2") format("woff2");
 }
+
+/* italic f/j swash descenders: a little tracking keeps neighbouring letters from touching */
+h1, h2, h3 { letter-spacing: 0.02em; }
