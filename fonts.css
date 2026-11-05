@@ -20,3 +20,14 @@
 
 /* italic f/j swash descenders: a little tracking keeps neighbouring letters from touching */
 h1, h2, h3 { letter-spacing: 0.02em; }
+
+/* Bold Avenir for the few spots that ask for it (the numbers on the About page). Kept as its own
+   family so the light body text and small labels stay light everywhere else. */
+@font-face {
+  font-family: "Site Body Bold";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local("Avenir-Heavy"), local("Avenir Heavy"),
+       url("/assets/fonts/nunito-sans-latin-700-normal.woff2") format("woff2");
+}
