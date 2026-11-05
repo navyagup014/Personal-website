@@ -17,9 +17,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Satisfy&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/fonts.css">
 <style>
 /* Layout: same reading column as the other pages. Handwritten header with a drawn laptop, a short intro,
    then one row per project: status (left) / what it is (right). To add a project, copy a .row. */
@@ -31,8 +29,8 @@
   --butter: #f3e3a6;
   --soft: #6e5a5d;
   --line: #eadfdc;
-  --hand: "Satisfy", "Bradley Hand", cursive;
-  --type: "Courier Prime", "Courier New", monospace;
+  --hand: "Site Title", "Adobe Caslon Pro", "Libre Caslon Text", Georgia, serif;
+  --type: "Site Body", Avenir, "Avenir Next", "Nunito Sans", sans-serif;
   color-scheme: light;
 }
 * { box-sizing: border-box; }
@@ -51,14 +49,14 @@ a { color: var(--maroon); }
 .back:hover, .back:focus-visible { text-decoration: underline; }
 header { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-top: 28px; }
 header > div { min-width: 0; }
-h1 { margin: 0; font: 400 clamp(52px, 9.5vw, 92px) / 0.9 var(--hand); color: var(--maroon); text-wrap: balance; }
+h1 { margin: 0; font: 400 clamp(52px, 9.5vw, 92px) / 1.02 var(--hand); color: var(--maroon); text-wrap: balance; }
 .art { width: clamp(110px, 18vw, 180px); flex: none; transform: rotate(-6deg); filter: drop-shadow(0 6px 8px rgba(42,18,22,.14)); }
 .lede { margin: 28px 0 0; max-width: 58ch; }
 .rows { margin-top: 40px; }
 .row { display: grid; grid-template-columns: 200px 1fr; gap: 6px 40px; padding-block: 28px; border-top: 1px solid var(--line); }
 .row:last-child { border-bottom: 1px solid var(--line); }
 .k { font-size: 13px; letter-spacing: 0.08em; color: var(--soft); }
-h2 { margin: 0 0 6px; font: 400 clamp(28px, 3.8vw, 38px) / 1.05 var(--hand); }
+h2 { margin: 0 0 6px; font: 400 clamp(28px, 3.8vw, 38px) / 1.12 var(--hand); }
 .link-row h2 a { text-decoration: none; }
 .link-row h2 a:hover, .link-row h2 a:focus-visible { text-decoration: underline; }
 .row p { margin: 0; max-width: 62ch; }
@@ -78,8 +76,8 @@ h2 { margin: 0 0 6px; font: 400 clamp(28px, 3.8vw, 38px) / 1.05 var(--hand); }
       <rect x="22" y="14" width="150" height="84" fill="#e9dedc" stroke="#2a1216" stroke-width="2" transform="rotate(-6 97 56)"/>
       <rect x="14" y="26" width="160" height="88" fill="#fffdfb" stroke="#2a1216" stroke-width="2"/>
       <rect x="14" y="26" width="12" height="88" fill="#6b1a2b"/>
-      <text x="40" y="58" font-family="Courier Prime, monospace" font-weight="700" font-size="14" fill="#2a1216">NAVYA GUPTA</text>
-      <text x="40" y="76" font-family="Courier Prime, monospace" font-size="10" fill="#2a1216">Product + data</text>
+      <text x="40" y="58" font-family="Site Body, Avenir, sans-serif" font-weight="700" font-size="14" fill="#2a1216">NAVYA GUPTA</text>
+      <text x="40" y="76" font-family="Site Body, Avenir, sans-serif" font-size="10" fill="#2a1216">Product + data</text>
     </svg>
   </header>
 

@@ -7,22 +7,20 @@
 <meta name="robots" content="noindex">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Satisfy&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/fonts.css">
 <style>
 :root { --paper: #faf9f6; --frame: #62212c; --ink: #2a1216; --maroon: #6b1a2b; --soft: #6e5a5d; }
 * { box-sizing: border-box; }
 html, body { margin: 0; min-height: 100%; }
 body {
   background: var(--paper); color: var(--ink);
-  font-family: "Courier Prime", "Courier New", monospace;
+  font-family: "Site Body", Avenir, "Avenir Next", "Nunito Sans", sans-serif;
   min-height: 100vh; display: grid; place-items: center; padding: 24px;
 }
 body::after { content: ""; position: fixed; inset: 0; pointer-events: none; border: 10px solid var(--frame); }
 @media (max-width: 719px) { body::after { border-width: 6px; } }
 main { max-width: 520px; text-align: center; }
-h1 { margin: 0; font: 400 clamp(44px, 12vw, 76px) / 1 "Satisfy", "Bradley Hand", cursive; color: var(--maroon); text-wrap: balance; }
+h1 { margin: 0; font: 400 clamp(44px, 12vw, 76px) / 1 "Site Title", "Adobe Caslon Pro", "Libre Caslon Text", Georgia, serif; color: var(--maroon); text-wrap: balance; }
 p { margin: 16px 0 0; line-height: 1.5; color: var(--soft); }
 nav { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 10px 22px; justify-content: center; }
 a { color: var(--maroon); letter-spacing: 0.06em; }

@@ -17,9 +17,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Satisfy&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/fonts.css">
 <style>
 /* Layout: same reading column as the other pages. A handwritten header, then a loose grid
    of polaroids, best first. To add a photo, copy one <figure> into the grid, most professional photos first, and change the img and alt.
@@ -29,8 +27,8 @@
   --ink: #2a1216;
   --maroon: #6b1a2b;
   --rose: #d9a5ae;
-  --hand: "Satisfy", "Bradley Hand", cursive;
-  --type: "Courier Prime", "Courier New", monospace;
+  --hand: "Site Title", "Adobe Caslon Pro", "Libre Caslon Text", Georgia, serif;
+  --type: "Site Body", Avenir, "Avenir Next", "Nunito Sans", sans-serif;
   color-scheme: light;
 }
 * { box-sizing: border-box; }
@@ -47,7 +45,7 @@ body {
 a { color: var(--maroon); }
 .back { font-size: 13px; letter-spacing: 0.18em; text-decoration: none; }
 .back:hover, .back:focus-visible { text-decoration: underline; }
-h1 { margin: 28px 0 0; font: 400 clamp(52px, 9.5vw, 92px) / 0.9 var(--hand); color: var(--maroon); }
+h1 { margin: 28px 0 0; font: 400 clamp(52px, 9.5vw, 92px) / 1.02 var(--hand); color: var(--maroon); }
 .sub { margin: 14px 0 0; font-size: 14px; letter-spacing: 0.18em; }
 .grid { columns: 3 240px; column-gap: 28px; margin-top: 48px; }
 figure { margin: 0 0 32px; padding: 12px 12px 28px; break-inside: avoid; background: #fffdfb; border: 2px solid var(--ink); box-shadow: 0 8px 14px rgba(42,18,22,.14); transform: rotate(var(--r, -1.5deg)); }

@@ -1,0 +1,19 @@
+/* Title: Adobe Caslon Italic (uses the installed font if present, else Libre Caslon Text Italic).
+   Body: Avenir Light (uses the installed font if present, else Nunito Sans Light).
+   The italic file is mapped to "normal" style and the weight range stops browsers faking bold. */
+@font-face {
+  font-family: "Site Title";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: local("Adobe Caslon Pro Italic"), local("ACaslonPro-Italic"),
+       url("/assets/fonts/libre-caslon-text-latin-400-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Site Body";
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: local("Avenir-Light"), local("Avenir Light"),
+       url("/assets/fonts/nunito-sans-latin-300-normal.woff2") format("woff2");
+}

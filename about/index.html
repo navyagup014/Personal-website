@@ -17,9 +17,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:wght@400;700&family=Satisfy&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/fonts.css">
 <style>
 /* Six scroll acts. Act 2 (the home movie) is not built yet. Every rule below shows the finished state
    by default; the script only hides things when motion is allowed, so reduced-motion and no-JS still read fine. */
@@ -31,9 +29,9 @@
   --butter: #f3e3a6;
   --soft: #6e5a5d;
   --line: #eadfdc;
-  --hand: "Satisfy", "Bradley Hand", cursive;
-  --type: "Courier Prime", "Courier New", monospace;
-  --display: "Anton", "Impact", "Arial Narrow", sans-serif;
+  --hand: "Site Title", "Adobe Caslon Pro", "Libre Caslon Text", Georgia, serif;
+  --type: "Site Body", Avenir, "Avenir Next", "Nunito Sans", sans-serif;
+  --display: var(--hand);
   color-scheme: light;
 }
 * { box-sizing: border-box; }
@@ -65,7 +63,7 @@ body { background: var(--paper); color: var(--ink); font: 400 16px / 1.6 var(--t
 #script { background: var(--paper); overflow: hidden; position: relative; }
 #script .stage { height: 100vh; height: 100svh; display: grid; place-items: center; padding: 24px; }
 #script .wrap { position: relative; width: min(1000px, 92vw); text-align: center; }
-.stext { margin: 0; font: 400 clamp(46px, 9vw, 132px) / 1 var(--hand); color: var(--maroon); }
+.stext { margin: 0; font: 400 clamp(46px, 9vw, 132px) / 1.1 var(--hand); color: var(--maroon); }
 .stext .w, .stext .ch { display: inline-block; }
 .stext .w { white-space: nowrap; }
 .sdot { position: absolute; border-radius: 50%; pointer-events: none; }
@@ -84,7 +82,7 @@ html.motion .stage4 { height: 100%; min-height: 0; }
 .label { display: inline-flex; align-items: center; gap: 0.5em; margin: 0; font: 400 clamp(18px, 1.7vw, 22px) / 1.2 var(--type); color: var(--maroon); }
 .label svg { width: 1.15em; height: 1.15em; flex: none; }
 .quote { margin: 16px 0 0; }
-.quote p { margin: 0; font: 400 clamp(26px, 2.5vw, 34px) / 1 var(--hand); color: var(--ink); text-wrap: balance; }
+.quote p { margin: 0; font: 400 clamp(26px, 2.5vw, 34px) / 1.1 var(--hand); color: var(--ink); text-wrap: balance; }
 .quote footer { margin-top: 8px; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--soft); }
 .hint4 { margin: 18px 0 0; font-size: 14px; color: var(--soft); transition: opacity 0.4s; }
 .stage4.on .hint4 { display: none; }
@@ -112,9 +110,9 @@ html.motion .stage4 { height: 100%; min-height: 0; }
 .ph { position: relative; aspect-ratio: 4 / 3; background: var(--c); display: grid; place-items: center; overflow: hidden; container-type: inline-size; }
 .tile.wide .ph { aspect-ratio: 3 / 2; }
 .ph img.photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.ph .big { font: 400 30cqw / 1 var(--hand); color: var(--ci); opacity: 0.8; }
+.ph .big { font: 400 30cqw / 1.1 var(--hand); color: var(--ci); opacity: 0.8; }
 .tile small { display: block; margin-top: 12px; font-size: 12px; letter-spacing: 0.14em; color: var(--soft); }
-.tile h3 { margin: 2px 0 4px; font: 400 clamp(28px, 3.2vw, 36px) / 1 var(--hand); color: var(--maroon); }
+.tile h3 { margin: 2px 0 4px; font: 400 clamp(28px, 3.2vw, 36px) / 1.1 var(--hand); color: var(--maroon); }
 .tile p { margin: 0; font-size: 14px; line-height: 1.5; }
 /* The circle, arrow and label on the cohort photo (moment 18) */
 .mark { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
@@ -143,16 +141,16 @@ html.motion .stage4 { height: 100%; min-height: 0; }
 
 /* Act 6: the sum */
 .sum { background: var(--butter); color: var(--maroon); padding: 120px 24px 80px; }
-.sum h2 { margin: 0 auto 48px; max-width: 1100px; text-align: center; text-transform: uppercase; font: 400 clamp(34px, 6vw, 84px) / 1.02 var(--display); }
+.sum h2 { margin: 0 auto 48px; max-width: 1100px; text-align: center; text-transform: uppercase; font: 400 clamp(30px, 5vw, 68px) / 1.1 var(--display); }
 .sum h2 em { font-style: normal; color: var(--ink); }
-.sumlist { list-style: none; margin: 0 auto; padding: 0; max-width: 1100px; font: 400 clamp(30px, 5.6vw, 80px) / 1.08 var(--display); text-transform: uppercase; color: var(--ink); }
+.sumlist { list-style: none; margin: 0 auto; padding: 0; max-width: 1100px; font: 400 clamp(26px, 4.4vw, 62px) / 1.12 var(--display); text-transform: uppercase; color: var(--ink); }
 .sumlist li { display: inline; }
 .sumlist li + li::before { content: " "; }
 .sumlist .n { color: var(--maroon); margin-right: 0.3em; }
 .sumlist .t::after { content: "."; color: var(--maroon); }
 .end { margin: 90px auto 0; max-width: 700px; text-align: center; color: var(--ink); }
 .end p { margin: 0 0 10px; }
-.end .hand { font: 400 clamp(40px, 6vw, 64px) / 1 var(--hand); color: var(--maroon); }
+.end .hand { font: 400 clamp(40px, 6vw, 64px) / 1.1 var(--hand); color: var(--maroon); }
 .end a { color: var(--maroon); }
 
 @media (max-width: 719px) {

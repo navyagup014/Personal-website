@@ -17,9 +17,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Satisfy&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/fonts.css">
 <style>
 /* Layout: same single reading column as the work page. Handwritten header with a drawn
    certificate, then rows of when (left) / what (right). */
@@ -30,8 +28,8 @@
   --rose: #d9a5ae;
   --soft: #6e5a5d;
   --line: #eadfdc;
-  --hand: "Satisfy", "Bradley Hand", cursive;
-  --type: "Courier Prime", "Courier New", monospace;
+  --hand: "Site Title", "Adobe Caslon Pro", "Libre Caslon Text", Georgia, serif;
+  --type: "Site Body", Avenir, "Avenir Next", "Nunito Sans", sans-serif;
   color-scheme: light;
 }
 * { box-sizing: border-box; }
@@ -50,14 +48,14 @@ a { color: var(--maroon); }
 .back:hover, .back:focus-visible { text-decoration: underline; }
 header { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-top: 28px; }
 header > div { min-width: 0; }
-h1 { margin: 0; font: 400 clamp(52px, 9.5vw, 92px) / 0.9 var(--hand); color: var(--maroon); text-wrap: balance; }
+h1 { margin: 0; font: 400 clamp(52px, 9.5vw, 92px) / 1.02 var(--hand); color: var(--maroon); text-wrap: balance; }
 .sub { margin: 14px 0 0; font-size: 14px; letter-spacing: 0.18em; }
 .art { width: clamp(110px, 18vw, 180px); flex: none; transform: rotate(6deg); filter: drop-shadow(0 6px 8px rgba(42,18,22,.14)); }
 .rows { margin-top: 48px; }
 .row { display: grid; grid-template-columns: 200px 1fr; gap: 6px 40px; padding-block: 28px; border-top: 1px solid var(--line); }
 .row:last-child { border-bottom: 1px solid var(--line); }
 .k { font-size: 13px; letter-spacing: 0.08em; color: var(--soft); }
-h2 { margin: 0 0 6px; font: 400 clamp(28px, 3.8vw, 38px) / 1.05 var(--hand); }
+h2 { margin: 0 0 6px; font: 400 clamp(28px, 3.8vw, 38px) / 1.12 var(--hand); }
 .row p { margin: 0; max-width: 62ch; }
 .courses { margin: 0; padding-left: 1.1em; max-width: 62ch; }
 .courses li { margin-bottom: 6px; }
@@ -77,7 +75,7 @@ h2 { margin: 0 0 6px; font: 400 clamp(28px, 3.8vw, 38px) / 1.05 var(--hand); }
     <svg class="art" viewBox="0 0 200 150" aria-hidden="true">
       <rect x="10" y="12" width="180" height="118" rx="4" fill="#fffdfb" stroke="#2a1216" stroke-width="2"/>
       <rect x="19" y="21" width="162" height="100" rx="2" fill="none" stroke="#d9a5ae" stroke-width="1.5" stroke-dasharray="4 3"/>
-      <text x="100" y="52" text-anchor="middle" font-family="Courier Prime, monospace" font-weight="700" font-size="13" fill="#6b1a2b" letter-spacing="2">CERTIFICATE</text>
+      <text x="100" y="52" text-anchor="middle" font-family="Site Body, Avenir, sans-serif" font-weight="700" font-size="13" fill="#6b1a2b" letter-spacing="2">CERTIFICATE</text>
       <rect x="52" y="64" width="96" height="3" rx="1.5" fill="#e8dcd9"/>
       <rect x="64" y="74" width="72" height="3" rx="1.5" fill="#e8dcd9"/>
       <rect x="40" y="94" width="60" height="2" fill="#2a1216"/>
