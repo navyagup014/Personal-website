@@ -61,15 +61,15 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 50; pointer-event
   position: absolute;
   left: 50%; top: 49%;
   transform: translate(-50%, -50%);
-  width: 60%;
+  width: max-content;
   text-align: center;
   z-index: 1;
 }
 .hello h1 {
   margin: 0;
-  font: 400 5.2cqw / 1.1 var(--hand);
+  font: 400 4.4cqw / 1.1 var(--hand);
   color: var(--maroon);
-  text-wrap: balance;
+  white-space: nowrap; /* exactly two lines: the <br> is the only break */
 }
 .heart { width: 0.55em; height: 0.5em; margin-left: 0.18em; vertical-align: 0.05em; }
 #cap {
@@ -129,7 +129,7 @@ button.tile { background: none; border: 0; padding: 0; font: inherit; cursor: po
   .hero { place-items: start center; min-height: 0; }
   .stage { width: 100%; aspect-ratio: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 28px 16px; padding-block: 24px; }
   .hello { position: static; transform: none; width: auto; grid-column: 1 / -1; margin-bottom: 8px; }
-  .hello h1 { font-size: 42px; }
+  .hello h1 { font-size: min(42px, 8.4vw); }
   .tile { position: static; width: min(160px, 100%); justify-self: center; transform: none; }
   .tile svg { animation: none; } /* nine looping animations with shadows is a lot for a phone */
   .tag { opacity: 1; position: static; display: block; transform: none; margin-top: 10px; font-size: 13px; }
@@ -271,7 +271,7 @@ button.tile { background: none; border: 0; padding: 0; font: inherit; cursor: po
       <path d="M10 14H190V44a14 14 0 0 0 0 28V102H10V72a14 14 0 0 0 0-28Z" fill="#f3e3a6" stroke="#2a1216" stroke-width="2" stroke-linejoin="round"/>
       <path d="M140 18V98" stroke="#2a1216" stroke-width="1.5" stroke-dasharray="3 4"/>
       <text x="82" y="63" text-anchor="middle" font-family="Site Body, Avenir, sans-serif" font-weight="700" font-size="15" fill="#6b1a2b" letter-spacing="1">ADMIT ONE</text>
-      <text x="168" y="64" text-anchor="middle" font-family="Site Body, Avenir, sans-serif" font-weight="700" font-size="13" fill="#6b1a2b" transform="rotate(90 168 60)">30+</text>
+      <text x="158" y="63" text-anchor="middle" font-family="Site Body, Avenir, sans-serif" font-weight="700" font-size="13" fill="#6b1a2b" transform="rotate(90 158 58)">30+</text>
     </svg>
     <span class="tag">Beyond the desk</span>
   </a>
